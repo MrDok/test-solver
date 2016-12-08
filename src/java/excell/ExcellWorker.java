@@ -14,81 +14,77 @@ import java.util.*;
 /**
  * Created by dokuchaev on 06.12.16.
  */
-public class ExcellWorker{
+public class ExcellWorker {
 
-    public static final String HTML_EXTENSION = ".html";
+    private static final String HTML_EXTENSION = ".html";
 
     /**
      * Получаем список всех файлов с рсширением .html
+     *
      * @param fileName
      * @param extension
      * @return
      */
-    public File[] getFiles(String fileName, final String extension){
+    private File[] getFiles(String fileName, final String extension) {
         File directory = new File(fileName);
 
-        if (directory.isDirectory()){
-            FilenameFilter filter = new FilenameFilter(){
-                @Override
-                public boolean accept(File dir, String name){
-
-                    return name.endsWith(extension);
-                }
-            };
+        if (directory.isDirectory()) {
+            FilenameFilter filter = (dir, name) -> name.endsWith(extension);
 
             File[] result = directory.listFiles(filter);
 
-            if (result != null && result.length > 0){
+            if (result != null && result.length > 0) {
                 return result;
-            }else {
+            } else {
                 return null;
             }
-        }else{
-            if (directory.isFile()){
+        } else {
+            if (directory.isFile()) {
                 String path = directory.getPath();
 
-                if (path.endsWith(extension));
-                return new File[]{new File(fileName)};
+                if (path.endsWith(extension)) return new File[]{new File(fileName)};
             }
         }
 
         return null;
     }
 
-    public Set<Question> getData(String directory){
+    private Set<Question> getData(String directory) {
         File[] files = getFiles(directory, HTML_EXTENSION);
 
         Set<Question> result = new HashSet<>();
         HtmlHelper htmlHelper = new HtmlHelper();
 
-        for (File file : files){
-            try{
+        for (File file : files) {
+            try {
                 result.addAll(htmlHelper.getQuestions(file));
-            }catch (IOException e){
+            } catch (IOException e) {
                 System.out.println("Eror working with file: " + file.getName());
             }
         }
 
         return result;
     }
+
     /**
      * Возвращает значение ячейки в текстовом представлении
+     *
      * @param cell
      * @return
      */
-    public String getText(Cell cell) throws WrongFormatDataException{
-        if (cell != null){
+    public String getText(Cell cell) throws WrongFormatDataException {
+        if (cell != null) {
             String str;
 
-            switch (cell.getCellType()){
+            switch (cell.getCellType()) {
                 case Cell.CELL_TYPE_STRING:
                     str = cell.getRichStringCellValue().getString();
                     break;
 
                 case Cell.CELL_TYPE_NUMERIC:
-                    if (DateUtil.isCellDateFormatted(cell)){
+                    if (DateUtil.isCellDateFormatted(cell)) {
                         str = cell.getDateCellValue().toString();
-                    }else{
+                    } else {
                         str = Double.toString(cell.getNumericCellValue());
                     }
                     break;
@@ -98,9 +94,9 @@ public class ExcellWorker{
                     break;
 
                 case Cell.CELL_TYPE_FORMULA:
-                    try{
-                        str =  Double.toString(cell.getNumericCellValue());
-                    }catch(IllegalStateException e){
+                    try {
+                        str = Double.toString(cell.getNumericCellValue());
+                    } catch (IllegalStateException e) {
                         throw new WrongFormatDataException("Неверный формат данных в ячейке: " + (cell.getColumnIndex() + 1));
                     }
                     break;
@@ -118,27 +114,27 @@ public class ExcellWorker{
         return null;
     }
 
-    public void createFile(Set<Question> data, String fileName) throws FileWriteException{
+    private void createFile(Set<Question> data, String fileName) throws FileWriteException {
         HSSFWorkbook book = new HSSFWorkbook();
         HSSFSheet sheet = book.createSheet();
 
         int i = -1;
         Row row;
-        for(Question question : data){
+        for (Question question : data) {
             row = createRow(sheet, ++i);
 
             row.getCell(0).setCellValue(question.getQuestion() + "\n\n" + question.getCode());
             row.getCell(1).setCellValue(question.getAnswer());
         }
 
-        try{
+        try {
             book.write(new FileOutputStream(fileName));
-        }catch (IOException e){
+        } catch (IOException e) {
             throw new FileWriteException();
         }
     }
 
-    public Row createRow(HSSFSheet sheet, int index){
+    private Row createRow(HSSFSheet sheet, int index) {
         Row row = sheet.createRow(index);
         row.setHeight((short) 5000);
         row.createCell(0);
@@ -147,15 +143,26 @@ public class ExcellWorker{
         return row;
     }
 
-    public static void main(String[] args){
-        try{
+    public static void main(String[] args) {
+        try {
             ExcellWorker worker = new ExcellWorker();
             Set<Question> result = worker.getData("./files");
-            System.out.println("Unique count of questions: "+ result.size());
+            System.out.println("Unique count of questions: " + result.size());
             worker.createFile(result, "output.xls");
-        }catch (FileWriteException e){
+            BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+            result.forEach(question -> {
+                try {
+                    writer.write(question.getQuestion() + "\n");
+                    writer.write(question.getCode() + "\n");
+                    writer.write(question.getAnswer());
+                } catch (IOException e) {
+                    System.err.println("ERROR!!!");
+                }
+            });
+            writer.flush();
+        } catch (FileWriteException e) {
             System.out.println("Couldn't write to output.xls");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Inner exception");
         }
     }
