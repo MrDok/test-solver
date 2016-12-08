@@ -9,9 +9,7 @@ import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by dokuchaev on 06.12.16.
@@ -57,15 +55,15 @@ public class ExcellWorker{
         return null;
     }
 
-    public Map<String, String> getData(String directory){
+    public Set<Question> getData(String directory){
         File[] files = getFiles(directory, HTML_EXTENSION);
 
-        Map<String, String> result = new HashMap<>();
+        Set<Question> result = new HashSet<>();
         HtmlHelper htmlHelper = new HtmlHelper();
 
         for (File file : files){
             try{
-                result.putAll(htmlHelper.getQuestions(file));
+                result.addAll(htmlHelper.getQuestions(file));
             }catch (IOException e){
                 System.out.println("Eror working with file: " + file.getName());
             }
@@ -120,17 +118,17 @@ public class ExcellWorker{
         return null;
     }
 
-    public void createFile(Map<String, String> data, String fileName) throws FileWriteException{
+    public void createFile(Set<Question> data, String fileName) throws FileWriteException{
         HSSFWorkbook book = new HSSFWorkbook();
         HSSFSheet sheet = book.createSheet();
 
         int i = -1;
         Row row;
-        for(Map.Entry<String, String> entry : data.entrySet()){
+        for(Question question : data){
             row = createRow(sheet, ++i);
 
-            row.getCell(0).setCellValue(entry.getKey());
-            row.getCell(1).setCellValue(entry.getValue());
+            row.getCell(0).setCellValue(question.getQuestion() + "\n\n" + question.getCode());
+            row.getCell(1).setCellValue(question.getAnswer());
         }
 
         try{
@@ -152,7 +150,7 @@ public class ExcellWorker{
     public static void main(String[] args){
         try{
             ExcellWorker worker = new ExcellWorker();
-            Map<String, String> result = worker.getData("./files");
+            Set<Question> result = worker.getData("./files");
             System.out.println("Unique count of questions: "+ result.size());
             worker.createFile(result, "output.xls");
         }catch (FileWriteException e){
