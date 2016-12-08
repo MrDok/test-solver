@@ -17,12 +17,6 @@ import static java.util.stream.Collectors.joining;
  */
 class HtmlHelper {
 
-    public Set<Question> getQuestions(String filepath) throws IOException {
-        File file = new File(filepath);
-
-        return getQuestions(file);
-    }
-
     Set<Question> getQuestions(File file) throws IOException {
         Elements elements = Jsoup.parse(file,
                 Charset.defaultCharset().name())
