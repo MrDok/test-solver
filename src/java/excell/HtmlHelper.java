@@ -24,7 +24,7 @@ class HtmlHelper {
         Set<Question> result = new HashSet<>();
         elements.forEach(element -> {
             String question = element.select("div.question-text").first().ownText();
-            String code = element.select("code.java").text().replace("{", "{\n").replace(";", ";\n").replace("}", "}\n");
+            String code = element.select("code.java").text().replace("{", "{\n").replace(";", ";\n").replace("}", "}\n").replace("\u00a0"," ");
             String answers = element.select("p.correct").stream()
                     .map(Element::ownText)
                     .collect(joining("\nОтвет: ", "Ответ: ", "."));

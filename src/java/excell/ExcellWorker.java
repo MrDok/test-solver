@@ -150,11 +150,12 @@ public class ExcellWorker {
             System.out.println("Unique count of questions: " + result.size());
             worker.createFile(result, "output.xls");
             BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+            final int[] i = {1};
             result.forEach(question -> {
                 try {
-                    writer.write(question.getQuestion() + "\n");
+                    writer.write("Вопрос " + i[0]++ + ":  " + question.getQuestion() + "\n\n");
                     writer.write(question.getCode() + "\n");
-                    writer.write(question.getAnswer());
+                    writer.write(question.getAnswer() + "\n____________\n");
                 } catch (IOException e) {
                     System.err.println("ERROR!!!");
                 }
