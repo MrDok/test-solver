@@ -17,20 +17,19 @@ import static java.util.stream.Collectors.joining;
  */
 class HtmlHelper {
 
-    public Set<Question> getQuestions(String filepath) throws IOException {
-        File file = new File(filepath);
-
-        return getQuestions(file);
-    }
-
-    Set<Question> getQuestions(File file) throws IOException {
-        Elements elements = Jsoup.parse(file,
-                Charset.defaultCharset().name())
-                .select("div.question-result");
+    Set<Question> getQuestions(File file) {
+        Elements elements;
+        try {
+            elements = Jsoup.parse(file,
+                    Charset.defaultCharset().name())
+                    .select("div.question-result");
+        } catch (IOException e) {
+            return null;
+        }
         Set<Question> result = new HashSet<>();
         elements.forEach(element -> {
             String question = element.select("div.question-text").first().ownText();
-            String code = element.select("code.java").text().replace("{", "{\n").replace(";", ";\n").replace("}", "}\n");
+            String code = element.select("code.java").text().replace("{", "{\n").replace(";", ";\n").replace("}", "}\n").replace("\u00a0"," ");
             String answers = element.select("p.correct").stream()
                     .map(Element::ownText)
                     .collect(joining("\nОтвет: ", "Ответ: ", "."));
