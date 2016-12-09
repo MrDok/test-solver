@@ -1,15 +1,15 @@
 package excell;
 
 import excell.exceptions.FileWriteException;
-import excell.exceptions.WrongFormatDataException;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by dokuchaev on 06.12.16.
@@ -29,14 +29,13 @@ public class ExcellWorker {
         File directory = new File(fileName);
 
         if (directory.isDirectory()) {
-            FilenameFilter filter = (dir, name) -> name.endsWith(extension);
 
-            File[] result = directory.listFiles(filter);
+            File[] result = directory.listFiles((dir, name) -> name.endsWith(extension));
 
             if (result != null && result.length > 0) {
                 return result;
             } else {
-                return null;
+                return new File[0];
             }
         } else {
             if (directory.isFile()) {
@@ -46,101 +45,49 @@ public class ExcellWorker {
             }
         }
 
-        return null;
+        return new File[0];
     }
 
     private Set<Question> getData(String directory) {
-        File[] files = getFiles(directory, HTML_EXTENSION);
-
-        Set<Question> result = new HashSet<>();
-        HtmlHelper htmlHelper = new HtmlHelper();
-
-        for (File file : files) {
-            try {
-                result.addAll(htmlHelper.getQuestions(file));
-            } catch (IOException e) {
-                System.out.println("Eror working with file: " + file.getName());
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * Возвращает значение ячейки в текстовом представлении
-     *
-     * @param cell
-     * @return
-     */
-    public String getText(Cell cell) throws WrongFormatDataException {
-        if (cell != null) {
-            String str;
-
-            switch (cell.getCellType()) {
-                case Cell.CELL_TYPE_STRING:
-                    str = cell.getRichStringCellValue().getString();
-                    break;
-
-                case Cell.CELL_TYPE_NUMERIC:
-                    if (DateUtil.isCellDateFormatted(cell)) {
-                        str = cell.getDateCellValue().toString();
-                    } else {
-                        str = Double.toString(cell.getNumericCellValue());
-                    }
-                    break;
-
-                case Cell.CELL_TYPE_BOOLEAN:
-                    str = Boolean.toString(cell.getBooleanCellValue());
-                    break;
-
-                case Cell.CELL_TYPE_FORMULA:
-                    try {
-                        str = Double.toString(cell.getNumericCellValue());
-                    } catch (IllegalStateException e) {
-                        throw new WrongFormatDataException("Неверный формат данных в ячейке: " + (cell.getColumnIndex() + 1));
-                    }
-                    break;
-
-                case Cell.CELL_TYPE_ERROR:
-                    throw new WrongFormatDataException("Неверный формат данных в ячейке: " + (cell.getColumnIndex() + 1));
-
-                default:
-                    str = null;
-            }
-
-            return str.trim();
-        }
-
-        return null;
+        return Arrays.stream(getFiles(directory, HTML_EXTENSION))
+                .flatMap(file -> new HtmlHelper().getQuestions(file).stream())
+                .collect(Collectors.toSet());
     }
 
     private void createFile(Set<Question> data, String fileName) throws FileWriteException {
         HSSFWorkbook book = new HSSFWorkbook();
         HSSFSheet sheet = book.createSheet();
+        HSSFCellStyle style = book.createCellStyle();
+        style.setWrapText(false);
 
-        int i = -1;
-        Row row;
-        for (Question question : data) {
-            row = createRow(sheet, ++i);
+        final int[] i = {0};
 
-            row.getCell(0).setCellValue(question.getQuestion() + "\n\n" + question.getCode());
+        data.forEach(question -> {
+            Row row = sheet.createRow(i[0]++);
+            row.setHeight((short) 5000);
+            row.createCell(0);
+            row.createCell(1);
+
+            row.getCell(0).setCellValue("Вопрос " + i[0] + ": \n" + question.getQuestion() + "\n\n" + question.getCode());
             row.getCell(1).setCellValue(question.getAnswer());
-        }
+        });
+
+//        int i = -1;
+//        Row row;
+
+//        for (Question question : data) {
+//            row = createRow(sheet, ++i);
+//            final int[] j = {1};
+//
+//            row.getCell(0).setCellValue("Вопрос " + j[0]++ + ":  \n" + question.getQuestion() + "\n\n" + question.getCode());
+//            row.getCell(1).setCellValue(question.getAnswer());
+//        }
 
         try {
             book.write(new FileOutputStream(fileName));
         } catch (IOException e) {
             throw new FileWriteException();
         }
-    }
-
-    private Row createRow(HSSFSheet sheet, int index) {
-        Row row = sheet.createRow(index);
-        row.setHeight((short) 5000);
-        row.createCell(0);
-        row.createCell(1);
-
-        return row;
     }
 
     public static void main(String[] args) {
@@ -167,4 +114,61 @@ public class ExcellWorker {
             System.out.println("Inner exception");
         }
     }
+
+//    /**
+//     //     * Возвращает значение ячейки в текстовом представлении
+//     //     *
+//     //     * @param cell
+//     //     * @return
+//     //     */
+//    public String getText(Cell cell) throws WrongFormatDataException {
+//        if (cell != null) {
+//            String str;
+//
+//            switch (cell.getCellType()) {
+//                case Cell.CELL_TYPE_STRING:
+//                    str = cell.getRichStringCellValue().getString();
+//                    break;
+//
+//                case Cell.CELL_TYPE_NUMERIC:
+//                    if (DateUtil.isCellDateFormatted(cell)) {
+//                        str = cell.getDateCellValue().toString();
+//                    } else {
+//                        str = Double.toString(cell.getNumericCellValue());
+//                    }
+//                    break;
+//
+//                case Cell.CELL_TYPE_BOOLEAN:
+//                    str = Boolean.toString(cell.getBooleanCellValue());
+//                    break;
+//
+//                case Cell.CELL_TYPE_FORMULA:
+//                    try {
+//                        str = Double.toString(cell.getNumericCellValue());
+//                    } catch (IllegalStateException e) {
+//                        throw new WrongFormatDataException("Неверный формат данных в ячейке: " + (cell.getColumnIndex() + 1));
+//                    }
+//                    break;
+//
+//                case Cell.CELL_TYPE_ERROR:
+//                    throw new WrongFormatDataException("Неверный формат данных в ячейке: " + (cell.getColumnIndex() + 1));
+//
+//                default:
+//                    str = null;
+//            }
+//
+//            return str.trim();
+//        }
+//
+//        return null;
+//    }
+
+    //    private Row createRow(HSSFSheet sheet, int index) {
+//        Row row = sheet.createRow(index);
+//        row.setHeight((short) 5000);
+//        row.createCell(0);
+//        row.createCell(1);
+//
+//        return row;
+//    }
 }

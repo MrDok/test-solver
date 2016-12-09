@@ -17,10 +17,15 @@ import static java.util.stream.Collectors.joining;
  */
 class HtmlHelper {
 
-    Set<Question> getQuestions(File file) throws IOException {
-        Elements elements = Jsoup.parse(file,
-                Charset.defaultCharset().name())
-                .select("div.question-result");
+    Set<Question> getQuestions(File file) {
+        Elements elements;
+        try {
+            elements = Jsoup.parse(file,
+                    Charset.defaultCharset().name())
+                    .select("div.question-result");
+        } catch (IOException e) {
+            return null;
+        }
         Set<Question> result = new HashSet<>();
         elements.forEach(element -> {
             String question = element.select("div.question-text").first().ownText();
