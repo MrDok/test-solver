@@ -1,15 +1,16 @@
 package excell;
 
 import excell.exceptions.FileWriteException;
-import excell.exceptions.WrongFormatDataException;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by dokuchaev on 06.12.16.
@@ -70,52 +71,6 @@ public class ExcellWorker{
         }
 
         return result;
-    }
-    /**
-     * Возвращает значение ячейки в текстовом представлении
-     * @param cell
-     * @return
-     */
-    public String getText(Cell cell) throws WrongFormatDataException{
-        if (cell != null){
-            String str;
-
-            switch (cell.getCellType()){
-                case Cell.CELL_TYPE_STRING:
-                    str = cell.getRichStringCellValue().getString();
-                    break;
-
-                case Cell.CELL_TYPE_NUMERIC:
-                    if (DateUtil.isCellDateFormatted(cell)){
-                        str = cell.getDateCellValue().toString();
-                    }else{
-                        str = Double.toString(cell.getNumericCellValue());
-                    }
-                    break;
-
-                case Cell.CELL_TYPE_BOOLEAN:
-                    str = Boolean.toString(cell.getBooleanCellValue());
-                    break;
-
-                case Cell.CELL_TYPE_FORMULA:
-                    try{
-                        str =  Double.toString(cell.getNumericCellValue());
-                    }catch(IllegalStateException e){
-                        throw new WrongFormatDataException("Неверный формат данных в ячейке: " + (cell.getColumnIndex() + 1));
-                    }
-                    break;
-
-                case Cell.CELL_TYPE_ERROR:
-                    throw new WrongFormatDataException("Неверный формат данных в ячейке: " + (cell.getColumnIndex() + 1));
-
-                default:
-                    str = null;
-            }
-
-            return str.trim();
-        }
-
-        return null;
     }
 
     public void createFile(Set<Question> data, String fileName) throws FileWriteException{
