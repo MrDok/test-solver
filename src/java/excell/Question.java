@@ -3,7 +3,7 @@ package excell;
 /**
  * Created by dokuchaev on 08.12.16.
  */
-public class Question{
+public class Question {
 
     private final String question;
     private final String code;
@@ -15,15 +15,15 @@ public class Question{
         this.answer = answer;
     }
 
-    public String getQuestion(){
+    public String getQuestion() {
         return question;
     }
 
-    public String getCode(){
+    public String getCode() {
         return code;
     }
 
-    String getAnswer(){
+    String getAnswer() {
         return answer;
     }
 
@@ -40,7 +40,7 @@ public class Question{
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         int result = getQuestion().hashCode();
         result = 31 * result + (getCode() != null ? getCode().hashCode() : 0);
         result = 31 * result + getAnswer().hashCode();
