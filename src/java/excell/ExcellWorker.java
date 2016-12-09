@@ -72,17 +72,6 @@ public class ExcellWorker {
             row.getCell(1).setCellValue(question.getAnswer());
         });
 
-//        int i = -1;
-//        Row row;
-
-//        for (Question question : data) {
-//            row = createRow(sheet, ++i);
-//            final int[] j = {1};
-//
-//            row.getCell(0).setCellValue("Вопрос " + j[0]++ + ":  \n" + question.getQuestion() + "\n\n" + question.getCode());
-//            row.getCell(1).setCellValue(question.getAnswer());
-//        }
-
         try {
             book.write(new FileOutputStream(fileName));
         } catch (IOException e) {
@@ -114,61 +103,4 @@ public class ExcellWorker {
             System.out.println("Inner exception");
         }
     }
-
-//    /**
-//     //     * Возвращает значение ячейки в текстовом представлении
-//     //     *
-//     //     * @param cell
-//     //     * @return
-//     //     */
-//    public String getText(Cell cell) throws WrongFormatDataException {
-//        if (cell != null) {
-//            String str;
-//
-//            switch (cell.getCellType()) {
-//                case Cell.CELL_TYPE_STRING:
-//                    str = cell.getRichStringCellValue().getString();
-//                    break;
-//
-//                case Cell.CELL_TYPE_NUMERIC:
-//                    if (DateUtil.isCellDateFormatted(cell)) {
-//                        str = cell.getDateCellValue().toString();
-//                    } else {
-//                        str = Double.toString(cell.getNumericCellValue());
-//                    }
-//                    break;
-//
-//                case Cell.CELL_TYPE_BOOLEAN:
-//                    str = Boolean.toString(cell.getBooleanCellValue());
-//                    break;
-//
-//                case Cell.CELL_TYPE_FORMULA:
-//                    try {
-//                        str = Double.toString(cell.getNumericCellValue());
-//                    } catch (IllegalStateException e) {
-//                        throw new WrongFormatDataException("Неверный формат данных в ячейке: " + (cell.getColumnIndex() + 1));
-//                    }
-//                    break;
-//
-//                case Cell.CELL_TYPE_ERROR:
-//                    throw new WrongFormatDataException("Неверный формат данных в ячейке: " + (cell.getColumnIndex() + 1));
-//
-//                default:
-//                    str = null;
-//            }
-//
-//            return str.trim();
-//        }
-//
-//        return null;
-//    }
-
-    //    private Row createRow(HSSFSheet sheet, int index) {
-//        Row row = sheet.createRow(index);
-//        row.setHeight((short) 5000);
-//        row.createCell(0);
-//        row.createCell(1);
-//
-//        return row;
-//    }
 }
