@@ -5,11 +5,11 @@ import org.jsoup.nodes.Element;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.nio.charset.Charset.defaultCharset;
 import static java.util.stream.Collectors.joining;
 
 /**
@@ -21,11 +21,11 @@ class HtmlHelper {
 
         try {
             return Jsoup.parse(file,
-                    Charset.defaultCharset().name())
+                    defaultCharset().name())
                     .select("div.question-result").stream()
                     .map(element -> new Question(
                             element.select("div.question-text").first().ownText(),
-                            element.select("code.java").text(),
+                            element.select("code").text().replace("<code class=\"java\">", "").replace("</code>", ""),
                             element.select("p.correct").stream()
                                     .map(Element::ownText)
                                     .collect(joining(";\nОтвет: ", "Ответ: ", "."))))
