@@ -68,7 +68,8 @@ public class ExcellWorker {
             row.createCell(0);
             row.createCell(1);
 
-            row.getCell(0).setCellValue("Вопрос " + i[0] + ": \n" + question.getQuestion() + "\n\n" + question.getCode());
+            row.getCell(0).setCellValue("Вопрос " + i[0] + ": \n" + question.getQuestion().replace("{", "{\n").replace(";", ";\n").replace("}", "}\n").replace("\u00a0", " ")
+                    + "\n\n" + question.getCode());
             row.getCell(1).setCellValue(question.getAnswer());
         });
 

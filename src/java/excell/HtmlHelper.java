@@ -25,7 +25,7 @@ class HtmlHelper {
                     .select("div.question-result").stream()
                     .map(element -> new Question(
                             element.select("div.question-text").first().ownText(),
-                            element.select("code.java").text().replace("{", "{\n").replace(";", ";\n").replace("}", "}\n").replace("\u00a0", " "),
+                            element.select("code.java").text(),
                             element.select("p.correct").stream()
                                     .map(Element::ownText)
                                     .collect(joining(";\nОтвет: ", "Ответ: ", "."))))
