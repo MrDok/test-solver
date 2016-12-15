@@ -1,7 +1,6 @@
 package excell;
 
 import excell.exceptions.FileWriteException;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -57,14 +56,13 @@ public class ExcellWorker {
     private void createFile(Set<Question> data, String fileName) throws FileWriteException {
         HSSFWorkbook book = new HSSFWorkbook();
         HSSFSheet sheet = book.createSheet();
-        HSSFCellStyle style = book.createCellStyle();
-        style.setWrapText(false);
+        sheet.setDefaultColumnWidth(49);
+        sheet.setDefaultRowHeight((short) 5500);
 
         final int[] i = {0};
 
         data.forEach(question -> {
             Row row = sheet.createRow(i[0]++);
-            row.setHeight((short) 5000);
             row.createCell(0);
             row.createCell(1);
 

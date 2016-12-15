@@ -16,15 +16,15 @@ public class Question {
     }
 
     public String getQuestion() {
-        return question;
+        return question.trim();
     }
 
     public String getCode() {
-        return code.replace("{", "{\n").replace(";", ";\n").replace("}", "}\n").replace("\u00a0", " ");
+        return code.trim();
     }
 
     String getAnswer() {
-        return answer;
+        return answer.trim();
     }
 
     @Override
