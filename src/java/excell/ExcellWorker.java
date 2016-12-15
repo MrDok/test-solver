@@ -91,7 +91,7 @@ public class ExcellWorker {
             result.forEach(question -> {
                 try {
                     writer.write("Вопрос " + i[0]++ + ":  " + question.getQuestion() + "\n\n");
-                    writer.write(question.getCode() + "\n");
+                    writer.write(question.getCode().replace("{", "{\n").replace(";", ";\n").replace("}", "}\n").replace("\u00a0", " ") + "\n");
                     writer.write(question.getAnswer() + "\n____________\n");
                 } catch (IOException e) {
                     System.err.println("ERROR!!!");
