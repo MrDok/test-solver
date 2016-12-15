@@ -20,7 +20,7 @@ public class Question {
     }
 
     public String getCode() {
-        return code;
+        return code.replace("{", "{\n").replace(";", ";\n").replace("}", "}\n").replace("\u00a0", " ");
     }
 
     String getAnswer() {
