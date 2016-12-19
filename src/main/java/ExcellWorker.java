@@ -63,9 +63,13 @@ public class ExcellWorker {
             Row row = sheet.createRow(i[0]++);
             row.createCell(0);
             row.createCell(1);
+            row.createCell(2);
+            row.createCell(3);
 
             row.getCell(0).setCellValue("Вопрос " + i[0] + ": \n" + question.getQuestion()+ "\n\n" + question.getCode());
-            row.getCell(1).setCellValue(question.getAnswer());
+            row.getCell(1).setCellValue(question.getAllAnswers());
+            row.getCell(2).setCellValue(question.getAnswer());
+            row.getCell(3).setCellValue(question.getAnswerDescription());
         });
 
         try {
@@ -97,6 +101,7 @@ public class ExcellWorker {
             System.out.println("Couldn't write to output.xls");
         } catch (Exception e) {
             System.out.println("Inner exception");
+            e.printStackTrace();
         }
     }
 }

@@ -19,14 +19,16 @@ class HtmlHelper {
 
         try {
             return Jsoup.parse(file,
-                    defaultCharset().name())
+                    defaultCharset().name()).body()
                     .select("div.question-result").stream()
                     .map(element -> new Question(
                             element.select("div.question-text").first().ownText(),
                             element.select("code").text().replace("<code class=\"java\">", "").replace("</code>", ""),
                             element.select("p.correct").stream()
                                     .map(Element::ownText)
-                                    .collect(joining(";\nОтвет: ", "Ответ: ", ".")), allAnswers, answerDescription))
+                                    .collect(joining(";\nОтвет: ", "Ответ: ", ".")),
+                            element.select("ul.answers").text().replaceAll("\\s*\\d+\\s[/]\\s\\d+\\s*", "\n"),
+                            element.select("p.explanation").isEmpty() ? "" : element.select("p.explanation").first().ownText()))
                     .collect(Collectors.toSet());
         } catch (IOException e) {
             e.printStackTrace();
