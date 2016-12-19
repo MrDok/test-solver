@@ -1,5 +1,3 @@
-package excell;
-
 /**
  * Created by dokuchaev on 08.12.16.
  */
@@ -8,11 +6,16 @@ public class Question {
     private final String question;
     private final String code;
     private final String answer;
+    private final String allAnswers;
+    private final String answerDescription;
 
-    public Question(String question, String code, String answer) {
+    public Question(String question, String code, String answer, String allAnswers, String answerDescription) {
         this.question = question;
         this.code = code;
         this.answer = answer;
+        this.allAnswers = allAnswers;
+
+        this.answerDescription = answerDescription;
     }
 
     public String getQuestion() {
@@ -25,6 +28,14 @@ public class Question {
 
     String getAnswer() {
         return answer.trim();
+    }
+
+    public String getAllAnswers(){
+        return allAnswers;
+    }
+
+    public String getAnswerDescription(){
+        return answerDescription;
     }
 
     @Override

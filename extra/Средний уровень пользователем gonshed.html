@@ -1,0 +1,1784 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+    
+    
+    <link rel="image_src" href="/res/img/logo.png" />
+    <meta name="verify-v1" content="6KfOvLrGm4KgPJB+V2B+ELyBzxjG+LoVhKdUcFXetdc=" />
+    <meta name="verify-v1" content="qYSVa9mzpQpfGqnpnzskiw2v73evzB42bGM/wcip0Hg=" />
+    <meta name="y_key" content="29ad813d1559a2f3" />
+    <meta name="google-site-verification" content="iBH4tJ3rxmGwMxXc6uL-qF4pRUbmBrSlRT_XQbw_4Vs" />
+
+    <title>Результат прохождения теста Java - Средний уровень пользователем gonshed</title>
+
+    <style>@import '/res/page.css?97';</style>
+    <script type="text/javascript" src="/res/page.js?60"></script>
+    <link rel="templates" href="/res/page.html?1"/>
+
+    <script>
+        //IE6 идет на$#%
+        if ('\v'=='v' && !window.XMLHttpRequest) window.location='/res/no-ie6.html';
+        jQuery(function() { pageInit(); });
+    </script>
+    <link rel="shortcut icon" href="/res/favicon.ico"/>
+</head>
+<body>
+
+    <div id="header">
+                <a id="logo" title='Онлайн тесты' href="/"></a>
+
+        <div id="top-groups">
+    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FQuizful&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;locale=en_US"
+            scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; width:90px;" allowTransparency="true"></iframe>
+</div>
+
+<div id="top-popups">
+    <div id='feedback-block'>
+        <div class="feedback-block-button closed" onclick="toggleBlock(jQuery.event.fix(event), '#feedback-block'); return false;"></div>
+
+        <div class="content">
+            <div class="corners"><b></b><u></u><i></i></div>
+
+            <form id="feedback" action="">
+                <div class="errors hidden"></div>
+                <textarea id="feedback-text" name="text" class="form-control"></textarea>
+                                <div class="buttons"><input type="button" value="Отправить" class="btn btn-primary btn-xs"/></div>
+            </form>
+        </div>
+    </div>
+        <div id="invite-block">
+        <div class="invite-block-button closed" onclick="toggleBlock(jQuery.event.fix(event), '#invite-block');"></div>
+
+        <div class="content">
+            <div class="corners"><b></b><u></u><i></i></div>
+            <form action="">
+                <div class='errors hidden'></div>
+                <span>Введите e-mail друга</span>
+                <label><input type="email" name="email" class="form-control input-sm"/></label>
+                <p class='buttons'>
+                    <input type="button" name="invite" value="Пригласить" class="btn btn-primary btn-xs"/>
+                    &nbsp;<img src='/res/img/loading.gif?0' alt='Loading' align="absmiddle"/>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        new InviteFriend();
+    </script>
+    
+</div>
+
+<script type="text/javascript">
+    new Feedback();
+    $(document).bind('click', handleClickOutside);
+
+    function handleClickOutside(e) {
+        var blocks = ['#feedback-block', '#invite-block'];
+        for (var id in blocks) {
+            var blockEl = jQuery(blocks[id] + " .content");
+
+            if (jQuery.find(blocks[id]).length > 0 && blockEl.attr('display') != 'none') {
+                if (jQuery(e.target).parents().index(jQuery(blocks[id])) == -1 && !jQuery(e.target).parent().hasClass('thanks')
+                        && jQuery(e.target).attr('id') != blocks[id].substring(1)) {
+
+//                    alert(jQuery(e.target).parents().map(function() { return this.tagName + " id=" + this.id; }).get().join());
+
+                    blockEl.slideUp(250);
+                    jQuery((blocks[id] + '-button').replace('#', '.')).removeClass('opened').addClass('closed');
+                }
+            }
+        }
+    }
+
+    function toggleBlock(e, block) {
+        if (jQuery(e.target).hasClass('opened')) {
+            jQuery(block + ' .content').slideUp(250);
+            jQuery(e.target).removeClass('opened').addClass('closed');
+        } else {
+            jQuery(e.target).removeClass('closed').addClass('opened');
+            jQuery(block + ' .content').slideDown(250);
+        }
+    }
+</script>
+
+        <ul id="navigation">
+                                    <li class="
+            first                         ">
+                <b></b><a href=" /test ">Главная</a>
+                            </li>
+            <li class='sep'></li>
+                                                                        <li class="
+                                                                                                                                                                                                                                                                                                                ">
+                <a href=" /posts ">Статьи</a>
+                            </li>
+            <li class='sep'></li>
+                                                                        <li class="
+                                                                                                                                                                                                    ">
+                <a href=" /page/about ">О проекте</a>
+                                    <ul class="sub">
+                                                <li class="">
+                            <a href='/page/about'>описание</a>
+                        </li>
+                                                <li class="">
+                            <a href='/page/hall-of-fame'>зал славы</a>
+                        </li>
+                                                <li class="">
+                            <a href='/page/certification-exams'>сертификаты</a>
+                        </li>
+                                                <li class="">
+                            <a href='/faq'>faq</a>
+                        </li>
+                                                <li class="last"><b class="left"></b><b class="middle"></b><b class="right"></b></li>
+                    </ul>
+                            </li>
+            <li class='sep'></li>
+                                                <li class="
+                                                             current                                                                                                                                                                                                                                                     ">
+                <a href=" /user/gonshed ">Профиль</a>
+                                    <ul class="sub">
+                                                <li class=" current">
+                            <a href='/user/gonshed'>профиль</a>
+                        </li>
+                                                <li class="last"><b class="left"></b><b class="middle"></b><b class="right"></b></li>
+                    </ul>
+                            </li>
+            <li class='sep'></li>
+                                </ul>
+
+        <ul id='user-panel'>
+            <li><b><a href="/user/gonshed" rel="nofollow">gonshed</a></b> </li>
+            <li class="separator"></li>
+            <li><a href='/feed'>обновления </a></li>
+            <li class="separator"></li>
+                                    <li><span>0.0 <a href='/page/contribute'>Q</a></span></li>
+            <li class="separator"></li>
+                        <li><a href="/LoginAction.doLogout">выйти</a> </li>
+        </ul>
+
+    </div>
+    <div id="content">
+        <div id="contributor"></div>
+        <div id="left">
+                        <div class="a-block">
+                <div class="corners"><s></s><b></b><u></u><i></i></div>
+                <div class="sides"><s></s><b></b><u></u><i></i></div>
+                <div class="content">
+                    <a class="twitter-follow-button"
+  href="https://twitter.com/quizful_com" data-show-count="false" data-size ="large">
+Follow @Quizful at Twitter</a>
+<br><br>
+Try English version of <a href="http://quizful.com/landing"  target="_blank">Quizful</a>
+<br><br>
+<a href="http://quizful.com/landing" style="padding-left: 25px" target="_blank"><img src="http://quizful.com/app/assets/images/quizful-small.png" style="width:150px"/></a>
+<br><br>
+Раздаем бесплатные Q! подробности в группе <a href="https://plus.google.com/communities/103078004820764559925" target=_blank>Quizful.Alpha-test</a>
+
+
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+                </div>
+            </div>
+            
+                            <div id='vips' class="sblock">
+    <div class='corners'><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Партнеры</b></div>
+    <div class='content'>
+        <table class='table' style="background-color: white;">
+                            <tr class='vip'>
+                    <td class="content"><a href="http://skillbox.io" target="_blank"><img src="http://s11.postimg.org/3wmhidnnz/banner_prescreening.png" border="0" alt="Рекрутерам: Прескрининг кандидатов" /></a></td>
+                    <td>
+                        <img style='vertical-align:middle; padding-right:5px; opacity: 0.5' alt='about' src='/res/img/help-tip.gif'
+                             data-tooltip data-title="Skillbox - инструмент для прескрининга IT специалистов" data-placement="right"/>
+                    </td>
+                </tr>
+                            <tr class='vip'>
+                    <td class="content"><a href="http://cogniance.com/vacancies/?from=quizful" target=blank><img src="http://i.piccy.info/i9/c6e030cab89cceacd45d4d518c76338f/1383922284/5152/587904/cogniance_logo_image.png" border="0" alt="Cogniance тесты работодателя" /></a></td>
+                    <td>
+                        <img style='vertical-align:middle; padding-right:5px; opacity: 0.5' alt='about' src='/res/img/help-tip.gif'
+                             data-tooltip data-title="Cogniance  — компания, предоставляющая услуги в области проектирования, разработки, тестирования, внедрения и поддержки систем программного обеспечения на международном рынке." data-placement="right"/>
+                    </td>
+                </tr>
+                    </table>
+    </div>
+</div>
+            
+            <div id='contributors' class="sblock">
+    <div class='corners'><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Топ контрибуторов</b></div>
+    <div class='content' id='contributors-content'>
+        <select id='contributors-report'>
+            <option value="day">За последние сутки</option>
+            <option value="month">За последний месяц</option>
+            <option value="all">За весь период</option>
+        </select>
+        <img src='/res/img/loading.gif?0' id='contributors-loading-select' alt='loading' align="absmiddle"/>
+        <div id='contributors-table'></div>
+        <div id='contribution-paging' class='paging'>
+            <img src='/res/img/loading.gif?0' alt='loading' id='contributors-loading' align="absmiddle"/>
+            <span class="arrow">&larr;</span>
+            <span class="arrow">&rarr;</span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    if (!Cookie.get("reportType"))
+        Cookie.set("reportType", "month", 365);
+    $("#contributors-report").val(Cookie.get("reportType"));
+    new TopContributors();
+</script>
+
+            <div id='tips-block' class="sblock opened">
+    <div class='corners'><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Знаете ли Вы, что</b></div>
+    <div class='content'>
+        <p id='tips-text'>
+            Если у вас есть уникальная статья и вы хотите, чтобы она стала достоянием общественности, вы можете разместить ее на Quizful.
+        </p>
+        <input id='tip-index' type="hidden" value="5" />
+        <p class='link'>
+            <img src='/res/img/loading.gif?0' alt='Loading' id='tips-loading' align="absmiddle" />
+            <span class="arrow">&larr;</span>
+            <span class="arrow">&rarr;</span>
+        </p>
+    </div>
+</div>
+<script type="text/javascript"> new Tips(); </script>
+
+
+                        <div id="poll" class='sblock opened'>
+                <div class='corners'><s></s><b></b><u></u><i></i></div>
+                <div class='title'><b>Опросы</b></div>
+                <div id='pollContent' class='content'></div>
+            </div>
+            <script>jQuery(function() {
+                new Poll("pollContent");
+            });
+            </script>
+                        <div id='globalfeed' class="sblock">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Лента обновлений</b></div>
+    <div class="content">
+        <table>
+                            <tr ><td>
+                    <a href='/TestStoreAction.viewQuestion?question=xa7EPUJjcrI0#1376969718407733734'>ссылка</a>
+                    <span>Dec 14 17:24</span>
+                    <div>
+                    Комментарий от eugene90:<br/>с зпт или без смысл вопроса очевиден.
+                </div></td></tr>
+                            <tr  class="even" ><td>
+                    <a href='/TestStoreAction.viewQuestion?question=QiTyGUtG0j5p'>ссылка</a>
+                    <span>Dec 13 22:40</span>
+                    <div>
+                    Добавлен вопрос в тест MySQL
+                </div></td></tr>
+                            <tr ><td>
+                    <a href='/TestStoreAction.viewQuestion?question=X5mYNZjkJi5T'>ссылка</a>
+                    <span>Dec 13 22:37</span>
+                    <div>
+                    Добавлен вопрос в тест MySQL
+                </div></td></tr>
+                            <tr  class="even" ><td>
+                    <a href='/TestStoreAction.viewQuestion?question=eb8yXXjCrqAE#553536895592209394'>ссылка</a>
+                    <span>Dec 13 19:07</span>
+                    <div>
+                    Комментарий от irt_pavlo:<br/>крайне подлый вопрос)
+                </div></td></tr>
+                            <tr ><td>
+                    <a href='/test/java_se_basic#562034667218967205'>ссылка</a>
+                    <span>Dec 13 18:57</span>
+                    <div>
+                    Комментарий от potapov_1991:<br/>Схаменись, це звичайна друкарська помилка (правило ...
+                </div></td></tr>
+                    </table>
+    </div>
+</div>
+
+                        <div id='statistics' class="sblock">
+                <div class="corners"><s></s><b></b><u></u><i></i></div>
+                <div class="title"><b>Статистика</b></div>
+                <div class="content">
+                    <p>Тестов: 152, вопросов: 8520.
+                    Пройдено: 344636 / 1655981.</p>
+                </div>
+            </div>
+                    </div>
+        <div id="middle">
+            <div id="page-title-hr"></div>
+            <script src="/comments/comments.js"></script>
+<style>@import "/comments/comments.css?1";</style>
+
+<script type="text/javascript" src="http://vkontakte.ru/js/api/share.js?9" charset="windows-1251"></script>
+
+<div id="test-result">
+    <h1>
+        Тест "Java - Средний уровень" -
+
+                    <span class="passed">пройден</span>
+        
+                    </h1>
+    <div class="brief">
+        <p>Правильных ответов: 17 / 20 (85 %) <span class="requiredCorrectAnswers">требуется: 15</span></p>
+
+                    <table class="topic-breakdown">
+            <tr class="title"><th>Тема</th><td>Результат</td></tr>
+                        <tr><th>Фундаментальные понятия</th><td>5 / 7 (71 %)</td></tr>
+                        <tr><th>Генерики и коллекции</th><td>3 / 3 (100 %)</td></tr>
+                        <tr><th>Внутренние классы</th><td>1 / 1 (100 %)</td></tr>
+                        <tr><th>Многопоточность</th><td>2 / 2 (100 %)</td></tr>
+                        <tr><th>Концепция ООП</th><td>2 / 3 (66 %)</td></tr>
+                        <tr><th>Стандартная библиотека</th><td>3 / 3 (100 %)</td></tr>
+                        <tr><th>Остальные</th><td>1 / 1 (100 %)</td></tr>
+                        </table>
+        
+         <p>Дата прохождения теста: 11.12.2016 22:02</p>     </div>
+
+    
+                    <div id="question-MdN35bdU2mr5" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Фундаментальные понятия</div>        <div class="question-text"><pre><code class="java">System.currentTimeMillis()</code></pre>
+ - возвращает количество миллисекунд, прошедших с полуночи 1 января 1970г.
+
+<pre><code class="java">
+public class Test {
+   public static void main(String[] args) {
+      long time = System.currentTimeMillis();
+      long x = 1000*60*60*24*365;
+      System.out.println(time/x);
+   }
+}
+</code></pre>Какой результат выполнения этой программы (допуская что в данный момент идет 2009 год)?</div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="MdN35bdU2mr5-answers" type="radio" disabled="disabled" />
+                                <p class="">39</p>
+                <p style="position:absolute; right:11px;">373 / 1018</p>
+            </li>
+                        <li >
+                                <input name="MdN35bdU2mr5-answers" type="radio" disabled="disabled" />
+                                <p class="">40</p>
+                <p style="position:absolute; right:11px;">61 / 1018</p>
+            </li>
+                        <li >
+                                <input name="MdN35bdU2mr5-answers" type="radio" disabled="disabled" />
+                                <p class="">38</p>
+                <p style="position:absolute; right:11px;">139 / 1018</p>
+            </li>
+                        <li  class="last" >
+                                <input name="MdN35bdU2mr5-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">другое число</p>
+                <p style="position:absolute; right:11px;">442 / 1018</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Компилятор неявно приведёт результат умножения к int, а число 1000*60*60*24*365 туда не поместится.
+Если изменить long x = 1000*60*60*24*365; на long i = (long)1000*60*60*24*365; то будет напечатано 39.
+</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/invis'>invis</a></span><span id='question-tools-MdN35bdU2mr5'></span>
+        </div>
+
+        <div id="comments-question/MdN35bdU2mr5"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-MdN35bdU2mr5');
+                container.append(new QuestionComments(document.getElementById('comments-question/MdN35bdU2mr5'), 'question/MdN35bdU2mr5', 3, window.location.hash == '#question-MdN35bdU2mr5'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-W7Jo4sa4LEac" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Многопоточность</div>        <div class="question-text">Какой будет результат выполнения следующей программы?
+<pre><code class="java">
+public class Test {
+    private static boolean ready;
+    private static int number;
+
+    private static class ReaderThread extends Thread {
+        public void run() {
+        while (!ready)
+            Thread.yield();
+        System.out.println(number);
+        }
+    }
+
+    public static void main(String[] args) {
+        new ReaderThread().start();
+        number = 42;
+        ready = true;
+    }
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="W7Jo4sa4LEac-answers" type="radio" disabled="disabled" />
+                                <p class="">42</p>
+                <p style="position:absolute; right:11px;">390 / 1372</p>
+            </li>
+                        <li >
+                                <input name="W7Jo4sa4LEac-answers" type="radio" disabled="disabled" />
+                                <p class="">0</p>
+                <p style="position:absolute; right:11px;">110 / 1372</p>
+            </li>
+                        <li >
+                                <input name="W7Jo4sa4LEac-answers" type="radio" disabled="disabled" />
+                                <p class="">Программа никогда не завершится</p>
+                <p style="position:absolute; right:11px;">243 / 1372</p>
+            </li>
+                        <li  class="last" >
+                                <input name="W7Jo4sa4LEac-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">Результат выполнения предсказать невозможно</p>
+                <p style="position:absolute; right:11px;">624 / 1372</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Поскольку доступ к переменным ready и number происходит без использования механизма синхронизации, нет никакой гарантии того, что изменения данных произведенные в одном потоке (в данном случае - main), станут известны другому потоку (ReaderThread).<br>
+Кроме того, теоретически возможна ситуация, когда поток ReaderThread узнает об изменении переменной ready, однако не узнает об изменении переменной number в потоке main (феномен, известный под именем reodering).</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/Rumata'>Rumata</a></span><span id='question-tools-W7Jo4sa4LEac'></span>
+        </div>
+
+        <div id="comments-question/W7Jo4sa4LEac"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-W7Jo4sa4LEac');
+                container.append(new QuestionComments(document.getElementById('comments-question/W7Jo4sa4LEac'), 'question/W7Jo4sa4LEac', 0, window.location.hash == '#question-W7Jo4sa4LEac'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-fvSa139nJcHR" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Стандартная библиотека</div>        <div class="question-text">Что будет в результате компиляции и запуска программы?
+<pre><code class="java">
+public class TestArr {
+    public static void main(String[] args) {
+        String[] arr = {"1", "2", "3"};
+        List arrList = Arrays.asList(arr);  //1
+        arr[1] = "22";                      //2
+        arrList.add("8");                   //3
+        for (String s : arr)
+            System.out.print(s + " ");
+        for (Object s : arrList)
+            System.out.print(s + " ");
+    }
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="fvSa139nJcHR-answers" type="radio" disabled="disabled" />
+                                <p class="">Выведет на экран: 1 22 3 1 2 3 8</p>
+                <p style="position:absolute; right:11px;">501 / 1421</p>
+            </li>
+                        <li >
+                                <input name="fvSa139nJcHR-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка компиляции в строке 1</p>
+                <p style="position:absolute; right:11px;">74 / 1421</p>
+            </li>
+                        <li >
+                                <input name="fvSa139nJcHR-answers" type="radio" disabled="disabled" />
+                                <p class="">Выведет на экран: 1 22 3 1 22 3 8</p>
+                <p style="position:absolute; right:11px;">160 / 1421</p>
+            </li>
+                        <li >
+                                <input name="fvSa139nJcHR-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка компиляции в строке 2</p>
+                <p style="position:absolute; right:11px;">69 / 1421</p>
+            </li>
+                        <li >
+                                <input name="fvSa139nJcHR-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">Исключение в процессе работы</p>
+                <p style="position:absolute; right:11px;">291 / 1421</p>
+            </li>
+                        <li >
+                                <input name="fvSa139nJcHR-answers" type="radio" disabled="disabled" />
+                                <p class="">Выведет на экран: 1 22 3 8 1 22 3 8</p>
+                <p style="position:absolute; right:11px;">129 / 1421</p>
+            </li>
+                        <li  class="last" >
+                                <input name="fvSa139nJcHR-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка компиляции в строке 3</p>
+                <p style="position:absolute; right:11px;">190 / 1421</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Возникнет исключение (java.lang.UnsupportedOperationException) так как Arrays.asList(arr) вернет обертку над массивом arr, в которой не переопределен метод java.util.AbstractList#add.<br>
+Изменяя элементы в arr будут соответственно изменены элементы в arrList, но добавлять элементы в arrList нельзя.</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/alealex'>alealex</a></span><span id='question-tools-fvSa139nJcHR'></span>
+        </div>
+
+        <div id="comments-question/fvSa139nJcHR"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-fvSa139nJcHR');
+                container.append(new QuestionComments(document.getElementById('comments-question/fvSa139nJcHR'), 'question/fvSa139nJcHR', 0, window.location.hash == '#question-fvSa139nJcHR'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-jgr00AqwjMyd" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Фундаментальные понятия</div>        <div class="question-text">Что выведет на экран следующий код?
+<pre><code class="java">
+class A implements Serializable {
+    public A() {
+        System.out.print("A");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        A a = new A();
+        ObjectOutputStream save = new ObjectOutputStream(
+                new FileOutputStream("datafile"));
+        save.writeObject(a);
+        save.flush();
+        ObjectInputStream restore = new ObjectInputStream(
+                new FileInputStream("datafile"));
+        A z = (A) restore.readObject();
+    }
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="jgr00AqwjMyd-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">A</p>
+                <p style="position:absolute; right:11px;">387 / 710</p>
+            </li>
+                        <li >
+                                <input name="jgr00AqwjMyd-answers" type="radio" disabled="disabled" />
+                                <p class="">AA</p>
+                <p style="position:absolute; right:11px;">184 / 710</p>
+            </li>
+                        <li >
+                                <input name="jgr00AqwjMyd-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка компиляции
+</p>
+                <p style="position:absolute; right:11px;">65 / 710</p>
+            </li>
+                        <li >
+                                <input name="jgr00AqwjMyd-answers" type="radio" disabled="disabled" />
+                                <p class="">Ничего не выведет
+</p>
+                <p style="position:absolute; right:11px;">54 / 710</p>
+            </li>
+                        <li  class="last" >
+                                <input name="jgr00AqwjMyd-answers" type="radio" disabled="disabled" />
+                                <p class="">Ничего из вышеперечисленного</p>
+                <p style="position:absolute; right:11px;">19 / 710</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: При десериализации конструктор не выполняется</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/vanishjohn_john'>vanishjohn_john</a></span><span id='question-tools-jgr00AqwjMyd'></span>
+        </div>
+
+        <div id="comments-question/jgr00AqwjMyd"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-jgr00AqwjMyd');
+                container.append(new QuestionComments(document.getElementById('comments-question/jgr00AqwjMyd'), 'question/jgr00AqwjMyd', 1, window.location.hash == '#question-jgr00AqwjMyd'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-IjJH9rz8PJwU" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Генерики и коллекции</div>        <div class="question-text">Дано объявление класса
+<PRE><CODE class='java'>
+class ClassA&lt;U&gt; implements Comparable&lt;U&gt; {
+    public int compareTo(U a) { return 0; }
+}
+</CODE></PRE>Какие 3 из объявлений ниже будут откомпилированы без ошибок?</div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">class ClassB&lt;U,V&gt; extends ClassA&lt;R&gt; {}</p>
+                <p style="position:absolute; right:11px;">214 / 1020</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">class ClassC&lt;U,V&gt; extends ClassA&lt;U&gt; {}</p>
+                <p style="position:absolute; right:11px;">723 / 1020</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">class ClassD&lt;U,V&gt; extends ClassA&lt;V, U&gt; {}</p>
+                <p style="position:absolute; right:11px;">174 / 1020</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">class ClassE&lt;U&gt; extends ClassA&lt;Comparable&lt;Number&gt;&gt; {}</p>
+                <p style="position:absolute; right:11px;">510 / 1020</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">class ClassF&lt;U extends Comparable&lt;U&gt; &amp; Serializable&gt; extends ClassA&lt;Number&gt; {}</p>
+                <p style="position:absolute; right:11px;">345 / 1020</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">class ClassG&lt;U implements Comparable&lt;U&gt;&gt; extends ClassA&lt;Number&gt; {}</p>
+                <p style="position:absolute; right:11px;">341 / 1020</p>
+            </li>
+                        <li  class="last" >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">class ClassH&lt;U extends Comparable&lt;U&gt;&gt; extends ClassA&lt;? extends Number&gt; {}</p>
+                <p style="position:absolute; right:11px;">320 / 1020</p>
+            </li>
+                    </ul>
+
+        
+        
+
+        <div class="footer">
+            <span class='author'>Автор: WhOwl</span><span id='question-tools-IjJH9rz8PJwU'></span>
+        </div>
+
+        <div id="comments-question/IjJH9rz8PJwU"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-IjJH9rz8PJwU');
+                container.append(new QuestionComments(document.getElementById('comments-question/IjJH9rz8PJwU'), 'question/IjJH9rz8PJwU', 4, window.location.hash == '#question-IjJH9rz8PJwU'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-MbqqSztT3rFw" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Генерики и коллекции</div>        <div class="question-text">Какой результат компиляции и отработки программы:
+<pre><code class="java">
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        List&lt;?&gt; list = new ArrayList&lt;String&gt;();
+        list.add("a");
+        System.out.println(list.get(0));
+    }
+}</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="MbqqSztT3rFw-answers" type="radio" disabled="disabled" />
+                                <p class="">Программа ничего не выведет</p>
+                <p style="position:absolute; right:11px;">21 / 968</p>
+            </li>
+                        <li >
+                                <input name="MbqqSztT3rFw-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка времени выполнения</p>
+                <p style="position:absolute; right:11px;">51 / 968</p>
+            </li>
+                        <li >
+                                <input name="MbqqSztT3rFw-answers" type="radio" disabled="disabled" />
+                                <p class="">Программа выведет "a".</p>
+                <p style="position:absolute; right:11px;">452 / 968</p>
+            </li>
+                        <li  class="last" >
+                                <input name="MbqqSztT3rFw-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">Ошибка компиляции</p>
+                <p style="position:absolute; right:11px;">442 / 968</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: На объекте параметризованного класса, в статическом типе которого указана маска &lt;?&gt;, нельзя вызывать методы, принимающие аргумент типа-параметра. Единственное исключение – передача null.</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/wisd'>wisd</a></span><span id='question-tools-MbqqSztT3rFw'></span>
+        </div>
+
+        <div id="comments-question/MbqqSztT3rFw"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-MbqqSztT3rFw');
+                container.append(new QuestionComments(document.getElementById('comments-question/MbqqSztT3rFw'), 'question/MbqqSztT3rFw', 1, window.location.hash == '#question-MbqqSztT3rFw'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-6pIc2aqag81F" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Концепция ООП</div>        <div class="question-text">Какие из следующих исключений, вставленных после throws ... , позволят переопределить метод?
+<pre><code class="java">
+import java.io.*;
+interface One {
+    void method() throws IOException;
+}
+
+interface Two {
+    void method() throws FileNotFoundException;
+}
+
+class Impl implements One, Two {
+    @Override
+    public void method() throws ... {
+    }
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="6pIc2aqag81F-answers" type="radio" disabled="disabled" />
+                                <p class="">IOException</p>
+                <p style="position:absolute; right:11px;">372 / 1354</p>
+            </li>
+                        <li >
+                                <input name="6pIc2aqag81F-answers" type="radio" disabled="disabled" />
+                                <p class="">IOException, FileNotFoundException</p>
+                <p style="position:absolute; right:11px;">313 / 1354</p>
+            </li>
+                        <li >
+                                <input name="6pIc2aqag81F-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct "> FileNotFoundException</p>
+                <p style="position:absolute; right:11px;">508 / 1354</p>
+            </li>
+                        <li  class="last" >
+                                <input name="6pIc2aqag81F-answers" type="radio" disabled="disabled" />
+                                <p class="">Exception</p>
+                <p style="position:absolute; right:11px;">158 / 1354</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Класс, реализующий эти интерфейсы, может указать в сигнатуре указанного метода класс контролируемой исключительной ситуации не шире пересечения классов контролируемых исключительных ситуаций, объявленных в методах интерфейса.<br>
+FileNotFoundException потомок IOException, значит их пересечение есть FileNotFoundException. Поэтому метод method() класса Impl не может, например, указать в своей декларации IOException.</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/www888com'>www888com</a></span><span id='question-tools-6pIc2aqag81F'></span>
+        </div>
+
+        <div id="comments-question/6pIc2aqag81F"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-6pIc2aqag81F');
+                container.append(new QuestionComments(document.getElementById('comments-question/6pIc2aqag81F'), 'question/6pIc2aqag81F', 0, window.location.hash == '#question-6pIc2aqag81F'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-n28JCh1w7uFg" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Генерики и коллекции</div>        <div class="question-text">Какой будет результат компиляции и выполнения следующего кода?
+<pre><code class="java">
+import java.util.*;
+
+class A {}
+class B extends A {}
+class C1 extends B {}
+class C2 extends B {}
+class B1 extends A {}
+class B2 extends A {}
+public class AsListInt {
+    public static void main(String[] args) {
+1        List&lt;A&gt; list1 = Arrays.asList(new B(), new B1(), new B2());
+2        System.out.println(list1);
+3        List&lt;A&gt; list2 = new ArrayList&lt;A&gt;();
+4        Collections.addAll(list2, new C1(), new C2());
+5        System.out.println(list2);
+6        List&lt;A&gt; list3 = Arrays.asList(new C1(), new C2());
+7        System.out.println(list3);
+    }
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="n28JCh1w7uFg-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка компиляции в строке 1 
+</p>
+                <p style="position:absolute; right:11px;">123 / 914</p>
+            </li>
+                        <li >
+                                <input name="n28JCh1w7uFg-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка компиляции в строке 3</p>
+                <p style="position:absolute; right:11px;">34 / 914</p>
+            </li>
+                        <li >
+                                <input name="n28JCh1w7uFg-answers" type="radio" disabled="disabled" />
+                                <p class="">Результат подобного типа<br>
+[my.B@a981ca, my.B1@8814e9, my.B2@1503a3]<br>
+[my.C1@e7b241, my.C2@167d940]<br>
+[my.C1@e83912, my.C2@1fae3c6]
+</p>
+                <p style="position:absolute; right:11px;">521 / 914</p>
+            </li>
+                        <li >
+                                <input name="n28JCh1w7uFg-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">Ошибка компиляции в строке 6 
+</p>
+                <p style="position:absolute; right:11px;">177 / 914</p>
+            </li>
+                        <li  class="last" >
+                                <input name="n28JCh1w7uFg-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка времени выполнения</p>
+                <p style="position:absolute; right:11px;">55 / 914</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: При попытке создания list3 Arrays.asList() создает List&lt;B&gt; вместо List&lt;A&gt;, 
+тогда как Collections.addAll() работает нормально, потому что целевой тип определяется первым аргументом.</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/aleks232'>aleks232</a></span><span id='question-tools-n28JCh1w7uFg'></span>
+        </div>
+
+        <div id="comments-question/n28JCh1w7uFg"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-n28JCh1w7uFg');
+                container.append(new QuestionComments(document.getElementById('comments-question/n28JCh1w7uFg'), 'question/n28JCh1w7uFg', 7, window.location.hash == '#question-n28JCh1w7uFg'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-m9QPMSfyQtxt" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Внутренние классы</div>        <div class="question-text">Что произойдет в случае компиляции и запуска данной программы?
+<PRE><CODE class='java'>
+public class ClassQ {
+    public static void main(String[] args) {
+        I.Inner ii = new I.Inner();
+        I.Inner ib = new B.Inner();
+        B.Inner bb = new B.Inner();
+        B.Inner bi = new I.Inner();
+        C.Inner ci = new C.Inner();
+        C.Inner ci2 = new C().new Inner2();
+    }
+}
+interface I{
+  class Inner{
+      Inner(){
+        System.out.print(j++);
+      }
+      static int j;
+  }
+}
+class B implements I{}
+class C extends B implements I{
+    public class Inner2 extends Inner{}
+}
+</CODE></PRE></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="m9QPMSfyQtxt-answers" type="radio" disabled="disabled" />
+                                <p class="">Программа выведет на консоль 01</p>
+                <p style="position:absolute; right:11px;">53 / 2550</p>
+            </li>
+                        <li >
+                                <input name="m9QPMSfyQtxt-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">Программа выведет на консоль 012345</p>
+                <p style="position:absolute; right:11px;">1044 / 2550</p>
+            </li>
+                        <li >
+                                <input name="m9QPMSfyQtxt-answers" type="radio" disabled="disabled" />
+                                <p class="">Произойдет ошибка компиляции</p>
+                <p style="position:absolute; right:11px;">1098 / 2550</p>
+            </li>
+                        <li >
+                                <input name="m9QPMSfyQtxt-answers" type="radio" disabled="disabled" />
+                                <p class="">Программа выведет на консоль 01234</p>
+                <p style="position:absolute; right:11px;">169 / 2550</p>
+            </li>
+                        <li >
+                                <input name="m9QPMSfyQtxt-answers" type="radio" disabled="disabled" />
+                                <p class="">Программа выведет на консоль 0123</p>
+                <p style="position:absolute; right:11px;">77 / 2550</p>
+            </li>
+                        <li  class="last" >
+                                <input name="m9QPMSfyQtxt-answers" type="radio" disabled="disabled" />
+                                <p class="">Компиляция пройдет без ошибок, но программа ничего не выведет на консоль</p>
+                <p style="position:absolute; right:11px;">91 / 2550</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Программа выведет на консоль "012345", т.к. во всех случаях вызывается конструктор суперкласса Inner, определенный в интерфейсе I.</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/alniks'>alniks</a></span><span id='question-tools-m9QPMSfyQtxt'></span>
+        </div>
+
+        <div id="comments-question/m9QPMSfyQtxt"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-m9QPMSfyQtxt');
+                container.append(new QuestionComments(document.getElementById('comments-question/m9QPMSfyQtxt'), 'question/m9QPMSfyQtxt', 2, window.location.hash == '#question-m9QPMSfyQtxt'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-aKSiP4HTHp6x" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Фундаментальные понятия</div>        <div class="question-text">Что выведет на консоль следующий код:
+<pre><code class="java">
+public class Main {
+    public static void main (String []args) {
+        int i = 0;
+        i += i++;
+        System.out.println(i);
+    }	
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="aKSiP4HTHp6x-answers" type="radio" disabled="disabled" />
+                                <p class="">2</p>
+                <p style="position:absolute; right:11px;">138 / 1383</p>
+            </li>
+                        <li >
+                                <input name="aKSiP4HTHp6x-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка выполнения</p>
+                <p style="position:absolute; right:11px;">26 / 1383</p>
+            </li>
+                        <li >
+                                <input name="aKSiP4HTHp6x-answers" type="radio" disabled="disabled" />
+                                <p class="">1</p>
+                <p style="position:absolute; right:11px;">603 / 1383</p>
+            </li>
+                        <li  class="last" >
+                                <input name="aKSiP4HTHp6x-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">0</p>
+                <p style="position:absolute; right:11px;">613 / 1383</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: JLS $15.7.1. Составной оператор присваивания эквивалентен i = i + i++ и вычисляется соответственно.
+Инкремент произойдет после взятия значения из i, но перед присваиванием. Если кому-то интересно, вот opcode:
+<pre><code class="java">
+   0:	iconst_0
+   1:	istore_1
+   2:	iload_1
+   3:	iload_1
+   4:	iinc	1, 1
+   7:	iadd
+   8:	istore_1
+</code></pre>
+Первые 2 мнемоники - push значения 0 на стек, следующие 2 - pop значения со стека дважды, строка 4 - инкремент, строка 7 - сложение 0+0=0 и push на стек, строка 8 - запись значения из стека</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/Andreas'>Andreas</a></span><span id='question-tools-aKSiP4HTHp6x'></span>
+        </div>
+
+        <div id="comments-question/aKSiP4HTHp6x"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-aKSiP4HTHp6x');
+                container.append(new QuestionComments(document.getElementById('comments-question/aKSiP4HTHp6x'), 'question/aKSiP4HTHp6x', 12, window.location.hash == '#question-aKSiP4HTHp6x'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-9GsQvhrZCn2B" class="question-result">
+    <div class="question  correct ">
+
+                <div class="question-text">В каких строках программы возникнет ошибка компиляции? Выберите все возможные варианты.
+<pre><code class="java">
+1. public class StartClass {
+2.    public static void main(String[] args) {
+3.        List&lt;?&gt; list = new ArrayList&lt;String&gt;();
+4.        list.add("a"); 
+5.        list.add(null); 
+6.        Test&lt;?&gt; testObject = new Test&lt;Integer&gt;();
+7.        testObject.test(1); 
+8.        testObject.test(null); 
+9.    }
+10. }
+11.
+12. class Test&lt;T&gt; {
+13.    void test(T t) {
+14.    }
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">3</p>
+                <p style="position:absolute; right:11px;">34 / 156</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">4</p>
+                <p style="position:absolute; right:11px;">66 / 156</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">5</p>
+                <p style="position:absolute; right:11px;">30 / 156</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">6</p>
+                <p style="position:absolute; right:11px;">42 / 156</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">7</p>
+                <p style="position:absolute; right:11px;">72 / 156</p>
+            </li>
+                        <li  class="last" >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">8</p>
+                <p style="position:absolute; right:11px;">37 / 156</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: На объекте параметризованного класса, в статическом типе которого указана маска &lt;?&gt;, нельзя вызывать методы, принимающие аргумент типа-параметра. Единственное исключение – передача null</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/yourun'>yourun</a></span><span id='question-tools-9GsQvhrZCn2B'></span>
+        </div>
+
+        <div id="comments-question/9GsQvhrZCn2B"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-9GsQvhrZCn2B');
+                container.append(new QuestionComments(document.getElementById('comments-question/9GsQvhrZCn2B'), 'question/9GsQvhrZCn2B', 0, window.location.hash == '#question-9GsQvhrZCn2B'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-4v9NBRjjL9Ag" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Стандартная библиотека</div>        <div class="question-text">Каким будет результат компиляции и выполнения данного кода:
+<PRE><CODE class='java'>
+import java.io.*;
+public class QTest {
+	public static void main(String[] args) throws IOException {
+		byte[] bytes = new byte[] { -1, 1, 0x0 };
+		InputStream in = new ByteArrayInputStream(bytes);
+		System.out.println(in.read() + in.read() + in.read());
+	}
+}
+</CODE></PRE></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="4v9NBRjjL9Ag-answers" type="radio" disabled="disabled" />
+                                <p class="">На консоль выведется "-1"</p>
+                <p style="position:absolute; right:11px;">87 / 1898</p>
+            </li>
+                        <li >
+                                <input name="4v9NBRjjL9Ag-answers" type="radio" disabled="disabled" />
+                                <p class="">На консоль выведется "0"</p>
+                <p style="position:absolute; right:11px;">520 / 1898</p>
+            </li>
+                        <li >
+                                <input name="4v9NBRjjL9Ag-answers" type="radio" disabled="disabled" />
+                                <p class="">На консоль выведется "128"</p>
+                <p style="position:absolute; right:11px;">176 / 1898</p>
+            </li>
+                        <li >
+                                <input name="4v9NBRjjL9Ag-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">На консоль выведется "256"</p>
+                <p style="position:absolute; right:11px;">523 / 1898</p>
+            </li>
+                        <li >
+                                <input name="4v9NBRjjL9Ag-answers" type="radio" disabled="disabled" />
+                                <p class="">Будет выброшено исключение IOException </p>
+                <p style="position:absolute; right:11px;">239 / 1898</p>
+            </li>
+                        <li  class="last" >
+                                <input name="4v9NBRjjL9Ag-answers" type="radio" disabled="disabled" />
+                                <p class="">Произойдёт ошибка на этапе компиляции</p>
+                <p style="position:absolute; right:11px;">339 / 1898</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Метод read() считывает 1 байт из массива bytes, переданного в конструктор ByteArrayInputStream, однако считанное значение возвращается как int. byte в Java представляется как восьмиразрядное число, а int - как 32 разрядное, поэтому преобразование из byte в int происходит добавлением к 8 разрядам байта 24 незначащих нулей. Байт равный -1 представляется как 11111111, после  расширения до int в десятичной системе он будет проинтерпретирован как 255. Поэтому в данном примере будет выведено 256 (255 + 1 + 0).</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/im3JI0U'>im3JI0U</a></span><span id='question-tools-4v9NBRjjL9Ag'></span>
+        </div>
+
+        <div id="comments-question/4v9NBRjjL9Ag"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-4v9NBRjjL9Ag');
+                container.append(new QuestionComments(document.getElementById('comments-question/4v9NBRjjL9Ag'), 'question/4v9NBRjjL9Ag', 4, window.location.hash == '#question-4v9NBRjjL9Ag'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-X0FYjS2N3UOG" class="question-result">
+    <div class="question  incorrect ">
+
+        <div class="question-topic">Концепция ООП</div>        <div class="question-text">Что произойдет при выполнении следующего кода ?
+<pre><code class="java">
+public class Test&lt;T&gt;{
+
+    static class MyTest{
+        public MyTest(int k) {
+            System.out.println("MyTest created");
+        }
+    }
+
+    T obj1, obj2;
+
+    public Test(T t, Class&lt;T&gt; cls) throws Exception {
+
+        obj1 = t; // 1
+
+        obj2 = cls.newInstance(); // 2
+    }
+
+    public static void main(String[] args) throws Exception {
+        MyTest mt = new MyTest(10);
+        Test t = new Test(mt, MyTest.class);
+    }
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="X0FYjS2N3UOG-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка компиляции в строке 1</p>
+                <p style="position:absolute; right:11px;">104 / 1317</p>
+            </li>
+                        <li >
+                                <input name="X0FYjS2N3UOG-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class="">Ошибка компиляции в строке 2</p>
+                <p style="position:absolute; right:11px;">305 / 1317</p>
+            </li>
+                        <li >
+                                <input name="X0FYjS2N3UOG-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка выполнения в строке 1</p>
+                <p style="position:absolute; right:11px;">75 / 1317</p>
+            </li>
+                        <li >
+                                <input name="X0FYjS2N3UOG-answers" type="radio" disabled="disabled" />
+                                <p class=" correct ">Ошибка выполнения в строке 2</p>
+                <p style="position:absolute; right:11px;">398 / 1317</p>
+            </li>
+                        <li  class="last" >
+                                <input name="X0FYjS2N3UOG-answers" type="radio" disabled="disabled" />
+                                <p class="">Код выполнится успешно и напечатает<br>
+MyTest created<br>
+MyTest created</p>
+                <p style="position:absolute; right:11px;">422 / 1317</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: При создании объекта в строке 2 класс MyTest должен обладать конструктором по умолчанию (то есть конструктором без аргументов).</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/san'>san</a></span><span id='question-tools-X0FYjS2N3UOG'></span>
+        </div>
+
+        <div id="comments-question/X0FYjS2N3UOG"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-X0FYjS2N3UOG');
+                container.append(new QuestionComments(document.getElementById('comments-question/X0FYjS2N3UOG'), 'question/X0FYjS2N3UOG', 1, window.location.hash == '#question-X0FYjS2N3UOG'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-24NsZW7rEcI6" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Многопоточность</div>        <div class="question-text">Каким будет результат компиляции и выполнения следующего кода:
+<pre><code class="java">
+public class MyThread implements Runnable {	
+    public void run() {
+        System.out.println("hello");
+        try {
+            Thread.sleep(Math.round(200 * Math.random()));
+        } catch (InterruptedException e) { }
+        System.out.println("world");
+    }
+	
+    public static void main(String[] args) {
+        new Thread(new MyThread()).run();
+        new Thread(new MyThread()).run();
+    }
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="24NsZW7rEcI6-answers" type="radio" disabled="disabled" />
+                                <p class="">Компиляция пройдет успешно, но порядок вывода на консоль слов "hello" и "world" невозможно предугадать.</p>
+                <p style="position:absolute; right:11px;">791 / 2339</p>
+            </li>
+                        <li >
+                                <input name="24NsZW7rEcI6-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка компиляции</p>
+                <p style="position:absolute; right:11px;">126 / 2339</p>
+            </li>
+                        <li >
+                                <input name="24NsZW7rEcI6-answers" type="radio" disabled="disabled" />
+                                <p class="">Компиляция пройдет успешно, на консоль ничего не выведется.</p>
+                <p style="position:absolute; right:11px;">99 / 2339</p>
+            </li>
+                        <li >
+                                <input name="24NsZW7rEcI6-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">Компиляция пройдет успешно, на консоль выведется:
+<pre><code>
+hello
+world
+hello
+world
+</code></pre></p>
+                <p style="position:absolute; right:11px;">987 / 2339</p>
+            </li>
+                        <li  class="last" >
+                                <input name="24NsZW7rEcI6-answers" type="radio" disabled="disabled" />
+                                <p class="">Компиляция пройдет успешно, на консоль выведется
+<pre><code>
+hello
+hello
+world
+world
+</code></pre></p>
+                <p style="position:absolute; right:11px;">327 / 2339</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Для запуска отдельных потоков внутри приложения используется метод Thread.start(). В данном случае внутри единственного потока последовательно запускаются методы run().</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/hexe'>hexe</a></span><span id='question-tools-24NsZW7rEcI6'></span>
+        </div>
+
+        <div id="comments-question/24NsZW7rEcI6"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-24NsZW7rEcI6');
+                container.append(new QuestionComments(document.getElementById('comments-question/24NsZW7rEcI6'), 'question/24NsZW7rEcI6', 7, window.location.hash == '#question-24NsZW7rEcI6'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-0uF6thXxOAIZ" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Фундаментальные понятия</div>        <div class="question-text">Что произойдёт если скомпилировать и выполнить следующий код?
+
+<pre><code class="java">
+public class MyFirst {
+    static public  void main(String[] args) {  //1
+        int a = 5;
+        a = a!=0 ? a&gt;1 ? a&gt;&gt;2 : a&lt;&lt;2 : a&lt;1 ? a&lt;&lt;2 : a&gt;&gt;2;   //2
+        System.out.println(a);
+    }
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="0uF6thXxOAIZ-answers" type="radio" disabled="disabled" />
+                                <p class="">Выведет на экран 0</p>
+                <p style="position:absolute; right:11px;">55 / 1006</p>
+            </li>
+                        <li >
+                                <input name="0uF6thXxOAIZ-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">Выведет на экран 1</p>
+                <p style="position:absolute; right:11px;">377 / 1006</p>
+            </li>
+                        <li >
+                                <input name="0uF6thXxOAIZ-answers" type="radio" disabled="disabled" />
+                                <p class="">Выведет на экран 5</p>
+                <p style="position:absolute; right:11px;">96 / 1006</p>
+            </li>
+                        <li >
+                                <input name="0uF6thXxOAIZ-answers" type="radio" disabled="disabled" />
+                                <p class="">Выведет на экран 20</p>
+                <p style="position:absolute; right:11px;">111 / 1006</p>
+            </li>
+                        <li >
+                                <input name="0uF6thXxOAIZ-answers" type="radio" disabled="disabled" />
+                                <p class="">Произойдёт ошибка компиляции в строке 1</p>
+                <p style="position:absolute; right:11px;">112 / 1006</p>
+            </li>
+                        <li  class="last" >
+                                <input name="0uF6thXxOAIZ-answers" type="radio" disabled="disabled" />
+                                <p class="">Произойдёт ошибка компиляции в строке 2</p>
+                <p style="position:absolute; right:11px;">245 / 1006</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Если знать как правильно работают условные операторы ? и :, выражение с которыми имеет такой вид:<br>
+условие ? выражение если условие выполнилось : выражение если условие не выполнилось<br>
+<br>
+то можно легко понять, что следующий код стоит рассматривать как несколько условных операторов в одном:<br>
+a=[a!=0]?<br>
+[(a&gt;1)?(a&gt;&gt;2):(a&lt;&lt;2)]  &lt;-если a не равно 0<br>
+:<br>
+[(a&lt;1)?(a&lt;&lt;2):(a&gt;&gt;2)]; &lt;-если а равно 0<br>
+<br>
+и в конце переменной а присвоится значение (a&gt;&gt;2), это значит, что мы сдвигаем 5 (в двоичном 0101) на 2 бита и получаем 0001,а это у нас равно 1.
+</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/atomix'>atomix</a></span><span id='question-tools-0uF6thXxOAIZ'></span>
+        </div>
+
+        <div id="comments-question/0uF6thXxOAIZ"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-0uF6thXxOAIZ');
+                container.append(new QuestionComments(document.getElementById('comments-question/0uF6thXxOAIZ'), 'question/0uF6thXxOAIZ', 0, window.location.hash == '#question-0uF6thXxOAIZ'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-svZ0TYOW7EdM" class="question-result">
+    <div class="question  incorrect ">
+
+        <div class="question-topic">Фундаментальные понятия</div>        <div class="question-text">Что выведется на экран при компиляции и запуске программы?
+
+<PRE><CODE class='java'>
+import java.util.*;
+public class Test {        
+    void a1(Object... i){
+        System.out.println("[Object... i]");
+    }
+    void a1(Integer... i){
+        System.out.println("[Integer... i]");;
+    }
+    public static void main(String... args){
+        a1(new Integer[19]);
+    }
+}
+</CODE></PRE></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="svZ0TYOW7EdM-answers" type="radio" disabled="disabled" />
+                                <p class="">[Object... i]</p>
+                <p style="position:absolute; right:11px;">170 / 1012</p>
+            </li>
+                        <li >
+                                <input name="svZ0TYOW7EdM-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class="">[Integer... i]</p>
+                <p style="position:absolute; right:11px;">434 / 1012</p>
+            </li>
+                        <li >
+                                <input name="svZ0TYOW7EdM-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка времени выполнения</p>
+                <p style="position:absolute; right:11px;">34 / 1012</p>
+            </li>
+                        <li  class="last" >
+                                <input name="svZ0TYOW7EdM-answers" type="radio" disabled="disabled" />
+                                <p class=" correct ">Ошибка компиляции</p>
+                <p style="position:absolute; right:11px;">373 / 1012</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Метод а1 не статический, поэтому произойдет ошибка компиляции.</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/vzenchenko'>vzenchenko</a></span><span id='question-tools-svZ0TYOW7EdM'></span>
+        </div>
+
+        <div id="comments-question/svZ0TYOW7EdM"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-svZ0TYOW7EdM');
+                container.append(new QuestionComments(document.getElementById('comments-question/svZ0TYOW7EdM'), 'question/svZ0TYOW7EdM', 2, window.location.hash == '#question-svZ0TYOW7EdM'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-S0wPDJSy1IiA" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Концепция ООП</div>        <div class="question-text">Каким будет результат компиляции и выполнения данного кода:
+<pre><code class="java">
+public final class QTest {
+    public static void main(String[] args) {
+        new QTest() {
+            public void show() {
+                System.out.print("2");
+            }
+        }.show();
+    }
+    public void show() {
+        System.out.print("1");
+    }
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="S0wPDJSy1IiA-answers" type="radio" disabled="disabled" />
+                                <p class="">На консоль выведется "12"</p>
+                <p style="position:absolute; right:11px;">103 / 2410</p>
+            </li>
+                        <li >
+                                <input name="S0wPDJSy1IiA-answers" type="radio" disabled="disabled" />
+                                <p class="">На консоль выведется "2"</p>
+                <p style="position:absolute; right:11px;">891 / 2410</p>
+            </li>
+                        <li >
+                                <input name="S0wPDJSy1IiA-answers" type="radio" disabled="disabled" />
+                                <p class="">Произойдет ошибка на этапе выполнения</p>
+                <p style="position:absolute; right:11px;">69 / 2410</p>
+            </li>
+                        <li >
+                                <input name="S0wPDJSy1IiA-answers" type="radio" disabled="disabled" />
+                                <p class="">На консоль выведется "1"</p>
+                <p style="position:absolute; right:11px;">120 / 2410</p>
+            </li>
+                        <li  class="last" >
+                                <input name="S0wPDJSy1IiA-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">Произойдёт ошибка на этапе компиляции</p>
+                <p style="position:absolute; right:11px;">1221 / 2410</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Компилятор выдаст ошибку, так как в данном коде осуществляется попытка инстанцировать анонимный подкласс терминального класса QTest. (Классы объявленные с модификатором final являются терминальными и не могут порождать подклассы.)</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/im3JI0U'>im3JI0U</a></span><span id='question-tools-S0wPDJSy1IiA'></span>
+        </div>
+
+        <div id="comments-question/S0wPDJSy1IiA"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-S0wPDJSy1IiA');
+                container.append(new QuestionComments(document.getElementById('comments-question/S0wPDJSy1IiA'), 'question/S0wPDJSy1IiA', 6, window.location.hash == '#question-S0wPDJSy1IiA'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-WZeD1V2GyaoP" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Фундаментальные понятия</div>        <div class="question-text">Сколько объектов будет создано в результате следующей операции:
+<pre><code>"a"+"b"</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="WZeD1V2GyaoP-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">1</p>
+                <p style="position:absolute; right:11px;">373 / 1159</p>
+            </li>
+                        <li >
+                                <input name="WZeD1V2GyaoP-answers" type="radio" disabled="disabled" />
+                                <p class="">3</p>
+                <p style="position:absolute; right:11px;">630 / 1159</p>
+            </li>
+                        <li >
+                                <input name="WZeD1V2GyaoP-answers" type="radio" disabled="disabled" />
+                                <p class="">2</p>
+                <p style="position:absolute; right:11px;">96 / 1159</p>
+            </li>
+                        <li  class="last" >
+                                <input name="WZeD1V2GyaoP-answers" type="radio" disabled="disabled" />
+                                <p class="">0</p>
+                <p style="position:absolute; right:11px;">59 / 1159</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Все строковые литералы порождают объект String. По идее должно создаваться три объекта (2 строковых литерала "a" и "b", плюс результат конкатенации "ab"). Но, так как создание объекта - одна из самых ресурсоёмких операций, а литералы являются константами и компилятор будет заранее знать их значение, то оптимизатор Java заранее сделает конкатенацию, и создаст один объект.</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/shurka'>shurka</a></span><span id='question-tools-WZeD1V2GyaoP'></span>
+        </div>
+
+        <div id="comments-question/WZeD1V2GyaoP"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-WZeD1V2GyaoP');
+                container.append(new QuestionComments(document.getElementById('comments-question/WZeD1V2GyaoP'), 'question/WZeD1V2GyaoP', 7, window.location.hash == '#question-WZeD1V2GyaoP'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-MHo5CLQ56Qgt" class="question-result">
+    <div class="question  correct ">
+
+        <div class="question-topic">Стандартная библиотека</div>        <div class="question-text"><pre><code class="java">
+class Data implements Cloneable {    
+    private String string = "";
+    
+    public Data(String string) { this.string = string; }
+
+    public String getString() { return string; }
+    public void setString(String string) { this.string = string; }
+    
+    public Object clone() {
+        return new Data(string);
+    }
+}
+
+public class Main {    
+    public static void main(String... args) {
+        Vector&lt;Data&gt; vector1 = new Vector&lt;Data&gt;();
+        Data data1 = new Data("1");
+        Data data2 = new Data("2");
+        Data data3 = new Data("3");
+        vector1.add(data1);
+        vector1.add(data2);
+        vector1.add(data3);
+        Vector&lt;Data&gt; vector2 = (Vector&lt;Data&gt;) vector1.clone(); //1
+        for(Data dt : vector2) {
+            System.out.print(dt.getString() + " ");
+            dt.setString("_" + dt.getString());
+        }
+        vector2.removeAllElements();
+        System.out.println();
+        for(Data dt : vector1) {
+            System.out.print(dt.getString() + " ");
+        }
+    }
+}
+</code></pre></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input name="MHo5CLQ56Qgt-answers" type="radio" disabled="disabled"  checked="checked" />
+                                <p class=" correct "> 1 2 3<br/>
+_1 _2 _3</p>
+                <p style="position:absolute; right:11px;">463 / 1121</p>
+            </li>
+                        <li >
+                                <input name="MHo5CLQ56Qgt-answers" type="radio" disabled="disabled" />
+                                <p class="">3 2 1<br>
+_3 _2 _1</p>
+                <p style="position:absolute; right:11px;">90 / 1121</p>
+            </li>
+                        <li >
+                                <input name="MHo5CLQ56Qgt-answers" type="radio" disabled="disabled" />
+                                <p class="">1 2 3<br>
+1 2 3</p>
+                <p style="position:absolute; right:11px;">300 / 1121</p>
+            </li>
+                        <li >
+                                <input name="MHo5CLQ56Qgt-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка компиляции в строке 1</p>
+                <p style="position:absolute; right:11px;">133 / 1121</p>
+            </li>
+                        <li  class="last" >
+                                <input name="MHo5CLQ56Qgt-answers" type="radio" disabled="disabled" />
+                                <p class="">Ошибка времени выполнения CloneNotSupportedException</p>
+                <p style="position:absolute; right:11px;">124 / 1121</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Как известно, Vector был перепроектирован в 5-й Java и теперь он расширяет интерфейс AbstractList, и в то же время унаследовал большую часть своих старых методов, один из которых clone(). Этот метод копирует массив элементов в память, если эти элементы являются ссылками на объект, то он создает лишь новый массив этих же ссылок, но никакого неявного вызова метода clone() у каждого из элементов не происходит.</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/Yasinoviy'>Yasinoviy</a></span><span id='question-tools-MHo5CLQ56Qgt'></span>
+        </div>
+
+        <div id="comments-question/MHo5CLQ56Qgt"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-MHo5CLQ56Qgt');
+                container.append(new QuestionComments(document.getElementById('comments-question/MHo5CLQ56Qgt'), 'question/MHo5CLQ56Qgt', 1, window.location.hash == '#question-MHo5CLQ56Qgt'));
+            });
+        </script>
+    </div>
+</div>
+
+                    <div id="question-EiND0w4VZb16" class="question-result">
+    <div class="question  incorrect ">
+
+        <div class="question-topic">Фундаментальные понятия</div>        <div class="question-text">Что выведет на консоль данная программа (выберите все подходящие ответы):
+<PRE><CODE class='java'>
+public class ArrTest {
+    public static void main(String[] X){
+        print(new int[] { 1, 2, 3, 4 });
+        print(new Long[] { 1l, 2l, 3l, 4l });
+    }
+    static void print(Long i){
+        System.out.print(1);
+    }
+    static void print(Object i){
+        System.out.print(2);
+    }
+    static void print(Object... i){
+        System.out.print(3);
+    }
+    static void print(long[] i){
+        System.out.print(4);
+    }
+    static void print(Integer... i){
+        System.out.print(5);
+    }
+    static void print(Number... i){
+        System.out.print(6);
+    }
+}
+</CODE></PRE></div>        
+        
+        <ul class="answers">
+                        <li >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">1</p>
+                <p style="position:absolute; right:11px;">45 / 1016</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled"  checked="checked" />
+                                <p class=" correct ">2</p>
+                <p style="position:absolute; right:11px;">343 / 1016</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">3</p>
+                <p style="position:absolute; right:11px;">180 / 1016</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled"  checked="checked" />
+                                <p class="">4</p>
+                <p style="position:absolute; right:11px;">345 / 1016</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">5</p>
+                <p style="position:absolute; right:11px;">252 / 1016</p>
+            </li>
+                        <li >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class=" correct ">6</p>
+                <p style="position:absolute; right:11px;">254 / 1016</p>
+            </li>
+                        <li  class="last" >
+                                <input type="checkbox" disabled="disabled" />
+                                <p class="">Программа не скомпилируется</p>
+                <p style="position:absolute; right:11px;">242 / 1016</p>
+            </li>
+                    </ul>
+
+        
+        <p class="explanation">Пояснение: Правильные ответы 2 и 6. <BR>
+При вызове  print(new int[] { 1, 2, 3, 4 }) будет использован метод print(Object i), т.к. массив является объектом. <BR>
+При вызове print(new Long[] { 1l, 2l, 3l, 4l }) будет использован print(Number... i)</p>
+
+        <div class="footer">
+            <span class='author'>Автор: <a href='/user/alniks'>alniks</a></span><span id='question-tools-EiND0w4VZb16'></span>
+        </div>
+
+        <div id="comments-question/EiND0w4VZb16"></div>
+        <script type="text/javascript">
+            jQuery(function() {
+                var container = jQuery('#question-tools-EiND0w4VZb16');
+                container.append(new QuestionComments(document.getElementById('comments-question/EiND0w4VZb16'), 'question/EiND0w4VZb16', 3, window.location.hash == '#question-EiND0w4VZb16'));
+            });
+        </script>
+    </div>
+</div>
+
+        
+                <div id='shareThis'></div><br clear="left"/>
+                    <div class="test-comments-warning">
+    <p><b>Важно:</b> Ниже обсуждается только тест в целом: покрытие тематик, типы вопросов, пути улучшения теста и так далее.</p>
+    <p>Замечания, касающиеся отдельных вопросов теста, просьба оставлять в соответствующих топиках, <br/>
+        которые доступны на странице результатов прохождения теста возле каждого вопроса.</p>
+</div>
+
+
+            <div id="test-comments"></div>
+            <script>
+                document.getElementById("test-comments").appendChild(new Comments.Panel("test/java_se_midlevel", {onLoad:Markup}));
+                ShareThis(jQuery("#shareThis"), window.location, jQuery("title").html(), jQuery('head meta[name=description]').attr('Content'));
+            </script>
+            </div>
+
+            <br class="clear"/>
+        </div>
+        <br class="clear"/>
+    </div>
+
+    <div id="footer">
+        <b></b>
+        <a class='forteko' target="_blank" href="http://www.forteko.com" title="Forteko"></a>
+        
+        <span class="social">
+            <a class="icon-twitter" target="_blank" rel='nofollow' href="http://www.twitter.com/quizful" title="Twitter"></a>
+            <a class="icon-facebook" target="_blank" rel='nofollow' href="http://www.facebook.com/Quizful" title="Facebook"></a>
+            <a class="icon-vkontakte" target="_blank" rel='nofollow' href="http://vkontakte.ru/club8978114" title="VKontakte"></a>
+            <span class="title">Наши представительства</span>
+        </span>
+    </div>
+    <script type="text/javascript">
+    if (window.location.host == 'www.quizful.net') {
+        var pageTracker = _gat._getTracker("UA-199293-2");
+        pageTracker._initData();
+        pageTracker._trackPageview();
+
+        $("#footer .group a").click(function() { pageTracker._trackPageview('/' + this.className); });
+    }
+    </script>
+</body>
+</html>

@@ -1,5 +1,3 @@
-package excell;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
@@ -28,7 +26,7 @@ class HtmlHelper {
                             element.select("code").text().replace("<code class=\"java\">", "").replace("</code>", ""),
                             element.select("p.correct").stream()
                                     .map(Element::ownText)
-                                    .collect(joining(";\nОтвет: ", "Ответ: ", "."))))
+                                    .collect(joining(";\nОтвет: ", "Ответ: ", ".")), allAnswers, answerDescription))
                     .collect(Collectors.toSet());
         } catch (IOException e) {
             e.printStackTrace();

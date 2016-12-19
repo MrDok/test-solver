@@ -1,0 +1,4687 @@
+Вопрос 1:  Выберите единственный верный из приведенных результат компиляции и выполнения кода.
+
+1. class BoolTest {
+2.     public static void main(String[] args){
+3.         Boolean b = new Boolean("true");
+4.         Boolean c = new Boolean("Null");
+5.         boolean d = true;
+6.         Boolean e = (b || c) && d;
+7.         System.out.println(e);
+8.     }
+9. }
+Ответ: Программа выведет "true" без кавычек.
+____________
+Вопрос 2:  Что выведет на экран следующий код?
+
+import java.util.regex.*;
+public class Test {
+    public strictfp static void main(String[] args) {
+        String str = "12.24.#2010";
+
+        Pattern pat = Pattern.compile("[\\w\\d\\.]+");
+        Matcher match = pat.matcher(str);
+        if (match.find()) {
+            System.out.println("find: " + match.group());
+        } else {
+            System.out.println("not find");
+        }
+    }    
+}
+Ответ: find: 12.24..
+____________
+Вопрос 3:  Каков результат выполнения данного кода?
+
+public class Test {
+    enum Car {
+        Mustang, Porshe;
+    }
+    public static void main(String[] args){
+        Car mustang = null;
+        mustang = mustang.Porshe;
+        System.out.println(mustang);
+    }
+}
+Ответ: Напечатает "Porshe" без кавычек.
+____________
+Вопрос 4:  Какой будет результат компиляции и выполнения следующей программы?
+
+import java.util.HashSet;  import java.util.Set;  import java.util.TreeSet;    public class Test implements Comparable<Test> {      public String name;        public int compareTo(Test o) {          return 0;      }        public static void main(String[] args) throws Exception {          Test first = new Test();          Test second = new Test();          first.name = "First";          second.name = "Second";            Set<Test> tSet = new TreeSet<Test>();            tSet.add(first);          tSet.add(second);          tSet.add(first);          tSet.add(second);            System.out.println(tSet.size());            Set<Test> hSet = new HashSet<Test>();            hSet.add(first);          hSet.add(second);          hSet.add(first);          hSet.add(second);            System.out.println(hSet.size());      }  } 
+Ответ: 1 2.
+____________
+Вопрос 5:  Сколько раз напечатается строка Hello?
+
+public class Inc {
+	static int x = 0;
+	static boolean ok = true;
+	static boolean f() {
+		x++; 
+		return (ok = !ok);
+	}
+	
+	public static void main(String[] args) {
+		if (f()||f()|f()) {
+			for (int i=0; i<x; i++)
+				System.out.println("Hello");
+		}
+	}
+}
+Ответ: 3.
+____________
+Вопрос 6:  Дан код: Какие из следующих утверждений верны:
+
+class A {
+    private static final class B extends A {
+        private static void f1() {
+            System.out.println("f1 in B");
+        };
+
+        public static void f2() {
+            System.out.println("f2 in B");
+        };
+    }
+
+    final static void f1() {
+        System.out.println("f1 in A");
+    };
+
+    public static void f2() {
+        System.out.println("f2 in A");
+    };
+
+    public static void main(String[] args) {
+        B.f1();
+        f2();
+    }
+}
+Ответ: В классе B неверным образом определен f1();
+Ответ: Код не будет компилироваться, если убрать модификатор static из f1()..
+____________
+Вопрос 7:  Что будет содержаться в hashMap после выполнения данного кода?
+
+public static void main(String[] args) {
+        HashMap hashMap = new HashMap();
+        List list = new ArrayList();
+        list.add(hashMap);
+        hashMap.put(list, null);
+        hashMap.put(list, null);
+    }
+Ответ: Код скомпилируется, но при выполнении выдаст StackOverflowError.
+____________
+Вопрос 8:  Что произойдет в результате выполнения следующего фрагмента кода?
+
+Collection<Integer> col = new ArrayList();
+col.addAll(Arrays.asList(1,2,3,4,5));
+Collections.addAll(col,null,null);
+
+List<Integer> list = Arrays.asList(1,2,3,4,5);
+list.set(1,99);
+list.add(13);
+System.out.println(col);
+System.out.println(list);
+Ответ: Ошибка времени выполнения.
+____________
+Вопрос 9:  Как может быть объявлена функция sort, если дан такой пример ее вызова: Укажите все подходящие варианты
+
+sort(new int[3]);
+Ответ: String sort(int...x){ return null; };
+Ответ: Object sort(Object x){ return 0; };
+Ответ: double sort(int[] x){ return 0; }.
+____________
+Вопрос 10:  Что однозначно определяет класс в пределах JVM?
+
+
+Ответ: Полное имя класса и экземпляр ClassLoader'a.
+____________
+Вопрос 11:  Какой результат выполнения данной программы?
+
+public class Test {
+    public static void main(String[] args){
+        int y = -1;
+        System.out.println(-1 == (y>>1));
+
+        int b = -1;
+        b = b>>>1;
+        System.out.println(b == Integer.MAX_VALUE);
+
+        byte x = -1;
+        System.out.println(x == (byte)(x>>>4));
+    }
+}
+Ответ: true true true.
+____________
+Вопрос 12:  Какие буквы (порядок не имеет значения) в конечном счете окажутся в консоли после компиляции и выполнения следующего кода?
+
+public class Test {
+    private static Thread threadA, threadB;
+    
+    public static void main(String[] args) {
+        threadA = new Thread() {
+            public void run() {
+                System.out.println("A");
+                try {
+                    threadB.sleep(1000);
+                } catch(Exception e) {
+                    System.out.println("B");
+                }
+                System.out.println("C");
+            }
+        };
+        
+        threadB = new Thread() {
+            public void run() {
+                System.out.println("D");
+                try {
+                    threadA.wait();
+                } catch(Exception e) {
+                    System.out.println("E");
+                }
+                System.out.println("F");
+                
+            }
+        };
+        
+        threadA.start();
+        threadB.start();
+    }
+}
+Ответ: A, C, D, E, F.
+____________
+Вопрос 13:  Что будет в результате выполнения следующего кода?
+
+public class Test implements Runnable {
+    public static void main(String[] args) {
+        Thread t = new Thread(this);
+        try {
+            t.start();
+        } catch (IOException ioe) {
+            System.out.println("IOException");
+        }
+    }
+
+    public void run() throws IOException {
+        File f = new File("file.txt");
+        FileWriter fw = new FileWriter(f);
+    }
+}
+Ответ: В коде есть 3 ошибки.
+____________
+Вопрос 14:  Какое минимальное количество строк нужно закомментировать, чтобы код скомпилировался и выполнился без ошибок: (в ответе указываются номера строк)
+
+class Parent { }
+class Child extends Parent { }
+class Child2 extends Parent { }  
+
+public class АrrауTest {
+    public static void main(String[] args) {
+        Parent[] arr1 = new Child[3];
+        arr1[0] = new Parent(); //1
+        arr1[1] = new Child();  //2
+        arr1[2] = new Child2(); //3
+        arr1[3] = new Child();  //4
+
+        Child2[] arr2 = {new Child2(), new Child2(), new Child2()};
+        add(arr2);
+    }
+
+    public static void add(Parent[] arr) {
+        arr[0] = new Parent(); //5
+        arr[1] = new Child();  //6
+        arr[2] = new Child2(); //7
+        arr[3] = new Child2(); //8
+    }
+}
+Ответ: 1;
+Ответ: 3;
+Ответ: 4;
+Ответ: 5;
+Ответ: 6;
+Ответ: 8.
+____________
+Вопрос 15:  У каких типов данных может быть значение NaN?
+
+
+Ответ: Double;
+Ответ: Float.
+____________
+Вопрос 16:  Возможно ли модифицировать данную программу, вставив некоторый код в указанном месте, чтобы она удовлетворяла следующим условиям: - завершалась, т.е. не зацикливалась - печатала "Finally"?
+
+class Clazz {
+    public static void main(String[] args) { 
+         for (int i = 0; i < 2; i++) { 
+             try { 
+                 System.out.println("Try"); 
+                 //Вставьте ваш код здесь
+             } finally { 
+                 System.out.println("Finally"); 
+             } 
+         } 
+     }
+}
+Ответ: Да.
+____________
+Вопрос 17:  Что будет в результате компиляции и запуска программы?
+
+public class TestArr {      public static void main(String[] args) {          String[] arr = {"1", "2", "3"};          List arrList = Arrays.asList(arr);  //1          arr[1] = "22";                      //2          arrList.add("8");                   //3          for (String s : arr)              System.out.print(s + " ");          for (Object s : arrList)              System.out.print(s + " ");      }  } 
+Ответ: Исключение в процессе работы.
+____________
+Вопрос 18:  Каким будет результат компиляции и выполнения следующего кода?
+
+public class Test {
+    static void methodA(Long l) {
+        System.out.println(l);
+    }
+    
+    static void methodB(Object o) {
+        Byte b = (Byte) o;
+        System.out.println(b);
+    }
+    
+    public static void main(String[] args) {
+        byte b = 5;
+        
+        methodA(b);  // 1
+        methodB(b);  // 2
+    }
+}
+Ответ: Ошибка компиляции в строке 1.
+____________
+Вопрос 19:  Предположим, что все необходимые импорты объявлены. В каких строках кода произойдет ошибка компиляции?
+
+1: class A {
+2:    void m1() {throw new ArithmeticException();}
+3:    void m2() {throw new ClassCastException();}
+4:    void m3() {throw new IllegalArgumentException();}
+5:    void m4() {throw new IndexOutOfBoundsException();}
+6:    void m5() {throw new NullPointerException();}
+7:    void m6() {throw new SecurityException();}
+8: }
+Ответ: Компиляция будет успешной.
+____________
+Вопрос 20:  Что выведет на экран следующий код?
+
+package question;
+
+import java.util.ArrayList;
+
+public class ErasedTypeEquivalence {
+    public static void main(String[] args) {
+        Class c1 = new ArrayList<String>().getClass();
+        Class c2 = new ArrayList<Integer>().getClass();
+        Class c3 = new ArrayList<Number>().getClass();
+        
+        System.out.println(c1 == c2);
+        System.out.println(c2 == c3);
+        System.out.println(c1 == c3);
+    }
+}
+Ответ: true true true.
+____________
+Вопрос 21:  Выберите все верные утверждения:
+
+
+Ответ: В классе Arrays есть метод, позволяющий представить массив в виде объекта типа List;
+Ответ: В HashSet объекты хранятся в произвольном порядке;
+Ответ: Интерфейсы Set, SortedSet, List, Map, SortedMap находятся в пакете java.util;
+Ответ: Интерфейсы Set и List наследуются от интерфейса Collection.
+____________
+Вопрос 22:  Выберите единственный верный из приведенных результат компиляции и выполнения кода.
+
+import java.util.Formatter;
+public class Format2 {
+  public static void main(String[] args) {
+    String s = "hello123";
+    Formatter f = new Formatter();
+    f.format("%S", s);
+    System.out.println(f);
+  }
+}
+Ответ: Программа выведет "HELLO123" без кавычек.
+____________
+Вопрос 23:  Выберите единственный верный перечень методов, определенных в интерфейсе Serializable.
+
+
+Ответ: Ничего из перечисленного.
+____________
+Вопрос 24:  Что надо поставить вместо точек, чтобы Лара смогла получить артефакт (на экран вывелась строка "Girls' Power!!! I've got IT!!")?
+
+public class Adventure {
+    static boolean putOnTrial(String adv) {
+        return adv.equals("LaraCroft");
+    }
+
+    public static void main(String[] args) {
+        String Lara = "LaraCroft";
+        boolean ok = true;
+        System.out.println("I see a dangerous maze...");
+        System.out.println("I have to stand the test because");
+        System.out.println("the ancient artifact is waiting for me");
+        if (...)
+            while (true) ok &= putOnTrial(Lara);
+        else
+            while (...) ok &= putOnTrial(Lara);
+        System.out.println("Girls' Power!!! I've got IT!!");
+    }
+}
+Ответ: Ничего из вышеперечисленного (Лара не доберется до артефакта).
+____________
+Вопрос 25:  Что напечатает следующий код:
+
+public class Comparation {      public static Boolean assert(boolean bool) {          return bool;      }      public static void main(String[] args) {          int i1 = 1;          Integer i2 = 1;          System.out.println("assert=" + assert(i1 == i2));      }  } 
+Ответ: Возникнет ошибка компиляции.
+____________
+Вопрос 26:  Что будет выведено следующим кодом:
+
+import java.util.*;
+public class My11 {
+    public static void main(String...args) {
+        final int num = 3;
+        LinkedHashMap<String,String> map = new LinkedHashMap<String,String>(num,1,true) {
+            public boolean removeEldestEntry (Map.Entry<String,String> eldest) {
+                return size()>num;
+            }
+        };
+        map.put("1", "str1");
+        map.put("2", "str2");
+        map.put("3", "str3");
+        map.put("4", "str4");
+        map.get("2");
+        System.out.println(map);
+    }
+}
+Ответ: {3=str3, 4=str4, 2=str2}.
+____________
+Вопрос 27:  Вызовет ли данный код ошибку?
+
+class A$ {
+    class B {
+    }
+}
+class A {
+    class $B {
+    }
+}
+public class Main {
+   public static void main(String[] argv) {
+   }
+}
+Ответ: да.
+____________
+Вопрос 28:  Что произойдет при выполнении следующиего кода ?
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+public class Test<T> implements Iterator<T>{   // 1
+
+    private List<T> list = new ArrayList<T>(); // 2
+
+    public void addList(T... ts) {
+        Collections.addAll(list, ts);          // 3
+    }
+
+    public static void main(String args[]) {
+        Test<String> t  = new Test<String>();
+        t.addList("Hello world");
+        for (String str : t) {                 // 4
+            System.out.print(str + " ");
+        }
+    }
+
+    public Iterator<T> iterator() {
+        return list.iterator();
+    }
+
+}
+Ответ: Ошибка компиляции в строке 1;
+Ответ: Ошибка компиляции в строке 4.
+____________
+Вопрос 29:  В чем особенность класса-обертки для void?
+
+
+Ответ: он не имеет открытого конструктора. Более того, экземпляр этого класса не может быть получен;
+Ответ: этот класс, в отличие от остальных классов-оберток, не реализует интерфейс java.io.Serializable.
+____________
+Вопрос 30:  Какие файлы-классы будут созданы при компиляции данного кода?
+
+public class Count {
+    class A { }
+
+    public static void main(String[] args) {
+        Object obj = new Object() {
+            { System.out.println(this); }
+	};
+    }
+}
+class Count$1 { }
+Ответ: Count.class;
+Ответ: Count$A.class;
+Ответ: Count$1.class;
+Ответ: Count$2.class.
+____________
+Вопрос 31:  Что можно сказать о следующем коде:
+
+public class Main {
+    public static void main(String[] args) {
+        ((Foo)null).test();
+    }
+}
+
+class Foo {
+    static void test() {
+        System.out.println("Foo.test()");
+    }
+}
+Ответ: Код скомпилируется и выполнится без ошибок.
+____________
+Вопрос 32:  Какие утверждения о следующем коде верны
+
+public class Test<T>{
+
+    static class MyTest{
+        private MyTest() {
+            System.out.println("MyTest created");
+        }
+    }
+
+    T obj1, obj2, obj3; // 1
+
+    public Test(T t, Class<T> cls) throws Exception {
+
+        obj1 = new T(); // 2
+
+        obj2 = t; // 3
+
+        obj3 = cls.newInstance(); // 4
+    }
+
+    public static void main(String[] args) throws Exception {
+        MyTest mt = new MyTest();
+        Test t = new Test(mt, MyTest.class);
+    }
+}
+Ответ: Ошибка компиляции в строке 2.
+____________
+Вопрос 33:  Поля класса с какими из перечисленных модификаторов не будут сериализованы?
+
+
+Ответ: static;
+Ответ: transient.
+____________
+Вопрос 34:  Выберите единственный верный из приведенных результат компиляции и выполнения кода.
+
+import java.util.regex.*;
+public class MatchTest{
+      public static void main(String[] args){
+            Pattern pattern = Pattern.compile("Water Water everywhere");
+            Matcher matcher = pattern.matcher("water");
+            if(matcher.find())
+                  System.out.println("Match found");
+            else
+                System.out.println("Match not found");
+      }
+}
+Ответ: Программа выведет "Match not found" без кавычек.
+____________
+Вопрос 35:  Интерфейс NavigableSet расширяет (extends) интерфейс:
+
+
+Ответ: SortedSet.
+____________
+Вопрос 36:  Выберите единственный верный из приведенных результат компиляции и выполнения кода.
+
+import java.util.*;
+class Generics13 {
+  public static void main(String[] args) {
+     List<Integer> list = new LinkedList<Integer>();
+     list.add(1);
+     list.add(4);
+     list.add(-4);
+     for(Iterator i = list.iterator(); i.hasNext();) {
+            Integer in = i.next();
+            System.out.println(in);
+     }
+  }
+}
+Ответ: Ничего из перечисленного..
+____________
+Вопрос 37:  Что будет выведено на экран в результате компиляции и выполнения следующей программы?
+
+public class StringDestroyer {
+    public static void main(String[] args)
+             throws IllegalAccessException, NoSuchFieldException {
+        Field value = String.class.getDeclaredField("value");
+        value.setAccessible(true);
+        value.set("hello", "World".toCharArray());
+        System.out.println("hello");
+    }
+}
+Ответ: World.
+____________
+Вопрос 38:  Что нужно сделать чтобы код скомпилировался? (Выберите все возможные варианты)
+
+1. enum A { A }
+2. class E2 {
+3.     enum B { B }
+4.     void C() {
+5.         enum D { D }
+6.     }
+7. }
+Ответ: Код скомпилируется если удалить 5 строчку.;
+Ответ: Код скомпилируется если удалить 1,3 и 5 строчки..
+____________
+Вопрос 39:  Каким будет результат компиляции и выполнения данного кода:
+
+public class Test {
+    public static void main(String[] s) {
+        class Inn {
+            static { System.out.print("Static "); }
+            void m() {
+                System.out.print("inner ");
+            }
+        }
+        new Inn().m();
+    }
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 40:  Какие из следующих строк скомпилируются без ошибки?
+
+
+Ответ: int j = 'ъ';;
+Ответ: int i = 32565;.
+____________
+Вопрос 41:  Укажите, сколько раз выведется строка "Test":
+
+for (int k = 1; k < 10; k++) {
+    if (k % 2 == 1)
+    continue;
+    System.out.println("Test");
+}
+Ответ: 4.
+____________
+Вопрос 42:  Чему, в конечном счете, будут равны числа x и i:
+
+public class Main {
+    public static strictfp void main(String...args) {
+        int i = 0;
+        for(double x = 0 ; x != 13.08 ; x += 0.12) {
+            System.out.println(i++);
+            System.out.println(x);
+        }
+    }
+}
+Ответ: Невозможно сосчитать.
+____________
+Вопрос 43:  Каким будет результат компиляции и выполнения данного кода:
+
+public class ByteTest extends Base {
+    public void m() {
+        new Base().m();
+    }
+
+    public static void main(String[] s) {
+        new ByteTest().m();
+    }
+}
+
+class Base {
+    public static void m() {
+        System.err.println("base.m()");
+    }
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 44:  В каких фрагментах кода инициализация переменной "y" произойдёт успешно и не вызовет ошибки компиляции?
+
+
+Ответ: final int x = 10; short y = x;;
+Ответ: short y = 10;.
+____________
+Вопрос 45:  Что напечатает данная программа?
+
+public class Test {      public static void main(String[] args) {          int x = 0;          int y = 0;          for (int z = 0; z < 4; z++) {              if ((++x > 2) || (++y > 2)) {                  x++;              }          }          System.out.println(x + " " + y);      }  } 
+Ответ: 6 2.
+____________
+Вопрос 46:  Что напечатает следующий код:
+
+public class Example { 
+   public static void main(String[] args) {
+
+       int x = -1;
+       int y = ~x;
+
+       System.out.println(y);
+   }
+}
+Ответ: 0.
+____________
+Вопрос 47:  Дан код: Каким будет результат?
+
+public class Test {
+    public static void main(String[] s){
+        long c = 1;
+        switch(c)
+        {
+            case 1: c = 3; break;
+            case 3: c = 4; break;
+        }
+        System.out.println(c);
+    }
+}
+Ответ: Код не откомпилируется.
+____________
+Вопрос 48:  Каким будет результат выполнения?
+
+public class ExсeptionTest {
+    public static void errorHandling() {
+        System.out.println("Error");
+        throw new IllegalAccessException();
+    }
+    
+    public static void main(String[] args) {
+        try {
+            errorHandling();
+        } catch (IllegalAccessException e) {
+            System.out.println("Main error");
+        }
+    }
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 49:  Что будет выведено на экран следующим кодом?
+
+class A {
+    int i = 1;
+    int getI(int i) {
+        i += 1+2;
+        System.out.println(i);
+        return i;
+    }
+}
+class B extends A {
+    int i;
+    int getI(int i) {
+        System.out.println(i);
+        return i;
+    }
+    void print() {
+        System.out.println("i=" + i);
+        super.getI(10 + i);
+    }
+}
+
+public class Tasks {
+    public static void main(String[] args) {
+        A a = new B();
+        System.out.println("a.i=" + a.i);
+        System.out.println("a.getI()=" + a.getI(1));
+        B b = new B();
+        System.out.println("b.i=" + b.i);
+        System.out.println("b.getI()=" + b.getI(1));
+        b.print();
+        b.i = 1;
+        b.print();
+    }
+}
+Ответ: a.i=1 1 a.getI()=1 b.i=0 1 b.getI()=1 i=0 13 i=1 14.
+____________
+Вопрос 50:  К чему приведет попытка откомпилировать и запустить следующую программу?
+
+class Box {
+    int b,w;
+    void Box(int b, int w) {
+         this.b = b;  
+         this.w = w;
+    }
+}
+
+public class MyBox extends Box {
+    MyBox() {
+         super(10, 15);
+         System.out.println(b + "," + w);
+     }
+
+     static public void main(String args[]) {
+           MyBox box = new MyBox();
+     }
+}
+Ответ: Ни один из указанных вариантов.
+____________
+Вопрос 51:  Какие утверждения о потоках верны?
+
+
+Ответ: если напрямую вызвать метод run() у объекта Thread, то произойдет исключение во время выполнения.
+____________
+Вопрос 52:  Даны два класса: и Что произойдет при попытке компиляции обоих классов и запуска main-метода?
+
+package pak1;
+import pak2.B;
+public class A {
+	void doAThings() {
+		System.out.print("A ");
+	}
+	
+	public static void main(String[] args) {
+		A a = new B();
+		a.doAThings();
+	}
+} package pak2;
+import pak1.A;
+public class B extends A {
+	public void doAThings() {
+		System.out.println("I'm B ;)");
+	}
+}
+Ответ: На консоль выведется "A ".
+____________
+Вопрос 53:  Какие из следующих исключений являются исключениями?
+
+
+Ответ: InterruptedException.
+____________
+Вопрос 54:  Что произойдет в результате компиляции и выполнения кода:
+
+public class Test {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.sop();
+    }
+}
+
+class Parent {
+    private Parent() { }
+    public static void sop() {
+        System.out.println("Parent's static sop");
+    }
+}
+class Child extends Parent {
+    public static void sop() {
+        System.out.println("Child'd static sop");
+    }
+}
+Ответ: Произойдет ошибка компиляции.
+____________
+Вопрос 55:  Что будет напечатано в результате компиляции и выполнения следующего фрагмента кода?
+
+double d1 = 1024.0d;
+    double d2 = 1.0e-13d;
+    double sum = d1 + d2;
+
+    if (sum > d1) {
+        System.out.println(">");
+    }
+    else if (sum < d1) {
+        System.out.println("<");
+    }
+    else if (sum == d1) {
+        System.out.println("==");
+    }
+Ответ: ==.
+____________
+Вопрос 56:  Что будет выведено на консоль следующим кодом?
+
+double x = 2./0;
+double y = -1/0;
+System.out.print(x + y);
+Ответ: Возникнет ArithmeticException.
+____________
+Вопрос 57:  Что произойдет при попытке скомпилировать и запустить данную программу:
+
+import java.util.Formatter;  public class Formatt {      public static void main(String[] args) {          Formatter formatter = new Formatter();          String s = formatter.format("%d%.0f", 2, (double) 0);          System.out.println(s);      }  } 
+Ответ: Произойдет ошибка во время компиляции.
+____________
+Вопрос 58:  Что произойдет в результате выполнения следующего кода:
+
+public class Test {
+  public static void main(String[] args) {
+    List<String> values = new ArrayList<String>() {{
+      add("one");
+      add("two");
+      add("three");
+    }};
+
+    for (String value : values) {
+      System.out.print(value);
+    }
+  }
+}
+Ответ: В консоль выведется "onetwothree".
+____________
+Вопрос 59:  Выберите два корректных выражения import из приведенных.
+
+
+Ответ: import java.lang.Math;;
+Ответ: import static java.lang.Math.*;.
+____________
+Вопрос 60:  Что выведет следующий программный код:
+
+String[] slist = {"Ted", "Bill", "Jack", "Roy", "Adam", "Stan"};
+List list = Arrays.asList(slist);
+list.set(4, "Mark");
+slist[2] = "David";
+
+for (String s : slist)
+    System.out.print(s + " ");
+Ответ: Ted Bill David Roy Mark Stan.
+____________
+Вопрос 61:  Дан следующий код. Какой вывод будет после компиляции и выполнения приложения:
+
+public class A {
+     private String runNow() {
+          return "High";
+     }
+
+     static class B extends A {
+          public String runNow() {
+               return "Low";
+          }
+     }
+
+     public static void main(String args[]) {
+          A[] a = new B[] { new B(), new C() };
+          for (A aa:a)
+               System.out.print(aa.runNow() + " ");
+     }
+
+}
+
+class C extends A.B {
+     public String runNow() {
+          return "Out";
+     }
+}
+Ответ: High High.
+____________
+Вопрос 62:  Какой будет результат компиляции и выполнения следующей программы?
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class Test implements Comparable<Test> {
+    public String name;
+
+    public int compareTo(Test o) {
+        return 0;
+    }
+
+    public static void main(String[] args) throws Exception {
+        Test first = new Test();
+        Test second = new Test();
+        first.name = "First";
+        second.name = "Second";
+
+        Set<Test> tSet = new TreeSet<Test>();
+
+        tSet.add(first);
+        tSet.add(second);
+        tSet.add(first);
+        tSet.add(second);
+
+        System.out.println(tSet.size());
+
+        Set<Test> hSet = new HashSet<Test>();
+
+        hSet.add(first);
+        hSet.add(second);
+        hSet.add(first);
+        hSet.add(second);
+
+        System.out.println(hSet.size());
+    }
+}
+Ответ: 1 2.
+____________
+Вопрос 63:  Предположим, что файл Hello.txt не существует. Какое исключение будет выброшено из метода readFile?
+
+public void readFile() throws Exception {
+        try {
+            FileInputStream dis = new FileInputStream("Hello.txt");
+            System.out.println(dis.read());
+        }
+        catch (FileNotFoundException fne) {
+            throw fne;
+        }
+        catch (IOException ioe) {
+            throw ioe;
+        }
+        finally {
+            throw new Exception("Final Exception");
+        }
+}
+Ответ: new Exception("Final Exception").
+____________
+Вопрос 64:  Каким будет результат выполнения программы?
+
+package testing;
+import java.util.*;
+
+public class Net {
+    public static void main(String[] args) {
+       String source = "e 44 hky 09 rp d 5 c";
+        Scanner scanner = new Scanner(source);
+        scanner.useDelimiter("\\d");
+        while (scanner.hasNext()) {
+            System.out.println(">" + scanner.next() + "<");
+        }
+    }
+}
+Ответ: >e < >< > hky < >< > rp d < > c<.
+____________
+Вопрос 65:  Что произойдёт при попытке скомпилировать и выполнить эту программу (предполагается что код расположен внутри main-метода, все необходимые пакеты импортированы)?
+
+NavigableMap<String, String> nm = new TreeMap<String, String>();
+nm.put("1", "one");
+nm.put("3", "three");
+nm.put("2", "two");
+nm.put("4", "four");
+
+NavigableSet<String> keys = nm.keySet();
+NavigableSet<String> subKeys = keys.subSet("1", true, "3", false);
+
+for(String s: subKeys) {
+    System.out.print(s + " ");
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 66:  Что напечатает следующий код:
+
+public class Comparation {
+    public static Boolean assert(boolean bool) {
+        return bool;
+    }
+    public static void main(String[] args) {
+        int i1 = 1;
+        Integer i2 = 1;
+        System.out.println("assert=" + assert(i1 == i2));
+    }
+}
+Ответ: Возникнет ошибка компиляции.
+____________
+Вопрос 67:  Какие из следующих исключений, вставленных после throws ... , позволят переопределить метод?
+
+import java.io.*;
+interface One {
+    void method() throws IOException;
+}
+
+interface Two {
+    void method() throws FileNotFoundException;
+}
+
+class Impl implements One, Two {
+    @Override
+    public void method() throws ... {
+    }
+}
+Ответ: FileNotFoundException.
+____________
+Вопрос 68:  Что будет напечатано после выполнения следующего кода?
+
+boolean b = true;        
+int i = 1;
+while (!( !b || b)) {
+    i = 2;
+    break;
+}
+System.out.println(i);
+Ответ: 1.
+____________
+Вопрос 69:  Что выведет приложение?
+
+class PrintfTest{
+           public static void main(String[] args){
+                      double val1 = 3.91;
+                      double val2 = 3.97;
+                      System.out.printf("%.1f %.1f",val1,val2);
+           }
+}
+Ответ: 3.9 4.0.
+____________
+Вопрос 70:  Каким будет результат выполнения кода (укажите все подходящие варианты)?
+
+class ADaemon implements Runnable {
+    public void run() {
+        try {
+            System.out.println("Запускаем ADaemon");
+            Thread.sleep(1);
+        } catch (InterruptedException e) {
+            System.out.println("Выход через InterruptedException");
+        } finally {
+            System.out.println("Должно выполняться всегда?");
+        }
+    }
+}
+
+public class DaemonsDontRunFinally {
+    public static void main(String[] args) {
+        Thread t = new Thread(new ADaemon());
+        t.setDaemon(true);
+        t.start();
+    }
+}
+Ответ: Запускаем ADaemon;
+Ответ: Запускаем ADaemon Должно выполняться всегда?;
+Ответ: Ничего не будет напечатано.
+____________
+Вопрос 71:  Что будет выведено в результате выполнения данного кода ?
+
+import java.util.*;
+import java.util.concurrent.*;
+
+class ExampleThread extends Thread {
+    private static CountDownLatch latch = new CountDownLatch(1);
+    private static Semaphore semaphore = new Semaphore(1, true);
+
+    private int type;
+    private String[] letters = { "A", "B", "C", "D", "E" };
+
+    ExampleThread(int type) {
+        super();
+        this.type = type;
+    }
+
+    public void run() {
+        try {
+            if (type == 0) {
+                semaphore.acquire();
+                latch.countDown();
+            } else {
+                latch.await();
+                semaphore.acquire();
+            }
+
+            for (int i = 0; i < 5; i++) {
+                if (type == 0) {
+                    System.out.print(i);
+                } else {
+                    System.out.print(letters[i]);
+                }
+                Thread.sleep(100);
+            }
+        } catch (Exception ex) {
+            System.out.println("Exception 2");
+        }
+        semaphore.release();
+    }
+
+
+    public static void main(String[] args) {
+        new ExampleThread(1).start();
+        new ExampleThread(0).start();
+    }
+}
+Ответ: 01234ABCDE.
+____________
+Вопрос 72:  Какой будет результат после вызова метода call():
+
+public class Overload {
+    String c;
+    void m(Object o) { c = "Object"; }
+    void m(Number n) { c = "Number"; }
+    void m(Float s) { c = "Float"; }
+    void call() {
+        m(null);
+        System.out.println(c);
+    }
+}
+Ответ: Напечатает Float.
+____________
+Вопрос 73:  Даны два следующих класса: Что будет выведено на экран в результате выполнения следующего кода?
+
+public class Parent {
+    protected int i;
+
+    public Parent() {
+        i = 1;
+    }
+}
+
+public class Child extends Parent {
+    private int i;
+
+    public Child() {
+        this.i = ((Child)new Parent()).getI();
+        this.i = this.i++ + ++super.i;
+    }
+
+    public int getI() {
+        return i;
+    }
+} public class Test {
+    public static void main(String[] args) {
+        Child c = new Child();
+        System.out.println(c.getI());
+    }
+}
+Ответ: Ничего не будет выведено, будет выброшено исключение java.lang.ClassCastException.
+____________
+Вопрос 74:  Какой результат компиляции и выполнения программы:
+
+import java.io.*;
+
+public class NewClass {
+    public static void main(String[] args) throws Exception {
+        ByteArrayOutputStream bOut = new ByteArrayOutputStream();
+        ObjectOutputStream oOut = new ObjectOutputStream(bOut);
+        oOut.writeObject(new Whole());
+
+        ByteArrayInputStream bIn = new ByteArrayInputStream(bOut.toByteArray());
+        ObjectInputStream oIn = new ObjectInputStream(bIn);
+        oIn.readObject();
+    }
+}
+
+class Whole implements Serializable {
+    transient Part part = new Part(1);
+    int wholePart;
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.writeInt(part.partField);
+        out.defaultWriteObject();
+    }
+
+    private void readObject(ObjectInputStream in) throws Exception {
+        in.defaultReadObject(); // (1)
+        part = new Part(in.readInt()); // (2)
+    }
+}
+
+class Part {
+
+    int partField;
+
+    public Part(int field) {
+        this.partField = field;
+    }
+}
+Ответ: Ошибка времени выполнения.
+____________
+Вопрос 75:  Что будет выведено в результате выполнения фрагмента кода:
+
+System.out.println(01232d);
+Ответ: 1232.0.
+____________
+Вопрос 76:  Что выдаст следующий код при попытке компиляции и запуска?
+
+public class ArTest {
+    public static void main(String[] args) {
+        int v = 5;
+        for(byte i = 0; i < 200; i++) {
+            v += 2;
+        }
+        System.out.println(v);
+    }
+}
+Ответ: Произойдёт зацикливание.
+____________
+Вопрос 77:  Каков результат компиляции и выполнения следующего кода:
+
+import java.util.*;
+
+class Main {
+
+  public static void main(String[] args) {
+    List<String> list = Arrays.asList("a", "b", "c", "d", "e");
+    NavigableSet<String> set = new TreeSet<String>(list);
+    
+    Iterator<String> iter = set.descendingIterator();
+    StringBuilder sb = new StringBuilder("Set: ");
+    while (iter.hasNext()) {
+      String m = iter.next();
+      sb.append(m + " ");
+    }
+    System.out.println(sb);
+    System.out.println("Less c: " + set.lower("c"));
+    System.out.println("Greater c: " + set.higher("c"));
+  }
+}
+Ответ: Set: e d c b a Less c: b Greater c: d.
+____________
+Вопрос 78:  Что выведет следующий код? (Версия java 1.5)
+
+public static void main(String[] args) {
+    Integer a = 12;
+    Integer b = 12;
+    Integer c = 128;
+    Integer d = 128;
+    System.out.println(a == b);
+    System.out.println(c <= d);
+    System.out.println(c >= d);
+    System.out.println(c == d);
+}
+Ответ: true true true false.
+____________
+Вопрос 79:  Что выведет на консоль следующий код:
+
+01: public class Clazz {  02:     public static void main(String[] args) {  03:         Integer integer = new Integer(1024);  04:         Long aLong = new Long(1024);  05:         if (integer.equals(aLong))  06:             System.out.println("eq");  07:         if (integer.intValue() == aLong.longValue())  08:             System.out.println("==");  09:     }  10: }  public boolean equals(Object obj) {  if (obj instanceof Integer) {  return value == ((Integer)obj).intValue();  }  return false;  } 
+Ответ: ==.
+____________
+Вопрос 80:  Что произойдет при попытке скомпилировать и запустить данный код?
+
+public class IntTest {
+    public static void main(String[] args) {
+        Integer i1 = 1;
+        Integer i2 = new Integer(1);
+        Integer i3 = Integer.valueOf(1);
+        System.out.println((i1 == i2) + " " + (i1 == i3) );
+    }
+}
+Ответ: false true.
+____________
+Вопрос 81:  В каких строках кода возникнет ошибка компиляции?
+
+01: import java.util.*;
+02: public class TestClass {    
+03:     public static void main(String[] args) {
+04:           List<Number> list = new ArrayList<Integer>(); 
+05:           list.add(1);                                                    
+06:           list.add(1.2);                      
+07:           list.add(new Integer());                      
+08:           list.add(new Integer("5"));   
+09:      }
+10: }
+Ответ: В строках 04 и 07.
+____________
+Вопрос 82:  Какой будет результат выполнения следующей программы?
+
+public class Test {      private static boolean ready;      private static int number;        private static class ReaderThread extends Thread {          public void run() {          while (!ready)              Thread.yield();          System.out.println(number);          }      }        public static void main(String[] args) {          new ReaderThread().start();          number = 42;          ready = true;      }  } 
+Ответ: Результат выполнения предсказать невозможно.
+____________
+Вопрос 83:  Что выведется на экран при компиляции и запуске программы?
+
+import java.util.*;
+public class Test {        
+    void a1(Object... i){
+        System.out.println("[Object... i]");
+    }
+    void a1(Integer... i){
+        System.out.println("[Integer... i]");;
+    }
+    public static void main(String... args){
+        a1(new Integer[19]);
+    }
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 84:  Выбросит ли данный метод исключение независимо от того что в блоке try?
+
+public static int getTest() {
+    try {
+        // произвольный код здесь
+    } finally {
+        return 1;
+    }
+}
+Ответ: Да.
+____________
+Вопрос 85:  Каким будет результат компиляции и выполнения следующего кода:
+
+public class B1 {
+     public static void main(String args) {
+          System.out.println("First!");
+     }
+
+     private static void main(String args[]) {
+          System.out.println("Second!");
+     }
+}
+Ответ: Ошибка выполнения.
+____________
+Вопрос 86:  Что будет выведено?
+
+import java.io.File;
+import java.util.Date;
+
+public class ReferenceDemo {
+    public static void main(String [] args) {
+        File f1 = new File("mydata.txt");
+        File f2 = new File("mydata.txt");
+
+        if (f1 != f2) 
+            System.out.println("f1 != f2");
+
+        Date today = new Date();
+        Date now = today;
+
+        if (today == now)
+            System.out.println("today == now");
+
+        String s1 = "Hello";
+        String s2 = "Hello";
+
+        if (s1 == s2)
+            System.out.println("s1 == s2");
+
+        String x1 = new String("Goodbye");
+        String x2 = new String("Goodbye");
+
+        if (x1 == x2)
+            System.out.println("x1 == x2");
+    }
+}
+Ответ: f1 != f2 today == now s1 == s2.
+____________
+Вопрос 87:  Какой результат выполнения данного кода:
+
+System.out.println(22.0 / 0.0);
+System.out.println(22.0 / -0.0);
+System.out.println(0.0 == -0.0);
+Ответ: Infinity -Infinity true.
+____________
+Вопрос 88:  Что выведет на консоль данная программа:
+
+public class VarTest {
+    public static void main(String[] X) {
+        Integer x = 1;
+        Integer y = 2;
+        print(1);
+        print(1,2);
+        print(x);
+        print(x,y);
+    }
+    static void print(int i) {
+        System.out.print(1);
+    }
+    static void print(Integer... i) {
+        System.out.print(2);
+    }
+    static void print(Integer i) {
+        System.out.print(3);
+    }
+    static void print(int... i) {
+        System.out.print(4);
+    }
+}
+Ответ: Программа не скомпилируется.
+____________
+Вопрос 89:  Файл исходного кода java, не содержащий ни одного public класса, может иметь любое допустимое имя (для файлов), не зависимо от имен любых других классов, объявленных внутри этого файла.
+
+
+Ответ: Да.
+____________
+Вопрос 90:  Что выведет на консоль данная программа (выберите все подходящие ответы):
+
+public class ArrTest {
+    public static void main(String[] X){
+        print(new int[] { 1, 2, 3, 4 });
+        print(new Long[] { 1l, 2l, 3l, 4l });
+    }
+    static void print(Long i){
+        System.out.print(1);
+    }
+    static void print(Object i){
+        System.out.print(2);
+    }
+    static void print(Object... i){
+        System.out.print(3);
+    }
+    static void print(long[] i){
+        System.out.print(4);
+    }
+    static void print(Integer... i){
+        System.out.print(5);
+    }
+    static void print(Number... i){
+        System.out.print(6);
+    }
+}
+Ответ: 2;
+Ответ: 6.
+____________
+Вопрос 91:  Что выведет на консоль данный класс?
+
+class Clazz {
+    {
+        System.out.println("non-static init");
+    }
+    public static void main(String a[]) {
+        System.out.println("main");
+        Clazz ob1 = new Clazz();
+    }
+    static {
+        System.out.println("static init");
+    }
+}
+Ответ: static init main non-static init.
+____________
+Вопрос 92:  Что выведет следующий код?
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Test test = new Test();
+        Test testCloned = (Test) test.clone();
+        Test test2 = test;
+        boolean res = test.toString().equals(test2.toString());
+        boolean resClone = testCloned.toString().equals(test.toString());
+        System.out.println(res);
+        System.out.println(resClone);
+    }
+}
+Ответ: Ошибка выполнения.
+____________
+Вопрос 93:  Что будет напечатано, в результате компиляции и выполнения следующего кода?
+
+public class Test {
+    public static void main(String[] args) {
+        Sub sub = new Sub();
+        System.out.println(sub.getWidth());
+    }
+}
+
+class Sub extends Base {    
+    private Dimension size;
+    
+    public Sub() {        
+        this.size = new Dimension(50, 50);
+    }
+    
+    public Dimension getSize() {
+        return size;
+    }
+}
+
+class Base {    
+    private int width;
+    private int height;
+    private Dimension size = new Dimension(20, 20);
+    
+    Base() {        
+        this.width = getSize().width;
+        this.height = getSize().height;
+    }
+    
+    Dimension getSize() {
+        return size;
+    }
+    
+    int getWidth() {
+        return width;
+    }
+    
+    int getHeight() {
+        return height;
+    }
+}
+Ответ: Ошибка во время выполнения.
+____________
+Вопрос 94:  Что будет напечатано следующим кодом для JDK7?
+
+public class Main { 
+    public static void var(Integer x, int y) { 
+        System.out.println("Integer int"); 
+    } 
+ 
+    public static void var(Object... x) { 
+        System.out.println("Object"); 
+    } 
+ 
+    public static void var(int... x) { 
+        System.out.println("int... x"); 
+    } 
+ 
+    public static void var(Integer... x) { 
+        System.out.println("Integer..."); 
+    } 
+ 
+    public static void main(String... args) {  
+        byte i = 0; 
+        Integer i2 = 127; 
+        var(i, i2); 
+    } 
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 95:  Выберите все верные утверждения:
+
+
+Ответ: В HashSet объекты хранятся в произвольном порядке;
+Ответ: Интерфейсы Set, SortedSet, List, Map, SortedMap находятся в пакете java.util;
+Ответ: В классе Arrays есть метод, позволяющий представить массив в виде объекта типа List;
+Ответ: Интерфейсы Set и List наследуются от интерфейса Collection.
+____________
+Вопрос 96:  Дан код: Какие подстроки из перечисленных будут в стандартном потоке вывода после выполнения кода?
+
+public class TKO {
+    public static void main(String[] args) {
+        String s = "-";
+        Integer x = 343;
+        long L343 = 343L;
+
+        if (x.equals(L343)) s += ".e1 ";
+        if (x.equals(343)) s += ".e2 ";
+
+        Short s1 = (short)((new Short((short)343)) / (new Short((short)49)));
+        if (s1 == 7) s += "=s ";
+        if (s1 < new Integer(7+1)) s += "fly ";
+
+        System.out.println(s);
+    }
+}
+Ответ: .e2;
+Ответ: =s;
+Ответ: fly.
+____________
+Вопрос 97:  Что будет результатом компиляции и запуска данного кода?
+
+class Main {      public static void main(String[] args) {          Boolean b1 = true;          boolean b2 = false;          boolean b3 = true;          if ((b1 & b2) | (b2 & b3) & b3)              System.out.print("alpha ");          if((b1 = false) | (b1 & b3) | (b1 | b2))              System.out.print("beta ");      }  } 
+Ответ: На экран не будет ничего выведено.
+____________
+Вопрос 98:  Что произойдёт если скомпилировать и выполнить следующий код?
+
+public class MyFirst {
+    static public  void main(String[] args) {  //1
+        int a = 5;
+        a = a!=0 ? a>1 ? a>>2 : a<<2 : a<1 ? a<<2 : a>>2;   //2
+        System.out.println(a);
+    }
+}
+Ответ: Выведет на экран 1.
+____________
+Вопрос 99:  Что из перечисленного успешно компилируется (укажите все подходящие варианты)?
+
+
+Ответ: byte b = 7;;
+Ответ: Integer i = 7;;
+Ответ: Integer i = new Integer(5); int j = i;.
+____________
+Вопрос 100:  Какой результат попытки компиляции и выполнение кода?
+
+public class Main {
+    static int a, b;
+    public static void main(String[] args) {
+        if (!(++a==0 && ++b==0)) System.out.print("true a+b=");
+        else System.out.print("false a+b=");
+        System.out.print(a + b);
+    }
+}
+Ответ: true a+b=1.
+____________
+Вопрос 101:  Выберите два варианта кода, которые успешно скомпилируются, если f - экземпляр класса File.
+
+
+Ответ: String[] s = f.list();;
+Ответ: File[] files = f.listFiles();.
+____________
+Вопрос 102:  Каков результат компиляции и выполнения следующего кода:
+
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    List<String> list = Arrays.asList("a", "b", "c", "d", "e");
+    NavigableSet<String> set = new HashSet<String>(list);
+    
+    System.out.println("Less d: " + set.lower("d"));
+    System.out.println("Greater b: " + set.higher("b"));
+  }
+}
+Ответ: ошибка компиляции.
+____________
+Вопрос 103:  Каким будет результат компиляции и выполнения данного кода:
+
+public enum CS {
+	BIG, SMALL, HUGE {
+		public String getCode() {
+			return "b";
+		}
+		
+		public int getSize() {
+			return 100;
+		}
+	};
+	
+	public String getCode() {
+		return "a";
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(BIG);
+		System.out.println(HUGE.getCode());
+		System.out.println(HUGE.getSize());
+	}
+}
+Ответ: Произойдет ошибка компиляции.
+____________
+Вопрос 104:  Возникнет ли ошибка компиляции:
+
+public interface ABC {
+    static int i = 0;
+    void a();
+    
+    class A {
+        A() {
+            System.out.println("inside");
+        }
+        
+        public static void main(String a1[]) {
+            System.out.println("in interface");
+        }
+    }
+}
+Ответ: Нет.
+____________
+Вопрос 105:  В результате выполнения данного кода:
+
+class Super { static String ID = "QBANK"; }
+class Sub extends Super{
+  static { System.out.print("In Sub"); }
+}
+class Test{
+  public static void main(String[] args) {
+    System.out.println(Sub.ID);
+  }
+}
+Ответ: Будет выведено «QBANK».
+____________
+Вопрос 106:  Что будет результатом компиляции и запуска данного кода?
+
+class Main {
+    public static void main(String[] args) {
+        Boolean b1 = true;
+        boolean b2 = false;
+        boolean b3 = true;
+        if ((b1 & b2) | (b2 & b3) & b3)
+            System.out.print("alpha ");
+        if((b1 = false) | (b1 & b3) | (b1 | b2))
+            System.out.print("beta ");
+    }
+}
+Ответ: На экран не будет ничего выведено.
+____________
+Вопрос 107:  Что будет напечатано в результате компиляции и выполнения следующего кода?
+
+public class Test {      public static void main(String[] args) throws CloneNotSupportedException {                    A a1 = new A();          A a2 = (A) a1.clone();                    System.out.println(a1 == a2);          System.out.println(a1.min == a2.min);          System.out.println(a1.max == a2.max);      }  }    class A implements Cloneable {      Integer min = new Integer(100);      Integer max = new Integer(1000);            @Override      protected Object clone() throws CloneNotSupportedException {          return super.clone();      }  } 
+Ответ: false true true.
+____________
+Вопрос 108:  Каким будет результат компиляции и выполнения следующего кода?
+
+public class Test extends Thread {
+
+    public static void delay(long t) {
+        try {
+            Thread.sleep(t);
+        } catch (InterruptedException e) {
+            System.out.print("Ex-A ");
+        }
+    }
+
+    public void run() {
+        delay(1000);
+        halt();
+    }
+
+    public void halt() {
+        try {
+            this.wait();
+        } catch (Exception e) {
+            System.out.print("Ex-B ");
+        }
+    }
+
+    public static void main(String args[]) throws Exception {
+        Test test = new Test();
+        Thread t = new Thread(test);
+        t.start();
+        delay(100);
+        test.interrupt();
+        delay(2000);
+        t.notifyAll();
+    }
+}
+Ответ: Напечатается "Ex-B " и выбросится исключение..
+____________
+Вопрос 109:  Выберите из приведенных единственное верное значение, которое выведет код.
+
+class MyClass
+{
+    public static void main(String[] args) {
+        double d = 2.7;
+        Box b = new Box();
+        b.doMinus(d);
+        System.out.println(d);
+     }
+}
+class Box {
+    public double d;
+    public void doMinus(double d) {
+        d = d - 1.0;
+     }
+}
+Ответ: 2.7.
+____________
+Вопрос 110:  Что напечатает данная программа?
+
+public class Test {
+    public static void main(String[] args) {
+        int x = 0;
+        int y = 0;
+        for (int z = 0; z < 4; z++) {
+            if ((++x > 2) || (++y > 2)) {
+                x++;
+            }
+        }
+        System.out.println(x + " " + y);
+    }
+}
+Ответ: 6 2.
+____________
+Вопрос 111:  Каким будет результат компиляции и выполнения данного кода:
+
+public class Main {      public static void main(String[] args) {          Parent p = new Parent();          Child c = new Child();          Parent p2 = new Child();            useIt(p);          useIt(c);          useIt(p2);      }        final static void useIt (Parent p){          System.out.println("Parent");      }        final static void useIt (Child c){          System.out.println("Child");      }  }    class Parent { }  class Child extends Parent { } 
+Ответ: Parent Child Parent.
+____________
+Вопрос 112:  Выберите единственный верный из приведенных результат компиляции и выполнения кода.
+
+import java.util.*;
+class Shape { }
+class Circle extends Shape { }
+class Rectangle extends Shape { }
+public class Generics15 {
+    public static void main(String[] args) {
+           Vector<Shape> picture = new Vector<Shape>();
+           picture.add(new Circle());
+           picture.add(new Rectangle());
+           Rectangle rect = picture.get(1);
+    }
+}
+Ответ: Ошибка компиляции..
+____________
+Вопрос 113:  Предположим, что следующий код работает в приложении, которое использует только единственный поток для вызова changeRoll. Необходимо изменить код так, чтобы приложение могло безопасно работать с любым числом потоков. Из приведенных вариантов, выберите оптимальный набор изменений, который позволит достичь результата.
+
+// ClassRoll.java
+public class ClassRoll {
+    private HashMap students = new HashMap();
+    private void addStudent ( Student stud ) {
+        students.put(stud.getName(), stud) ;
+    }
+
+    private void removeStudent( Student stud ) {
+        students.remove( stud.getName() ) ;
+    }
+
+    public boolean changeRoll( int code, Student stud ) {
+        switch( code ) {
+            case 1: addStudent( stud );
+                    return true ;
+            case 2: removeStudent( stud );
+                    return true ;
+            default : return false ;
+        }
+    }
+
+    public boolean isInRoll(Student stud) {
+        return students.containsKey(stud.getName());
+    }
+}
+
+
+// Student.java
+public class Student {
+    private String name;
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+Ответ: Сделать метод changeRoll синхронизированным.;
+Ответ: Сделать метод isInRoll синхронизированным.
+____________
+Вопрос 114:  Каким будет результат компиляции и выполнения следующего кода:
+
+public class MyThread implements Runnable {	
+    public void run() {
+        System.out.println("hello");
+        try {
+            Thread.sleep(Math.round(200 * Math.random()));
+        } catch (InterruptedException e) { }
+        System.out.println("world");
+    }
+	
+    public static void main(String[] args) {
+        new Thread(new MyThread()).run();
+        new Thread(new MyThread()).run();
+    }
+} hello
+hello
+world
+world hello
+world
+hello
+world
+Ответ: Компиляция пройдет успешно, на консоль выведется:.
+____________
+Вопрос 115:  Что выведет следующий код?
+
+package question;
+
+class HasF {
+    public void f() {
+        System.out.println("HasF.f()");
+    }
+}
+
+class Manipulators<T> {
+    private T obj;
+    public Manipulators(T x) {
+        obj = x;
+    }
+    
+    public void manipulation() {
+        obj.f();
+    }
+}
+
+public class Manipulation {
+    public static void main(String[] args) {
+        HasF hf = new HasF();
+        Manipulators<HasF> manipul = new Manipulators<HasF>(hf);
+        manipul.manipulation();
+    }
+}
+Ответ: Произойдёт ошибка компиляции.
+____________
+Вопрос 116:  Поля класса с какими из перечисленных модификаторов не будут сериализованы?
+
+
+Ответ: transient;
+Ответ: static.
+____________
+Вопрос 117:  Что произойдет во время компиляции и выполнения данного кода?
+
+public class S1 implements Runnable {
+    int x = 0, y = 0;
+
+    int addX() {
+        x++;
+        return x;
+    }
+
+    int addY() {
+        y++;
+        return y;
+    }
+
+    public void run() {
+        synchronized (this) {
+            for (int i = 0; i < 10; i++)
+                System.out.print(addX() + " " + addY() + " ");
+        }
+    }
+
+    public static void main(String args[]) {
+        S1 run = new S1();
+        Thread t1 = new Thread(run);
+        Thread t2 = new Thread(run);
+        t1.start();
+        t2.start();
+    }
+}
+Ответ: Будет выведено в следующем порядке "1 1 2 2 3 3 4 4 5 5…".
+____________
+Вопрос 118:  Какой результат компиляции и отработки программы:
+
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        List<?> list = new ArrayList<String>();
+        list.add("a");
+        System.out.println(list.get(0));
+    }
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 119:  Каким будет результат компиляции и выполнения данного кода:
+
+public class QTest {
+	public static void main(String[] args) {
+		System.out.print(0./0 == 0./0);
+		System.out.print(" ");
+		System.out.print(1 + 1/0. - 1/0. == 1);
+	}
+}
+Ответ: false false.
+____________
+Вопрос 120:  Сколько объектов будет создано в результате следующей операции:
+
+"a"+"b"
+Ответ: 1.
+____________
+Вопрос 121:  Какие из следующих утверждений истинны Выберите три правильных ответа. А. Методы объявленные в интерфейсе имеют по умолчанию private модификатор доступа. Б. Переменные объявленные в интерфейсе по умолчанию public, static, and final. В. Интерфейс может расширять любое количество других интерфейсов Г. Ключевое слово implements указывает на то что интерфейс унаследован от другого интерфейса Д. Интерфейс может не содержать ни одного объявления метода
+
+
+Ответ: Б;
+Ответ: В;
+Ответ: Д.
+____________
+Вопрос 122:  Что из перечисленного при вставке в строку 5 не приведет к ошибке компиляции (выберите все варианты)?
+
+1: class Example {
+2:   public static void main(String[] args) {
+3:     Short s = 15;
+4:     Boolean b;
+5:     // место для кода
+6:   }
+7: }
+Ответ: b = (s instanceof Number);.
+____________
+Вопрос 123:  В результате работы кода, что будет выведено на экран?
+
+class Test {
+    private int i;
+    public void setI(int i) {
+      this.i = i;
+    }
+
+    public int getI() {
+      return i;
+    }
+}
+
+public class Main {
+     private Test t;
+     public int getSomeInteger() {
+         try {
+             return t.getI();
+         } finally {
+             return 0;
+         }
+     }
+
+     public static void main(String[] args) throws Exception {
+         Main m = new Main();
+         System.out.println(m.getSomeInteger());
+     }
+}
+Ответ: 0.
+____________
+Вопрос 124:  Какой результат выполнения этой программы:
+
+public class Test {
+    static int fact(int x) {
+        if (x == (-2)) 
+            return -2;
+        return (fact(x-1) * x);
+    }
+    public static void main(String[] args) {
+        System.out.println(Test.fact(2));
+    }
+}
+Ответ: .
+____________
+Вопрос 125:  Что произойдет, если откомпилировать и запустить программу?
+
+class Main {
+    public void method() {
+        static class One {
+            public One() {
+                System.out.println("From one");
+            }
+        }        
+    }
+
+    
+    public static void main(String... args) {
+        new Main().method();
+    }        
+}
+Ответ: Ошибка компиляции..
+____________
+Вопрос 126:  Какое значение следует передать методу seek() объекта RandomAccessFile, чтобы последний байт файла был считан одиночным вызовом read()? Узнать длину файла, на который указывает объект RandomAccessFile, можно путем вызова метода length().
+
+
+Ответ: randomAccessFile.length()-1.
+____________
+Вопрос 127:  Что будет напечатано при выполнении данного кода?
+
+public class My {
+    public static void main(String...args) {
+       Integer i1 = new Integer("013");
+       Integer i2 = new Integer(013);
+       System.out.println(i1 == i2);
+       System.out.println(i1.equals(i2));
+    }
+}
+Ответ: false false.
+____________
+Вопрос 128:  Каким будет результат компиляции и выполнения данного кода:
+
+import java.io.*;
+public class QTest {
+	public static void main(String[] args) throws IOException {
+		byte[] bytes = new byte[] { -1, 1, 0x0 };
+		InputStream in = new ByteArrayInputStream(bytes);
+		System.out.println(in.read() + in.read() + in.read());
+	}
+}
+Ответ: На консоль выведется "256".
+____________
+Вопрос 129:  Что произойдет при попытке запуска следующей программы?
+
+public class Test implements Runnable {
+
+    class MyObj {
+        void waitInfinity() throws InterruptedException {
+            while (true)
+                wait();
+        }
+    }
+
+    Test() {
+        new Thread(this).start();
+    }
+
+    public void run() {
+        try {
+            new MyObj().waitInfinity();
+        } catch (InterruptedException e) {
+        }
+    }
+
+    public static void main(String[] args) {
+        new Test();
+    }
+}
+Ответ: Ошибка времени выполнения.
+____________
+Вопрос 130:  Какое объявление может быть добавлено в указанную строку следующего кода, чтобы оно не вызвало ошибок компиляции: Укажите все подходящие варианты.
+
+interface MyConstants {
+      int r = 42;
+      int s = 69;
+      // добавьте код здесь
+}
+Ответ: int AREA = r*s;;
+Ответ: final double circumference = 2*Math.PI*r;.
+____________
+Вопрос 131:  Дан файл text.txt, который находится в той же папке, что и программа, и содержит следующую строку: Какую информацию будет содержать файл после компиляции и запуска программы:
+
+Результат: import java.util.*;
+public class Formating {
+    public static void main(String[] args) throws Exception {
+        Formatter formatter = new Formatter("text.txt","UTF-8",new Locale("ru"));
+        formatter.format("%n%d", new Integer("1500"));
+        formatter.flush();
+        formatter.close();
+    }
+}
+Ответ: 1500.
+____________
+Вопрос 132:  Что выведет на экран следующий код?
+
+class A implements Serializable {
+    public A() {
+        System.out.print("A");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        A a = new A();
+        ObjectOutputStream save = new ObjectOutputStream(
+                new FileOutputStream("datafile"));
+        save.writeObject(a);
+        save.flush();
+        ObjectInputStream restore = new ObjectInputStream(
+                new FileInputStream("datafile"));
+        A z = (A) restore.readObject();
+    }
+}
+Ответ: A.
+____________
+Вопрос 133:  Каким будет результат компиляции и выполнения данного кода:
+
+public final class QTest {      public static void main(String[] args) {          new QTest() {              public void show() {                  System.out.print("2");              }          }.show();      }      public void show() {          System.out.print("1");      }  } 
+Ответ: Произойдёт ошибка на этапе компиляции.
+____________
+Вопрос 134:  Что будет напечатано на экран в результате выполнения данного кода?
+
+Set<Integer> numbers = new LinkedHashSet<Integer>(Arrays.asList(1,2,3,4));
+for(Integer i : numbers) {
+  if( i % 2 == 0) numbers.remove(i);
+}
+System.out.println(numbers);
+Ответ: Будет выброшено исключение.
+____________
+Вопрос 135:  Что из перечисленного успешно компилируется (укажите все подходящие варианты)?
+
+
+Ответ: byte b = 7;;
+Ответ: Integer i = new Integer(5); int j = i;;
+Ответ: Integer i = 7;.
+____________
+Вопрос 136:  В каких строках кода возникнет ошибка компиляции:
+
+public class Alpha {
+    Alpha doStuff() {
+        return new Alpha();
+    }
+}
+
+class Beta extends Alpha {      // 1
+    Beta doStuff() {            // 2
+        return new Beta();      // 3
+    }
+}
+Ответ: Код компилируется без ошибок.
+____________
+Вопрос 137:  Что выведет на консоль следующий код:
+
+01: public class Clazz {
+02:     public static void main(String[] args) {
+03:         Integer integer = new Integer(1024);
+04:         Long aLong = new Long(1024);
+05:         if (integer.equals(aLong))
+06:             System.out.println("eq");
+07:         if (integer.intValue() == aLong.longValue())
+08:             System.out.println("==");
+09:     }
+10: } public boolean equals(Object obj) {
+if (obj instanceof Integer) {
+return value == ((Integer)obj).intValue();
+}
+return false;
+}
+Ответ: ==.
+____________
+Вопрос 138:  Выберите единственный верный из приведенных результат компиляции и выполнения кода:
+
+public class Test {
+	public static void main(String[] args) {
+		System.err.println((null instanceof Object));
+	}
+}
+Ответ: Программа выведет "false" без кавычек..
+____________
+Вопрос 139:  Что выведет на консоль этот код?
+
+class Outer {
+    public class Inner {
+        enum Nums {
+            ONE, TWO, THREE;
+        }
+    }
+
+    public static void main(String... args) {
+        for (Inner.Nums n : Inner.Nums.values()) {
+            System.out.println(n + "\n");
+        }
+    }
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 140:  Что произойдёт при компиляции данного кода ?
+
+public class GenericClassReferences {
+    public static void main(String[] args) {
+        Class intClass = int.class;
+        Class<Integer> genericIntClass = int.class; // 1
+        genericIntClass = Integer.class;            // 2
+        intClass = double.class;                    // 3
+        genericIntClass = double.class;             // 4  
+    }
+}
+Ответ: Ошибка компиляции в строке 4.
+____________
+Вопрос 141:  Что выведет данный код при выполнении:
+
+Integer foo = 1000;
+Integer bar = 1000;
+
+System.out.println(foo <= bar);
+System.out.println(foo >= bar);
+System.out.println(foo == bar);
+Ответ: true true false.
+____________
+Вопрос 142:  Дана программа: Какие утвержения верны?
+
+1. class SomeClass {                        
+2.   static int x = 1;                        
+3.   public static void main(String... args) {
+4.     assert(doSomething(5));                   
+5.     if (x < 239) ;                           
+6.     else assert(false);                    
+7.   }
+8.   public static boolean doSomething(int y) { 
+9.     assert(y < x++);                     
+10.    return false;                         
+11.   }                                       
+12. }
+Ответ: использование оператора assert в строке 6 является оправданным.
+____________
+Вопрос 143:  Что напечатает следующий код:
+
+public class Increments {
+    public static void main(String[] args) {
+        int i = 0;
+        i = i++ + i++;
+        System.out.println(i);
+    }
+}
+Ответ: 1.
+____________
+Вопрос 144:  Какие методы из перечисленных есть в классе Object?
+
+
+Ответ: public boolean equals(Object obj);
+Ответ: public final void notify();
+Ответ: public int hashCode();
+Ответ: public String toString();
+Ответ: public final Class<?> getClass().
+____________
+Вопрос 145:  Что произойдет при попытке выполнения данного кода:
+
+class Mountain {
+  static String name = "Himalaya";
+  static Mountain getMountain() {
+    System.out.println("Getting Name ");
+    return null;
+  }
+  public static void main(String[ ] args) {
+    System.out.println( getMountain().name );
+  }
+}
+Ответ: Будет выведено “Getting Name » и «Himalaya».
+____________
+Вопрос 146:  Выберите корректные варианты объявления ссылки table в начале метода main.
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test {
+    public static void main(String[] args) {
+        for (int i = 0; i <= 10; i++) {
+            List<Integer> row = new ArrayList<Integer>();
+            for (int j = 0; j <= 10; j++)
+                row.add(i * j);
+            table.add(row);
+        }
+        for (List<Integer> row : table)
+            System.out.println(row);
+    }
+}
+Ответ: List<List<Integer>> table = new ArrayList<List<Integer>>();.
+____________
+Вопрос 147:  Каким будет результат компиляции и выполнения следующего кода:
+
+public class MyThread implements Runnable {	
+    public void run() {
+        System.out.println("hello");
+        try {
+            Thread.sleep(Math.round(200 * Math.random()));
+        } catch (InterruptedException e) { }
+        System.out.println("world");
+    }
+	
+    public static void main(String[] args) {
+        new Thread(new MyThread()).run();
+        new Thread(new MyThread()).run();
+    }
+} hello
+world
+hello
+world hello
+hello
+world
+world
+Ответ: Компиляция пройдет успешно, на консоль выведется:.
+____________
+Вопрос 148:  Какое регулярное выражение нужно вставить вместо комментария - /*regular*/, для вывода "[exam]"?
+
+public class TestRegExp {        
+    public static void main(String... args){
+        String s1 = "You are capable of passing exam. Good luck!";
+        String s2 = s1.split(/*regular*/)[5];    
+        System.out.println("[" + s2 + "]");
+    }
+}
+Ответ: [\\s.];
+Ответ: [.\\s];
+Ответ: [\\s(.)];
+Ответ: [\\s\\.].
+____________
+Вопрос 149:  Что будет напечатано?
+
+import java.util.Formatter;
+
+public class Formatting {
+    public static void main(String[] args) {
+        Formatter formatter = new Formatter();
+        System.out.println(formatter.format("%b|%b|%b|%b|%b", true, null, "false", new Boolean("false"), 0));
+    }
+}
+Ответ: true|false|true|false|true.
+____________
+Вопрос 150:  В каких строках программы возникнет ошибка компиляции? Выберите все возможные варианты.
+
+1. public class StartClass {
+2.    public static void main(String[] args) {
+3.        List<?> list = new ArrayList<String>();
+4.        list.add("a"); 
+5.        list.add(null); 
+6.        Test<?> testObject = new Test<Integer>();
+7.        testObject.test(1); 
+8.        testObject.test(null); 
+9.    }
+10. }
+11.
+12. class Test<T> {
+13.    void test(T t) {
+14.    }
+}
+Ответ: 4;
+Ответ: 7.
+____________
+Вопрос 151:  Каким будет результат компиляции и выполнения данного кода?
+
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List list = new ArrayList<String>();
+        for (int i = 0; i < 10; i++) {
+            list.add(i + "");
+        }
+
+        for (Object e1 : list) {
+            for (Object e2 : list) {
+                if (e1.equals(e2)) {
+                    list.remove(e1);
+                    list.remove(e2);
+                }
+            }
+        }
+        System.out.println(list.size());
+    }
+}
+Ответ: Ошибка выполнения.
+____________
+Вопрос 152:  Что верно в отношении приведенного фрагмента кода:
+
+for(int i = 0; i<n; ++i)
+    List<String> myList = Collections.singletonList("Element" + i);
+Ответ: Возникнет ошибка компиляции в строке 2, так как выражение List<String> myList = Collections.singletonList("Element" + i); не является оператором, допустимым в данном месте цикла for..
+____________
+Вопрос 153:  Выберите истинные выражения относительно следующего кода:
+
+public class qu {
+    protected static int wallet;
+
+    public static void main(String[] args) {
+        System.out.println(wallet); //1
+        qu q = new qu();
+        System.out.println(q.wallet); 
+        System.out.println(qu.wallet); //2
+        System.out.println(wallet == q.wallet && q.wallet == qu.wallet && wallet == qu.wallet);
+    }
+}
+Ответ: Код синтаксически корректен, успешно выполнится, но нарушает принципы(парадигмы) ООП;
+Ответ: Будет выведено на консоль: 0 0 0 true.
+____________
+Вопрос 154:  Что будет выведено на консоль при повторном запуске программы?
+
+package question;
+
+import java.util.prefs.Preferences;
+
+public class PrefTest {
+    public static void main(String[] args) {
+        Preferences prefs = Preferences.userNodeForPackage(PrefTest.class);
+        int var = prefs.getInt("var", 10);
+        System.out.println(var);
+        var++;
+        prefs.putInt("var", var);
+        System.out.println(var);
+    }
+}
+Ответ: 11 12.
+____________
+Вопрос 155:  Укажите строку, которую нужно вписать в тело comparator-а (вместо ...), чтобы ключи в treeMap были отсортированы в порядке возрастания(COM1 COM2 COM8 и т.д.).
+
+public class Main {
+
+    public static void main(String[] args) {
+        Comparator<String> comparator = new Comparator<String>() {
+                @Override
+                public int compare(String string_1, String string_2) {
+                    ...
+                }
+        };
+        
+        TreeMap<String, String> treeMap = new TreeMap<String, String>(comparator);
+        treeMap.put("COM1", "\\Device\\Serial0");
+        treeMap.put("COM2", "\\Device\\Serial1");
+        treeMap.put("COM8", "\\Device\\Nmserial0");
+        treeMap.put("COM9", "\\Device\\Nmserial1");
+        treeMap.put("COM10", "\\Device\\Nmserial2");
+        treeMap.put("COM11", "\\Device\\Nmserial3");
+    }
+}
+Ответ: return Integer.valueOf(string_1.replace("COM", "")) - Integer.valueOf(string_2.replace("COM", ""));.
+____________
+Вопрос 156:  Что выведет следующая программа на консоль:
+
+public class StringTest {
+    public static void main(String[] arg){
+        test(new String[] { null });
+    }
+    static void test(Object[] o){
+        System.out.print(1);
+    }
+    static void test(String o){
+        System.out.print(2);
+    }
+    static void test(String...o){
+        System.out.print(3);
+    }
+    static void test(Object...o){
+        System.out.print(4);
+    }
+}
+Ответ: Произойдет ошибка компиляции.
+____________
+Вопрос 157:  Возникнет ли ошибка компиляции в следующем фрагменте кода:
+
+do 
+    do 
+        do ; 
+        while(true); 
+    while(true); 
+while(true);
+Ответ: Нет.
+____________
+Вопрос 158:  
+
+class Data implements Cloneable {    
+    private String string = "";
+    
+    public Data(String string) { this.string = string; }
+
+    public String getString() { return string; }
+    public void setString(String string) { this.string = string; }
+    
+    public Object clone() {
+        return new Data(string);
+    }
+}
+
+public class Main {    
+    public static void main(String... args) {
+        Vector<Data> vector1 = new Vector<Data>();
+        Data data1 = new Data("1");
+        Data data2 = new Data("2");
+        Data data3 = new Data("3");
+        vector1.add(data1);
+        vector1.add(data2);
+        vector1.add(data3);
+        Vector<Data> vector2 = (Vector<Data>) vector1.clone(); //1
+        for(Data dt : vector2) {
+            System.out.print(dt.getString() + " ");
+            dt.setString("_" + dt.getString());
+        }
+        vector2.removeAllElements();
+        System.out.println();
+        for(Data dt : vector1) {
+            System.out.print(dt.getString() + " ");
+        }
+    }
+}
+Ответ: 1 2 3 _1 _2 _3.
+____________
+Вопрос 159:  Что будет выведено в результате выполнения данного кода ?
+
+import java.util.*;  import java.util.concurrent.*;    class ExampleThread extends Thread {      private static CountDownLatch latch = new CountDownLatch(1);      private static Semaphore semaphore = new Semaphore(1, true);        private int type;      private String[] letters = { "A", "B", "C", "D", "E" };        ExampleThread(int type) {          super();          this.type = type;      }        public void run() {          try {              if (type == 0) {                  semaphore.acquire();                  latch.countDown();              } else {                  latch.await();                  semaphore.acquire();              }                for (int i = 0; i < 5; i++) {                  if (type == 0) {                      System.out.print(i);                  } else {                      System.out.print(letters[i]);                  }                  Thread.sleep(100);              }          } catch (Exception ex) {              System.out.println("Exception 2");          }          semaphore.release();      }          public static void main(String[] args) {          new ExampleThread(1).start();          new ExampleThread(0).start();      }  } 
+Ответ: 01234ABCDE.
+____________
+Вопрос 160:  Каким будет результат компиляции и выполнения данного кода:
+
+public class Test {
+	public static void main(String[] s) {
+		boolean b = false;
+		try {
+			b = 3 / 0. > 1;
+			System.out.print("hm ");
+			b = 3 / 0 < 1;
+		}
+		catch (ArithmeticException e) {}
+		try {
+			System.out.print(1 + 1 + " end " + 1 + 1 +" " + b);
+		}
+		catch (ArithmeticException e) {}
+	}
+}
+Ответ: Напечатает "hm 2 end 11 true".
+____________
+Вопрос 161:  Сигнатуры каких методов соответствуют стандартам именования JavaBeans:
+
+public void createXXXListener(XXXListener l) public void addSomeListener(SomeListener l) void createXXXListener(XXXListener l) void addSomeListener(SomeListener l) public void addSomeListener(MainListener l) public void createXXXListener(XListener l)
+Ответ: .
+____________
+Вопрос 162:  Какой результат выполнения кода?
+
+class Top {
+    public Top(String s) { System.out.print("B"); }
+}
+public class Bottom2 extends Top {
+    public Bottom2(String s) { System.out.print("D"); }
+    public static void main(String [] args) {
+        new Bottom2("C");
+        System.out.println(" ");
+    }
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 163:  Что выведет следующий код?
+
+public class Test implements Cloneable {
+    public static void main(String[] args) throws Exception {
+        Test test = new Test();
+        Test testCloned = (Test) test.clone();
+        Test test2 = test;
+        boolean res = test.toString().equals(test2.toString());
+        boolean resClone = testCloned.toString().equals(test.toString());
+        System.out.println(res);
+        System.out.println(resClone);
+    }
+} public String toString() {
+    return getClass().getName() + "@" + Integer.toHexString(hashCode());
+}
+Ответ: true false.
+____________
+Вопрос 164:  Что произойдет в случае компиляции и запуска данной программы?
+
+public class ClassQ {
+    public static void main(String[] args) {
+        I.Inner ii = new I.Inner();
+        I.Inner ib = new B.Inner();
+        B.Inner bb = new B.Inner();
+        B.Inner bi = new I.Inner();
+        C.Inner ci = new C.Inner();
+        C.Inner ci2 = new C().new Inner2();
+    }
+}
+interface I{
+  class Inner{
+      Inner(){
+        System.out.print(j++);
+      }
+      static int j;
+  }
+}
+class B implements I{}
+class C extends B implements I{
+    public class Inner2 extends Inner{}
+}
+Ответ: Программа выведет на консоль 012345.
+____________
+Вопрос 165:  Что выведется на экран:
+
+public class WrapDemo
+{
+      public static void main(String...args)
+      {
+            String str="19";  //1
+            str.concat(".5"); //2
+            Double d = new Double(str); //3
+            Long l = new Long(str);  //4
+            System.out.println(d.intValue() + d.doubleValue() + l.doubleValue()); //5
+      }
+}
+Ответ: Будет напечатано 57.0.
+____________
+Вопрос 166:  Какой будет результат компиляции и выполнения следующего кода?
+
+import java.util.*;
+
+class A {}
+class B extends A {}
+class C1 extends B {}
+class C2 extends B {}
+class B1 extends A {}
+class B2 extends A {}
+public class AsListInt {
+    public static void main(String[] args) {
+1        List<A> list1 = Arrays.asList(new B(), new B1(), new B2());
+2        System.out.println(list1);
+3        List<A> list2 = new ArrayList<A>();
+4        Collections.addAll(list2, new C1(), new C2());
+5        System.out.println(list2);
+6        List<A> list3 = Arrays.asList(new C1(), new C2());
+7        System.out.println(list3);
+    }
+}
+Ответ: Ошибка компиляции в строке 6.
+____________
+Вопрос 167:  Выберите единственный верный результат компиляции и выполнения кода.
+
+1. import java.util.*;
+2. public class MapTest
+3. {
+4.     public static void main(String[] args)
+5.     {
+6.          Object obj = new LinkedHashMap();
+7.          if(obj instanceof Collection)
+8.              System.out.print("For ");
+9.          if(obj instanceof Map)
+10.            System.out.print("A Few ");
+11.        if(obj instanceof LinkedList)
+12.            System.out.print("Dollars More ");
+13.        if(obj instanceof HashMap)
+14.            System.out.print("Good Men");
+15.    }
+16. }
+Ответ: Программа выведет "A Few Good Men" без кавычек..
+____________
+Вопрос 168:  Что будет выведено на экран в результате выполнения следующего кода?
+
+public class Test {
+    static int i ;
+
+    public Test() {
+        i += new Test2(1).getI() + new Test2(2).getI();
+    }
+
+    static class Test2 {
+        private int i;
+
+        private Test2(int i) {
+            this.i = i;
+        }
+
+        public int getI() {
+            return ++i;
+        }
+    }
+
+    public static void main(String[] args) {
+        Test test = new Test();
+        System.out.println(i++);
+    }
+}
+Ответ: 5.
+____________
+Вопрос 169:  Дан код: В результате выполнения получим:
+
+package other;
+public class Other { public static String hello = "Hello"; }
+
+//In File Test.java
+package testPackage;
+import other.*;
+class Test{
+  public static void main(String[] args) {
+    String hello = "Hello", lo = "lo";
+    System.out.print((testPackage.Other.hello == hello) + " ");
+    System.out.print((other.Other.hello == hello) + " ");
+    System.out.print((hello == ("Hel"+"lo")) + " ");
+    System.out.print((hello == ("Hel"+lo)) + " ");
+    System.out.println(hello == ("Hel"+lo).intern());
+  }
+}
+class Other { static String hello = "Hello"; }
+Ответ: true true true false true.
+____________
+Вопрос 170:  Какие из следующих строк скомпилируются без ошибки?
+
+
+Ответ: int i = 32565;;
+Ответ: int j = 'ъ';.
+____________
+Вопрос 171:  Что будет выведено в результате компиляции и выполнения следующего кода?
+
+public class Test {    
+    enum EnumTest {
+        VALUE1 {
+            public EnumTest getValue() {
+                return VALUE2.getValue().getValue();
+            }
+        },
+        
+        VALUE2 {
+            public EnumTest getValue() {
+                return VALUE1;
+            }
+        };
+        
+        abstract EnumTest getValue();
+    }    
+    
+    public static void main(String... args) {
+        System.out.println(EnumTest.VALUE1);
+        System.out.println(EnumTest.VALUE2);
+        System.out.println(EnumTest.VALUE1.getValue());
+        System.out.println(EnumTest.VALUE2.getValue());
+    }
+}
+Ответ: Возникнет ошибка во время выполнения - StackOverflowError.
+____________
+Вопрос 172:  Что будет выведено на экран?
+
+public class Tst {
+    public static class Foo {
+        private final Integer x;
+
+        public Foo(Integer x) {
+            this.x = x;
+        }
+
+        public boolean equals(Foo f) {
+            return f.x.equals(this.x);
+        }
+
+        public int hashCode() {
+            return x.intValue();
+        }
+    }
+    public static void main(String[] args) {
+        final Foo f1 = new Foo(1);
+        final Foo f2 = new Foo(1);
+
+        final Set<Foo> set = new HashSet<Foo>();
+        set.add(f1);
+        set.add(f2);
+
+        System.out.println(set.size());
+    }
+}
+Ответ: 2.
+____________
+Вопрос 173:  Какой результат выполнения данной программы?
+
+public class Test {
+    public static void main(String[] args){
+        int a = 10;
+        float b = 5;
+        a += b;                     //1
+        System.out.println(a);
+        a = a + b;                  //2
+        System.out.println(a);
+    }
+}
+Ответ: Ошибка компиляции в строке 2.
+____________
+Вопрос 174:  Что будет выведено в консоль?
+
+public class Foo {
+    private static Foo instance = new Foo();
+    private static final int DELTA = 6;
+    private static int BASE = 7;
+    private int x;
+    private Foo() {
+        x = BASE + DELTA;
+    }
+    public static void main(String... argv) {
+        System.out.println(Foo.instance.x);
+    }
+}
+Ответ: 6.
+____________
+Вопрос 175:  Какой результат вызова метода с null аргументом?
+
+1  public int stringSize(Object s) {
+2       try {
+3           return s.toString().length();
+4       } catch (Exception ex) {
+5           return -1;
+6       } finally {
+7           return 0;
+8       }
+9   }
+Ответ: 0.
+____________
+Вопрос 176:  Назовите инструмент входящий в стандартную поставку JDK, предназначенный для сбора статистики о запущенных JVM.
+
+
+Ответ: .
+____________
+Вопрос 177:  Что произойдёт при попытке компиляции и запуска программы, описанной кодом:
+
+public class ArTest {
+    public static void main(String[] args) {
+        byte b = 127;
+        b += 129;
+        System.out.println(b);
+    }
+}
+Ответ: 0.
+____________
+Вопрос 178:  - возвращает количество миллисекунд, прошедших с полуночи 1 января 1970г. Какой результат выполнения этой программы (допуская что в данный момент идет 2009 год)?
+
+System.currentTimeMillis() public class Test {
+   public static void main(String[] args) {
+      long time = System.currentTimeMillis();
+      long x = 1000*60*60*24*365;
+      System.out.println(time/x);
+   }
+}
+Ответ: другое число.
+____________
+Вопрос 179:  Вопрос: Что выведется на экран в результате выполнения данного кода:
+
+class Zero {
+    protected String name = "zero";
+    protected void say() {
+        System.out.println(name);
+    }
+}
+
+class One extends Zero{{
+    Two two = new Two();{
+        name = "one";
+        say();
+    }
+}}
+
+class Two extends One {{
+    One one = new One();{
+        name = "two";
+        say();
+    }
+}}
+
+class Three {
+    public static void main(String... args) {
+        One one = new One();
+    }    
+}
+Ответ: StackOverflowError.
+____________
+Вопрос 180:  Какие методы из перечисленных есть в классе Object?
+
+
+Ответ: public String toString();
+Ответ: public final void notify();
+Ответ: public final Class<?> getClass();
+Ответ: public boolean equals(Object obj);
+Ответ: public int hashCode().
+____________
+Вопрос 181:  Есть метод и кусок кода, который его использует: Напишите, что будет напечатано на экран в результате выполнения данного куска кода
+
+public static void test(Collection<Integer> c) {
+   c.add(3);
+   c.add(2);
+   c.add(1);
+   c.add(2);
+   c.remove(3);
+   System.out.println(c);
+}
+...
+   test(new ArrayList<Integer>());
+   test(new LinkedHashSet<Integer>());
+   test(new TreeSet<Integer>()); [2, 1, 2]
+[1, 2]
+[1, 2] [2, 1, 2]
+[2, 1, 2]
+[2, 1, 2] [2, 1, 2]
+[2, 1]
+[1, 2]
+Ответ: .
+____________
+Вопрос 182:  Что будет в результате компиляции и запуска программы?
+
+public class TestArr {
+    public static void main(String[] args) {
+        String[] arr = {"1", "2", "3"};
+        List arrList = Arrays.asList(arr);  //1
+        arr[1] = "22";                      //2
+        arrList.add("8");                   //3
+        for (String s : arr)
+            System.out.print(s + " ");
+        for (Object s : arrList)
+            System.out.print(s + " ");
+    }
+}
+Ответ: Исключение в процессе работы.
+____________
+Вопрос 183:  Дан код: Каков будет результат компиляции и выполнения этой программы?
+
+import java.util.*;                                                  
+
+class SomeClass {                                                 
+  public static void main(String[] args) {                           
+    TreeMap<String, Integer> myMap = new TreeMap<String, Integer>(); 
+    myMap.put("ab", 1);  myMap.put("ca", 2);                       
+    myMap.put("ba", 3);  
+    NavigableMap<String, Integer> myMap1 = myMap.headMap("da", true);
+    myMap.put("ea", 4);                                            
+    myMap1.put("bc", 5);                                          
+    System.out.println(myMap1.get("ab") + " " + myMap1.get("ea"));
+  }                                                                 
+}
+Ответ: 1 null.
+____________
+Вопрос 184:  Если в классе переопределяется метод toString(), какой еще метод необходимо переопределить для корректного использования объектов этого класса в хэш-таблицах?
+
+
+Ответ: Никакой.
+____________
+Вопрос 185:  Что произойдет при выполнении следующего кода ?
+
+public class Test<T>{
+
+    static class MyTest{
+        public MyTest(int k) {
+            System.out.println("MyTest created");
+        }
+    }
+
+    T obj1, obj2;
+
+    public Test(T t, Class<T> cls) throws Exception {
+
+        obj1 = t; // 1
+
+        obj2 = cls.newInstance(); // 2
+    }
+
+    public static void main(String[] args) throws Exception {
+        MyTest mt = new MyTest(10);
+        Test t = new Test(mt, MyTest.class);
+    }
+}
+Ответ: Ошибка выполнения в строке 2.
+____________
+Вопрос 186:  Что выведет в консоль следующий код?
+
+package question;
+
+import java.lang.reflect.Method;
+
+
+class Test {
+
+    public void methodPublic() {
+        System.out.println("Test.methodPublic");
+    }
+
+    protected void methodProtected() {
+        System.out.println("Test.methodProtected");
+    }
+
+    private void methodPrivate() {
+        System.out.println("Test.methodPrivate");
+    }
+}
+
+public class PrivateTest {
+
+    public static void main(String[] args) throws Exception {
+        Test test = new Test();
+        callMethods(test, "methodPublic");
+        callMethods(test, "methodProtected");
+        callMethods(test, "methodPrivate");
+    }
+
+
+    static void callMethods(Object a, String methodName) throws Exception {
+        Method m = a.getClass().getDeclaredMethod(methodName);
+        m.setAccessible(true);
+        m.invoke(a);
+    }
+
+}
+Ответ: Test.methodPublic Test.methodProtected Test.methodPrivate.
+____________
+Вопрос 187:  Какой результат выражения (int) (char) (byte) -1 ?
+
+
+Ответ: .
+____________
+Вопрос 188:  Какой будет результат выполнения следующей программы?
+
+public class Test {
+    private static boolean ready;
+    private static int number;
+
+    private static class ReaderThread extends Thread {
+        public void run() {
+        while (!ready)
+            Thread.yield();
+        System.out.println(number);
+        }
+    }
+
+    public static void main(String[] args) {
+        new ReaderThread().start();
+        number = 42;
+        ready = true;
+    }
+}
+Ответ: Результат выполнения предсказать невозможно.
+____________
+Вопрос 189:  Что будет выведено на экран в результате компиляции и выполнения следующего кода?
+
+public class Test<M> {
+
+    <M> Class getArgumentClass(M m) {
+
+        return m.getClass();
+    }
+    
+    public static void main(String[] args) {
+
+        Test test = new Test();
+        
+        Double d = new Double(12);
+
+        Class c1 = test.<Double>getArgumentClass(d);
+        Class c2 = test.<Number>getArgumentClass(d);
+        Class c3 = test.getArgumentClass(d);
+        
+        System.out.println(c1 == c2);
+        System.out.println(c1 == c3);
+        System.out.println(c2 == c3);
+    }
+}
+Ответ: true true true.
+____________
+Вопрос 190:  Выберите единственный верный результат компиляции и выполнения кода.
+
+enum Fish {
+    GOLDFISH, ANGELFISH, GUPPY;
+}
+ public class EnumTest2{
+     public static void main(String[] args){
+          Fish f = Fish.valueOf("GUPPY");
+          if (f == Fish.GUPPY)
+                    System.out.println("Are equal");
+          if (f.equals(Fish.GUPPY))
+                    System.out.println("Are equal");
+    }
+}
+Ответ: Вывод "Are equal" без кавычек дважды..
+____________
+Вопрос 191:  Какой будет результат компиляции и выполнения приложения, описанного ниже, командой
+
+java Split1 a1+b3-c5=4x [12345][+-=] public class Split1 {
+    public static void main(String[] args){
+        System.out.println((args[0].split(args[1])).length);
+    }
+}
+Ответ: Программа выведет "4" без кавычек.
+____________
+Вопрос 192:  Что верно о классах StringBuffer и StringBuilder?
+
+
+Ответ: StringBuilder эффективнее для однопоточных приложений, а для многопоточных потребуется дополнительная синхронизация.
+____________
+Вопрос 193:  Какой из этих классов является непосредственным суперклассом для AssertionError?
+
+
+Ответ: Error.
+____________
+Вопрос 194:  Какой результат выполнения кода?
+
+public class Func {
+    public int f(int x) {
+        if (x%2 == 0) throw new IllegalArgumentException();
+        return x;
+    }
+    static int x = new Func() {
+        public int f(int x) {
+            try { return super.f(x); }
+            finally { return 1; }
+        }
+    }.f(4);
+
+    { System.out.println("x = " + x); }
+
+    public static void main(String[] args) {
+    }
+}
+Ответ: напечатает "х = 0".
+____________
+Вопрос 195:  Скомпилируется ли код:
+
+class Foo {
+    void go(){}
+}
+class Bar extends Foo {
+    String go() {           //1
+        return null;
+    }
+}
+class Bar2 extends Foo {
+    String go(int x) {      //2
+        return null;
+    }
+}
+class Bar3 extends Foo {
+    void go(int x) {        //3
+    }
+}
+Ответ: Ошибка компиляции в строке 1.
+____________
+Вопрос 196:  Каким будет результат выполнения кода:
+
+int x = Integer.MIN_VALUE;
+System.out.println(x);
+System.out.println(-x);
+Ответ: -2147483648 -2147483648.
+____________
+Вопрос 197:  Какой результат компиляции и выполнения программы:
+
+import java.io.*;
+
+public class NewClass {
+    public static void main(String[] args) throws Exception {
+        ByteArrayOutputStream bOut = new ByteArrayOutputStream();
+        ObjectOutputStream oOut = new ObjectOutputStream(bOut);
+        oOut.writeObject(new Sub()); 
+        System.out.println("");
+        ByteArrayInputStream bIn = new ByteArrayInputStream(bOut.toByteArray());
+        ObjectInputStream oIn = new ObjectInputStream(bIn);
+        oIn.readObject();
+    }
+}
+
+class Base {
+    private int baseField = getInt(1);
+
+    public Base() {
+        System.out.print("Base.Base() ");
+    }
+
+    protected int getInt(int i) {
+        System.out.print(i + " ");
+        return i;
+    }
+}
+
+class Sub extends Base implements Serializable {
+    private int subField = getInt(2);
+
+    public Sub() {
+        System.out.print("Sub.Sub() ");
+    }
+}
+Ответ: 1 Base.Base() 2 Sub.Sub() 1 Base.Base().
+____________
+Вопрос 198:  Что выведет данный код:
+
+public class Temp {
+    public static void main(String[] args) {
+        System.out.println("thread is "
+                + Thread.currentThread().getName());
+    }
+}
+Ответ: thread is main.
+____________
+Вопрос 199:  Каким будет результат выполнения кода?
+
+public class Test {
+    public static void main(String[] args) {
+        for (int i = 0; i < 3; i++) { 
+              i = doIt(i); 
+        }
+    }
+    static int doIt(int i) {
+        new Test() {
+            {  System.out.print((i + 0.99) + ", ");  }
+        };
+        return i;
+    }
+}
+Ответ: ошибка компиляции.
+____________
+Вопрос 200:  Что будет в результате компиляции и исполнения следующего кода:
+
+class User {      private int id = 0;      private String name;      private String surname;            public User() {}            public User(int id, String name, String surname) {          this.id = id;          this.name = name;          this.surname = surname;      }        @Override      public boolean equals(Object obj) {                    if (this == obj)              return true;                    if (obj == null || !getClass().equals(obj.getClass()))              return false;                    User u = (User) obj;                    return id == u.id              && name == u.name || (name != null && name.equals(u.name))              && surname == u.surname || (surname != null && surname.equals(u.surname));                }            @Override      public int hashCode() {                    return id +              name == null ? 0 : name.hashCode() +              surname == null ? 0 : surname.hashCode();      }            public static void main(String args[]) {            User u1 = new User(12, "name", null);          User u2 = new User(12, null, "name");                    System.out.println(u1.hashCode() == u2.hashCode());          System.out.println(u1.equals(u2));      }  }  return ((id + name) == null ? 0 : name.hashCode() + surname) == null ? 0 : surname.hashCode();  return id +      (name == null ? 0 : name.hashCode()) +      (surname == null ? 0 : surname.hashCode()); 
+Ответ: Ошибка исполнения.
+____________
+Вопрос 201:  В каких функциях компилятор выдаст ошибку: Unreachable code (недостижимый код)?
+
+public void test1(){
+    return;
+    System.out.println("test1");
+} public void test2(){
+    System.exit(0);
+    System.out.println("test2");
+} public void test3(){
+    try{ }
+    catch(Exception e){System.out.println("test3");}
+} public void test4(){
+    try{ }
+    catch(IOException e){System.out.println("test4");}
+} public void test5(){
+    while(true);
+    System.out.println("test5");
+}
+Ответ: ;
+Ответ: .
+____________
+Вопрос 202:  Что будет выведено в результате выполнения данного кода?
+
+public class Parent {
+    protected String value = "parent";
+
+    public static void main(String[] args) {
+        Parent parent = new Parent();
+        Parent child = new Child();
+        System.out.println(parent.value);
+        System.out.println(child.value);
+        System.out.println(new Child().value);
+    }
+}
+
+class Child extends Parent {
+    protected String value = "child";
+}
+Ответ: parent parent child.
+____________
+Вопрос 203:  Какой результат компиляции и выполнения данного кода?
+
+public class Main { 
+    public static void var(int... x)      //1
+    { 
+        System.out.println("int... x"); 
+    } 
+    
+    public static void var(Object... x)  //2
+    { 
+        System.out.println("Object... x"); 
+    } 
+
+    public static void var(Integer... x) //3
+    { 
+        System.out.println("Integer..."); 
+    } 
+ 
+    public static void main(String... args)
+    {  
+        int i = 0; 
+        Integer i2 = 127; 
+        var(i, i2); 
+    } 
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 204:  Какой будет результат компиляции и выполнения следующего кода?
+
+public class Test {
+    static void methodA(Integer... i) {
+        System.out.println("A");
+    }
+
+    static void methodA(int... i) {
+        System.out.println("B");
+    }
+
+    public static void main(String[] args) {
+        methodA(Integer.valueOf("5"));
+    }
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 205:  Каким будет результат компиляции и выполнения данного кода?
+
+public class Greek{
+
+     int i=1;
+
+     public int getI(){
+          System.out.print("Super");
+          return i;
+     }
+
+     public static void main(String arhs[]){
+          Greek ga=new Arabik();
+          System.out.print(ga.i+" "+ga.getI());
+     }
+}
+
+
+class Arabik extends Greek{
+
+     int i=2;
+
+     public int getI(){
+          System.out.print("Sub");
+          return i;
+     }
+
+}
+Ответ: Sub1 2.
+____________
+Вопрос 206:  У каких типов данных может быть значение NaN?
+
+
+Ответ: Float;
+Ответ: Double.
+____________
+Вопрос 207:  Что будет напечатано следующим кодом?
+
+public class Test {
+    int i = 10;
+    public int hashCode() {
+        return i;
+    }
+    public static void main(String ... a) {
+        System.out.println(String.format(" %1$b  ", new Boolean("fAlSe")) );
+        System.out.println(String.format(" %1$H %2$s", new Test(), null ) );
+    }
+}
+Ответ: false A null.
+____________
+Вопрос 208:  Каким будет результат компиляции и выполнения следующего кода?
+
+import java.util.Arrays;
+public class Test {
+    static int [] x = new int[4];
+    
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(x));
+    }
+
+    static {
+        x[4] = 5;
+    }
+}
+Ответ: Будет сгенерировано исключение java.lang.ExceptionInInitializerError.
+____________
+Вопрос 209:  Чему будет равен y после выполнения следующих операций:
+
+int x = Integer.MIN_VALUE;
+int y = -x;
+Ответ: -2147483648.
+____________
+Вопрос 210:  Что произойдет при выполнении данного кода: Укажите все подходящие варианты.
+
+// файл Thread.java
+1. package ThreadTest;
+2. public class Thread implements Runnable {
+3.     public void run() {
+4.         System.out.println("thread");
+5.     }
+6. }
+
+// файл Thread2.java
+10. package ThreadTest;
+11. public class Thread2 implements Runnable {
+12.     public void run() {
+13.         System.out.print("thread2");
+14.     }
+15.     public static void main(String[] args) {
+16.         Thread2 thread = new Thread2();
+17.         Thread t1 = new Thread(thread);
+18.         t1.start();
+19.     }
+20. }
+Ответ: Ошибка компиляции в строке 17.
+____________
+Вопрос 211:  Сколько денег в кармане у Джека?
+
+public class Main {
+    public static void main(String[] args) {        
+        RichJack jack = new RichJack();
+        jack.showYourWallet();
+    }
+}
+
+class Jack {
+    Jack() {
+        this.sayHello();
+    }
+    
+    public void sayHello() {
+        System.out.println("I'm Jack!");
+    }
+}
+
+class RichJack extends Jack {
+    private int money = 0;
+
+    public RichJack() {
+        money += 100;
+    };
+    
+    public void sayHello() {
+        money += 1000000000;   // one billion
+        System.out.println("I'm rich Jack!");
+    }
+    
+    public void showYourWallet() {
+        System.out.println("I have quite some money, about $" + money);
+    };
+}
+Ответ: 100.
+____________
+Вопрос 212:  Какой будет результат выполнения данного кода:
+
+public class Test {
+    private static String name = "Duke";
+
+    public static void main(String[] args) {
+        System.out.println("Hello ");
+        System.out.println(getTest().name);
+    }
+
+    private static Test getTest(){
+        return null;
+    }
+}
+Ответ: Hello Duke.
+____________
+Вопрос 213:  Каким будет результат компиляции и выполнения данного кода:
+
+public class Test {      public static void main(String[] s) {          class Inn {              static { System.out.print("Static "); }              void m() {                  System.out.print("inner ");              }          }          new Inn().m();      }  } 
+Ответ: Ошибка компиляции.
+____________
+Вопрос 214:  Каким будет результат компиляции и выполнения следующего кода:
+
+01:  public class DecTest {
+02:     
+03:     private static int x = getY();
+04:     private static int y = 5;
+05:     
+06:     private static int getY(){
+07:         return y;
+08:     }    
+09:     
+10:     public static void main(String[] args) {
+11:         System.out.println(x);
+12:     }
+13: }
+Ответ: 0.
+____________
+Вопрос 215:  Вопрос: Что выведется на экран в результате выполнения данного кода:
+
+class Synchronized {
+    private Synchronized() {}                //1
+    private static int order = 0xFace;        //2
+    
+    public void saySomething(String name) {
+        System.out.print(name);
+    }
+    
+    public static void main(String[] args) {
+        new Thread() {
+            public void run() {
+                order++;
+                this.yield();                //3
+                synchObj.saySomething("I am " + order + " ");
+            }
+        }.start();                            //4
+        new Thread() {
+            public void run() {
+                ++order;
+                this.setPriority(MAX_PRIORITY);
+                synchObj.saySomething("I am " + order + " ");
+            }
+        }.start();                            //4
+    }
+    private static Synchronized synchObj = new Synchronized();    //5
+}
+Ответ: Ошибка компиляции в строке //5.
+____________
+Вопрос 216:  Выберите классы, относящиеся к checked exception:
+
+
+Ответ: Throwable;
+Ответ: Exception.
+____________
+Вопрос 217:  Выберите два варианта кода, которые успешно компилируются.
+
+
+Ответ: List<Number> l = new LinkedList<Number>();;
+Ответ: LinkedList<Integer> l = new LinkedList ();.
+____________
+Вопрос 218:  В каких строках использование параметра T не законно (укажите 3 варианта):
+
+public class Test<T> {
+    private T item;                                       // (1)
+    private static T[] storage = new T[100];              // (2)
+    public Test(T item) { this.item = item; }             // (3)
+    public T getItem() { return item; }                   // (4)
+    public void setItem(T newItem) { item = newItem; }    // (5)
+    public static void getAllItems(T newItem) {           // (6)
+        T temp;                                           // (7)
+    }
+}
+Ответ: Строка (2);
+Ответ: Строка (6);
+Ответ: Строка (7).
+____________
+Вопрос 219:  Каким будет результат компиляции и выполнения следующего кода?
+
+throw null;
+Ответ: Возникнет NullPointerException.
+____________
+Вопрос 220:  Выберите правильные варианты вызова конструктора предка, вставляемые в .
+
+class Base {
+    public Base(String s) {
+        System.out.println("Base(" + s + ")");
+    }
+}
+
+class Sub extends Base {
+
+    private static final String CLASS_DUMMY_STRING = "CLASS_DUMMY_STRING";
+    private final String INSTANCE_DUMMY_STRING = "INSTANCE_DUMMY_STRING";
+
+    public Sub() {
+          //(1)       
+    }
+
+    private static String getClassString() {
+        return CLASS_DUMMY_STRING;
+    }
+
+    private String getInstanceString() {
+        return INSTANCE_DUMMY_STRING;
+    }
+}
+Ответ: super(CLASS_DUMMY_STRING);;
+Ответ: super(getClassString());.
+____________
+Вопрос 221:  Какой результат компиляции и выполнения данной программы (используя Java 5.0 или выше)?
+
+public class Main  {
+    private Main() {}
+
+    class Test extends Main {}
+
+    public static strictfp void main(String... args) throws RuntimeException {
+        new Main().new Test().new Test();
+    }
+}
+Ответ: Успешная компиляция без warning-ов, успешное выполнение и пустой поток вывода.
+____________
+Вопрос 222:  Что выведет на экран следующий код?
+
+public class Test {
+   private void division(int a, int b) {
+      int result = a / b;
+      System.out.println(result);
+   }
+   public static void main(String[] args) {
+      division(2, 0);
+   }
+}
+Ответ: Программа не скомпилируется.
+____________
+Вопрос 223:  Выберите все валидные сигнатуры методов:
+
+
+Ответ: public abstract void Test();;
+Ответ: native void doSomething( int i );.
+____________
+Вопрос 224:  Какой результат выполнения данной программы ?
+
+public class Test {
+    public static void main(String[] args) {
+        TestClone t1 = new TestClone();
+        TestClone t2 = (TestClone) t1.clone();
+        for(int i = 0; i < t2.arr.length; i++) {
+            t2.arr[i] = (t2.arr.length - i);
+        }
+        System.out.println(t1.arr.equals(t2.arr));
+    }
+}
+
+class TestClone implements Cloneable {
+    int arr[] = {1, 2, 3, 4, 5};
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch(CloneNotSupportedException e) {
+            System.out.println("Клонирование не разрешено");
+            return this;
+        }
+    }
+}
+Ответ: true.
+____________
+Вопрос 225:  Что выведет на консоль данный код:
+
+public class Test {
+    public void checkCase(int i) {
+        switch (i&01) {
+            case 1:
+                System.out.println("Case 1");
+            case 2:
+                System.out.println("Case 2");
+            default:
+                System.out.println("Default");
+            case 3:
+                System.out.println("Case 3");
+        }
+    }
+    public static void main(String[] args) {
+        Test test = new Test();
+        test.checkCase(-1);
+    }
+}
+Ответ: Case 1 Case 2 Default Case 3.
+____________
+Вопрос 226:  Результатом его компиляции и выполнения будет:
+
+public class Test {
+  public void method(Object o) {
+    System.out.println("Object");
+  }
+  public void method(java.io.FileNotFoundException f) {
+    System.out.println("FileNotFoundException");
+  }
+  public void method(java.io.IOException i) {
+    System.out.println("IOException");
+  }
+  public static void main(String args[]) {
+    Overload test = new Overload();
+    test.method(null);
+  }
+}
+Ответ: «FileNotFoundException».
+____________
+Вопрос 227:  Каков будет результат выполнения данного кода?
+
+class Main {
+  public static void main (String[] args) {
+    String str = "hello";
+    StringBuffer sb = new StringBuffer(str);
+    System.out.print(sb.equals(str) + "," + str.equals(sb));
+  }
+}
+Ответ: false,false.
+____________
+Вопрос 228:  Что верно по отношению к следующему коду?
+
+import java.util.*;
+public class TestSet {        
+    public static void main(String... args){
+        Set s = new HashSet();
+        s.add("a");
+        s.add("b");
+        s.add("b");
+        s.add("c");        
+        System.out.println(s + " ");
+    }
+}
+Ответ: Значения HashSet не упорядочены, не отсортированы и не имеют дубликатов.
+____________
+Вопрос 229:  Что произойдет при компиляции и выполнении следующего кода?
+
+public class Test {
+    enum Enum {
+        ONE("oneInfo"), TWO("twoInfo"), THREE("threeInfo");
+        
+        private static String info = ""; //1
+        
+        Enum(String info) {
+            this.info = info;     //2
+        }
+        
+        public static String getInfo() {
+            return info;
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Enum.TWO.getInfo()); // 3
+    }
+}
+Ответ: Ошибка компиляции в строке 2.
+____________
+Вопрос 230:  Что произойдет во время компиляции и выполнения данного кода?
+
+public class MainClass {
+    public static void main(String args[]) {
+       List list = new ArrayList (); list.add("Object"); list.add(list); for (Object object : list) { System.out.println(object); } } }  Object
+[Object, Object] Object
+[Object, (this Collection)]
+Ответ: Напечатает.
+____________
+Вопрос 231:  Что произойдет в результате компиляции и запуска следующей программы:
+
+package X;
+public class X<X> {
+    X x;
+    public X(){  }
+    public X(X x){ 
+        this.x=x;
+    }
+    public <Y extends X> Y Y(Y y){
+        return y;
+    }
+}
+
+class Y<Y extends X> extends X{
+    private static Integer Y = 5;
+    public static void main(String...X){
+        System.out.print(new X().Y(Y).toString());
+    }
+}
+Ответ: Программа скомпилируется и сработает без ошибок.
+____________
+Вопрос 232:  Каким будет результат компиляции и выполнения данного кода:
+
+public class QTest {
+    public static void main(String[] args) {
+        int i = 2;
+        L1: {
+            System.out.print("1");
+            L2: {	
+                if (i > 1) if (i < 3) break L1; else if (i == 2) break L2;
+                System.out.print("2");
+            }
+            System.out.print("3");
+        }
+    }
+}
+Ответ: На консоль выведется "1".
+____________
+Вопрос 233:  Что произойдёт при компиляции и выполнении кода
+
+class Checker implements Runnable {
+    private Data data;
+    public Checker(Data data){
+        this.data = data;
+    }
+    public void run(){
+        while(true){
+            int t = data.get();
+            if(t % 4 != 0){
+                System.out.println("ERROR");
+            }
+        }
+    }
+}
+
+class Changer implements Runnable {
+    private Data data;
+    public Changer(Data data){
+        this.data = data;
+    }
+    public void run(){
+        while(true){
+            data.increment();
+        }
+    }
+}
+
+class Data {
+    private int i;
+    public synchronized void increment(){
+        i++;
+        i++;
+        i++;
+        i++;
+        if(i > 1000){
+            i = 0;
+        }
+    }
+    public int get(){
+        return i;
+    }
+}
+
+public class ThreadTest {
+    public static void main(String args[]){
+        Data data = new Data();
+        Runnable checker = new Checker(data),
+                 changer = new Changer(data);
+
+        new Thread(checker).start();
+        new Thread(changer).start();
+    }
+}
+Ответ: Результат непредсказуем.
+____________
+Вопрос 234:  Каким будет результат компиляции и выполнения данного кода?
+
+import java.util.*;
+
+class A {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<Integer>(); // 1
+        for (int i = 0; i < 100; i++) {
+            list.add(i);
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            int e = list.get(i);                      // 2
+            list.remove(e);
+        }
+
+        System.out.println(list.size());
+    }
+}
+Ответ: IndexOutOfBoundsException.
+____________
+Вопрос 235:  Каким будет результат компиляции и выполнения кода:
+
+01: public class Foo {
+02:     public static void main(String[] args) {
+03:         class Horse {
+04:             public String name;
+05:             public Horse (String s) {
+06:                 name  = s;
+07:             }
+08:         }
+09:         Object obj = new Horse("Zippo");
+10:         System.out.println(obj.name);
+11:     }
+12: }
+Ответ: Ошибка компиляции в строке 10.
+____________
+Вопрос 236:  Какой будет результат компиляции и выполнения следующего кода?
+
+public class Test {
+    private static class Resource {
+        public int value;
+    };
+
+    private Resource resourceA = new Resource();
+    private Resource resourceB = new Resource();
+
+    public int read() {
+        synchronized (resourceA) {
+            synchronized (resourceB) {
+                return resourceA.value + resourceB.value;
+            }
+        }
+    }
+
+    public void write(int a, int b) {
+        synchronized (resourceB) {
+            synchronized (resourceA) {
+                resourceA.value = a;
+                resourceB.value = b;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        final Test test = new Test();
+
+        Runnable targetA = new Runnable() {
+            public void run() {
+                while (true) 
+                    System.out.println(test.read());
+            }
+        };
+
+        Runnable targetB = new Runnable() {
+            public void run() {
+                while (true) 
+                    test.write(1, 2);
+            }
+        };
+
+        new Thread(targetA).start();
+        new Thread(targetB).start();
+    }
+}
+Ответ: Рано или поздно программа зайдет в тупик (deadlock)..
+____________
+Вопрос 237:  Какой результат работы программы:
+
+public class Test {
+  public static void main(String[] args) {
+    Byte b1 = (byte) (3*4);
+    Byte b2 = (byte) (2*6);
+    Short s1 = (short) (3*40);
+    Short s2 = (short) (20*6);
+    Integer i1 = (int) (30*40);
+    Integer i2 = (int) (20*60);
+    
+    System.out.println(b1 == b2);
+    System.out.println(s1 == s2);
+    System.out.println(i1 == i2);
+  }    
+}
+Ответ: true true false.
+____________
+Вопрос 238:  Что произойдет, если скомпилировать данный код (как метод некоторого класса) и выполнить метод getNumber с параметром "12ab"?
+
+public int getNumber(String str) {
+    try {
+        String tmp = str.substring(0, str.indexOf(','));
+        return Integer.parseInt(tmp);
+    } catch(NumberFormatException e) {
+        System.out.println("Problem in " + tmp);
+    }
+    return -1;
+}
+Ответ: Возникнет StringIndexOutOfBoundsException.
+____________
+Вопрос 239:  Что можно сказать о следующем коде:
+
+class Counter {
+    private static int count;
+    
+    Counter() {
+        count++;
+    }
+    
+    protected void finalize() {
+        System.out.print(count);    
+    }
+}
+
+public class Test {
+    public static void main( String[] args ) {
+        for (int i = 3; i > 0; i--) {
+            Counter c = new Counter();
+            c = null;
+            Runtime runtime = Runtime.getRuntime();
+            runtime.gc();
+        }
+    }    
+}
+Ответ: результат невозможно предсказать.
+____________
+Вопрос 240:  Что выведет на консоль следующий код:
+
+public class Main {
+    public static void main (String []args) {
+        int i = 0;
+        i += i++;
+        System.out.println(i);
+    }	
+} 0:	iconst_0
+   1:	istore_1
+   2:	iload_1
+   3:	iload_1
+   4:	iinc	1, 1
+   7:	iadd
+   8:	istore_1
+Ответ: 0.
+____________
+Вопрос 241:  Каким будет результат компиляции и выполнения следующей программы?
+
+class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println("Runnable!");
+    }
+}
+
+public class MyThread extends Thread {
+    public MyThread() {
+        super();
+    }
+
+    public MyThread(Runnable target) {
+        super(target);
+    }
+
+    public void run() {
+        System.out.println("Thread!");
+    }
+
+    public static void main(String[] args) {
+        new MyThread().start();
+        new MyThread(new MyRunnable()).start();
+    }
+}
+Ответ: Thread! Thread!.
+____________
+Вопрос 242:  Каким будет результат компиляции и выполнения данного кода:
+
+public class Main {
+    public static void main(String[] args) {
+        Parent p = new Parent();
+        Child c = new Child();
+        Parent p2 = new Child();
+
+        useIt(p);
+        useIt(c);
+        useIt(p2);
+    }
+
+    final static void useIt (Parent p){
+        System.out.println("Parent");
+    }
+
+    final static void useIt (Child c){
+        System.out.println("Child");
+    }
+}
+
+class Parent { }
+class Child extends Parent { }
+Ответ: Parent Child Parent.
+____________
+Вопрос 243:  Что произойдёт в результате выполнения кода?
+
+class A {
+    private static int v = func();
+    private static int func() {
+        System.out.print("A");
+        return 0;
+    }
+}
+
+class B {
+    private static int v = func();
+    public static int func() {
+        System.out.print("B");
+        return 0;
+    }
+}
+
+class C {
+    private static int v = func();
+    public static int func() {
+        System.out.print("C");
+        return 0;
+    }
+}
+
+public class Question {
+    public static void main(String[] args) {
+        B b;
+        C.func();
+        b = new B();
+        System.out.println();
+    }
+}
+Ответ: Будет выведено CCB.
+____________
+Вопрос 244:  Что выведет следующий код?
+
+public class Main {       public static void var(Integer x, int y)       {           System.out.println("Integer int");       }          public static void var(Object... x)       {           System.out.println("Object");       }          public static void var(Object x, Object y)       {           System.out.println("2 Obj");       }            public static void var(int... x) {           System.out.println("int... x");       }         public static void var(Integer... x) {           System.out.println("Integer...");       }        public static void main(String... args) {            byte i = 0;           Integer i2 = 127;           var(i, i2);       }   } 
+Ответ: 2 Obj.
+____________
+Вопрос 245:  Каким будет результат компиляции и выполнения следующего кода:
+
+import java.util.*;
+class Main {
+    public static void main( String[] args ) {
+          ArrayList<String> list=new ArrayList<String>(2);
+          list.add("1");
+          list.add("2");
+          list.add("3");
+          list.remove(new String("2"));
+          System.out.println(list.size());
+    }
+}
+Ответ: 2.
+____________
+Вопрос 246:  Что будет в результате компиляции и исполнения следующего кода:
+
+class User {
+    private int id = 0;
+    private String name;
+    private String surname;
+    
+    public User() {}
+    
+    public User(int id, String name, String surname) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        
+        if (this == obj)
+            return true;
+        
+        if (obj == null || !getClass().equals(obj.getClass()))
+            return false;
+        
+        User u = (User) obj;
+        
+        return id == u.id
+            && name == u.name || (name != null && name.equals(u.name))
+            && surname == u.surname || (surname != null && surname.equals(u.surname));
+        
+    }
+    
+    @Override
+    public int hashCode() {
+        
+        return id +
+            name == null ? 0 : name.hashCode() +
+            surname == null ? 0 : surname.hashCode();
+    }
+    
+    public static void main(String args[]) {
+
+        User u1 = new User(12, "name", null);
+        User u2 = new User(12, null, "name");
+        
+        System.out.println(u1.hashCode() == u2.hashCode());
+        System.out.println(u1.equals(u2));
+    }
+} return ((id + name) == null ? 0 : name.hashCode() + surname) == null ? 0 : surname.hashCode(); return id +
+    (name == null ? 0 : name.hashCode()) +
+    (surname == null ? 0 : surname.hashCode());
+Ответ: Ошибка исполнения.
+____________
+Вопрос 247:  Каким будет результат компиляции и выполнения следующей программы?
+
+public class Test {
+    public static int y;
+
+    public static void first(int x) {
+        System.out.println("first ");
+        y = x;
+    }
+
+    public static int second(int z) {
+        System.out.println("second ");
+        return y = z;
+    }
+
+    public static void main(String[] args) {
+        int t = 0;
+        assert t > 0 : second(7);
+        assert t > 1 : first(8);
+        System.out.println("done ");
+    }
+}
+Ответ: Ошибка компиляции.
+____________
+Вопрос 248:  Выберите строки, использование которых в строке 7 не приведет к ошибке компиляции.
+
+01  public class Test {
+02       private String helloString = "Hello.";
+03
+04       public Test(int i) {
+05           class Inner {
+06               public Inner(String str) {
+07                  // Вставьте код
+08              }
+09          }
+10          Inner inner = new Inner("Goodbye.");
+11      }
+12  }
+Ответ: System.out.println(Test.this.helloString);.
+____________
+Вопрос 249:  Что выведет в консоль следующий код?
+
+public class Test {
+    private static void removeAndPrint(List<String> list) {
+        for (String str : list) {
+            if (str.equals("two")) {
+                list.remove("three");
+            }
+        }
+        System.out.println(list);
+    }
+
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<String>();
+        
+        list.add("one");
+        list.add("two");
+        list.add("three");
+        list.add("four");
+
+        removeAndPrint(list);
+
+    }
+}
+Ответ: Ошибка выполнения.
+____________
+Вопрос 250:  Каков результат выполнения данной программы?
+
+class Person {
+    public String name;
+    public int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public boolean equals(Object obj) {
+       return obj instanceof Person
+               && this.age == ((Person)obj).age
+               && this.name.equals(((Person)obj).name);
+   }
+}
+
+public class asdas {
+    public static void main(String[] args){
+        Person p1 = new Person(null, 10);
+        Person p2 = new Person("Alex", 22);
+        System.out.println(p1.equals(p2));
+    }
+} this.name.equals(((Person)obj).name);
+Ответ: Напечатает "false" без кавычек.
+____________
+Вопрос 251:  Дано объявление класса Какие 3 из объявлений ниже будут откомпилированы без ошибок?
+
+class ClassA<U> implements Comparable<U> {
+    public int compareTo(U a) { return 0; }
+}
+Ответ: class ClassC<U,V> extends ClassA<U> {};
+Ответ: class ClassE<U> extends ClassA<Comparable<Number>> {};
+Ответ: class ClassF<U extends Comparable<U> & Serializable> extends ClassA<Number> {}.
+____________
+Вопрос 252:  Каким будет результат компиляции и выполнения следующего кода:
+
+import java.util.*;
+class Q3 {
+  public static void main(String[] args) {
+     List<String> arrayList = new ArrayList<String> (); 
+     arrayList.add("One"); 
+     arrayList.add("Two"); 
+     arrayList.add("Three"); 
+          
+     for (Iterator<String> iter = arrayList.iterator(); iter.hasNext();) { 
+         String current = iter.next(); 
+         if (current.length() == 3) { 
+             arrayList.remove(current); 
+         } 
+     } 
+          
+     for (String current:arrayList) 
+         System.out.println(current); 
+  }
+}
+Ответ: Возникнет исключительная ситуация ConcurrentModificationException.
+____________
+Вопрос 253:  Какой результат выполнения данной программы?
+
+public class Test {
+    public static void main(String[] args){
+        float x = 0, y = 0;
+        x = (float) (0.3 + 0.4);
+        y = 0.3f + 0.4f;
+        System.out.println(x==y);
+    }
+}
+Ответ: false.
+____________
+Вопрос 254:  Интерфейс NavigableMap расширяет (extends) интерфейс:
+
+
+Ответ: Map;
+Ответ: SortedMap.
+____________
+Вопрос 255:  Что произойдет при попытке скомпилировать и запустить данную программу:
+
+import java.util.Formatter;
+public class Formatt {
+    public static void main(String[] args) {
+        Formatter formatter = new Formatter();
+        String s = formatter.format("%d%.0f", 2, (double) 0);
+        System.out.println(s);
+    }
+}
+Ответ: Произойдет ошибка во время компиляции.
+____________
+Вопрос 256:  Выберите единственный верный результат компиляции и выполнения кода.
+
+   1. import java.util.*;  2. public class MapTest  3. {  4.     public static void main(String[] args)  5.     {  6.          Object obj = new LinkedHashMap();  7.          if(obj instanceof Collection)  8.              System.out.print("For ");  9.          if(obj instanceof Map)  10.            System.out.print("A Few ");  11.        if(obj instanceof LinkedList)  12.            System.out.print("Dollars More ");  13.        if(obj instanceof HashMap)  14.            System.out.print("Good Men");  15.    }  16. } 
+Ответ: Программа выведет "A Few Good Men" без кавычек..
+____________
+Вопрос 257:  Что произойдет при выполнении следующего кода ?
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+public class Test<T> implements Iterable<T>{   // 1
+
+    private List<T> list = new ArrayList<T>(); // 2
+
+    public void addList(T... ts) {
+        Collections.addAll(list, ts);          // 3
+    }
+
+    public static void main(String... args) {
+        Test<String> t  = new Test<String>();  
+        t.addList("Hello", "world", "!");      
+        for (String str : t) {                 // 4
+            System.out.print(str + " ");
+        }
+    }
+
+    public Iterator<T> iterator() {
+        return new Iterator() {                // 5               
+
+            private int index = 0;
+
+            public boolean hasNext() {
+                return index < list.size();
+            }
+
+            public Object next() {
+                return list.get(index++);
+            }
+
+            public void remove() {
+                throw new UnsupportedOperationException("unsupported operation");
+            }
+        };
+    }
+}
+Ответ: Код скомпилируется успешно и на экран будет выведено: Hello world !.
+____________
+Вопрос 258:  Что выведет на консоль следующий код?
+
+package question;
+
+import java.lang.reflect.Field;
+
+class WithPrivateFinalField {
+    private int i = 1;
+    private final String s = "String S";
+    private String s2 = "String S2";
+
+    public String toString() {
+        return "i = " + i + ", " + s + ", " + s2;
+    }
+}
+
+public class ModifyngPrivateFields {
+    public static void main(String[] args) throws Exception {
+        WithPrivateFinalField pf = new WithPrivateFinalField();
+
+        Field f = pf.getClass().getDeclaredField("i");
+        f.setAccessible(true);
+        f.setInt(pf, 47);
+        System.out.println(pf);
+
+        f = pf.getClass().getDeclaredField("s");
+        f.setAccessible(true);
+        f.set(pf, "MODIFY S");
+        System.out.println(pf);
+
+
+        f = pf.getClass().getDeclaredField("s2");
+        f.setAccessible(true);
+        f.set(pf, "MODIFY S2");
+        System.out.println(pf);
+    }
+}
+Ответ: i = 47, String S, String S2 i = 47, String S, String S2 i = 47, String S, MODIFY S2.
+____________
+Вопрос 259:  Вставка какого кода в строку 1 позволит создать объект класса Inner (выберите все подходящие варианты).
+
+class Outer {
+	public class Inner { }
+	Inner getInner(){ return new Inner(); }
+	public Outer() { }
+}
+
+public class Starter {
+	public static void main(String[] args) {
+		//1
+	}
+}
+Ответ: Outer o = new Outer(); o.new Inner();;
+Ответ: (new Outer()).new Inner();.
+____________
+Вопрос 260:  Какая конструкция языка Java имеет более высокий уровень абстракции чем остальные?
+
+
+Ответ: интерфейсы.
+____________
+Вопрос 261:  Каким будет результат компиляции и выполнения данного кода:
+
+public class QTest {
+	public static void test() throws Exception {
+		try {
+			throw new Exception("A");
+		} finally {
+			throw new Exception("B");
+		}
+	}
+	public static void main(String[] args) {
+		try {
+			test();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
+Ответ: На консоль выведется "B".
+____________
+Вопрос 262:  Каким будет результат компиляции и выполнения данного кода?
+
+public class Main {
+    public static void main(String[] args) {
+    	int a=1;
+    	int k=a+++(++a);
+    	System.out.println(k);
+    }
+}
+Ответ: 4.
+____________
+Вопрос 263:  Что будет выведено, если скомпилировать и запустить следующий код:
+
+public class Main {
+    public static void main(String s[]) {
+        int count = 0;
+        for (int i = 0; i < 100; i++); {
+            count++;
+        }
+        System.out.println(count);
+    }
+}
+Ответ: 1.
+____________
+Вопрос 264:  Дан код: Каков будет результат его компиляции и выполнения?
+
+1. import java.util.*;                                                  
+ 2. 
+ 3. class SomeClass {                                                 
+ 4.   public static void main(String[] args) {                           
+ 5.     TreeMap<String, Integer> myMap = new TreeMap<String, Integer>(); 
+ 6.     myMap.put("a", 50);  myMap.put("b", 60);                       
+ 7.     myMap.put("c", 70);  
+ 8.     NavigableMap<String, Integer> myMap2 = myMap.headMap("d", true);
+ 9.     myMap.put("e", 90);                                            
+10.     myMap2.put("f", 100);                                          
+11.     System.out.println(myMap.size() + " " + myMap2.size());         
+12.   }                                                                 
+13. }
+Ответ: будет брошено исключение во время выполнения.
+____________
+Вопрос 265:  Каким будет результат компиляции и выполнения данного кода:
+
+public final class QTest {
+    public static void main(String[] args) {
+        new QTest() {
+            public void show() {
+                System.out.print("2");
+            }
+        }.show();
+    }
+    public void show() {
+        System.out.print("1");
+    }
+}
+Ответ: Произойдёт ошибка на этапе компиляции.
+____________
+Вопрос 266:  Что произойдет в результате компиляции и выполнения программы:
+
+class Aaaa {
+    private Double x = 2d;
+    public static void multX(Aaaa a, Double n) {
+        a.setX(a.getX()*n);
+    }
+    public Double getX() { return x; }
+    public void setX(Double xn) { x = xn; }
+    public static void trippleValue(Double x) {
+        x *= 3;
+    }
+    public static Aaaa resetX(Aaaa a) {
+        a = new Aaaa();
+        return a;
+    }
+    public static void main(String[] args) {
+        Double x = 4.0;
+        trippleValue(x);
+        Aaaa anA = new Aaaa();
+        multX(anA,x);
+        resetX(anA);
+        x=0.0;
+        System.out.print(anA.getX());
+    } 
+}
+Ответ: Программа выведет на экран "8.0" без кавычек.
+____________
+Вопрос 267:  Что выведет на консоль следующий код?
+
+package question;
+
+import java.io.*;
+
+public class TransientTest implements Serializable {
+
+    private String a;
+    private transient String b;
+
+    public TransientTest(String aa, String bb) {
+        a =  aa;
+        b =  bb;
+    }
+
+    public String toString() {
+        return a + "\n" + b;
+    }
+
+    private void writeObject(ObjectOutputStream stream) throws IOException {  // 1
+        stream.defaultWriteObject();
+        stream.writeObject(b);
+    }
+
+    private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {  // 2
+        stream.defaultReadObject();
+        b = (String)stream.readObject();
+    }
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        TransientTest sc = new TransientTest("Test1", "Test2");
+        ByteArrayOutputStream buf = new ByteArrayOutputStream();
+        ObjectOutputStream o = new ObjectOutputStream(buf);
+        o.writeObject(sc);
+
+        ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(buf.toByteArray()));
+        TransientTest sc2 = (TransientTest) in.readObject();
+        System.out.println(sc2);
+    }
+
+}
+Ответ: Test1 Test2.
+____________
+Вопрос 268:  Что произойдёт, если попытаться скомпилировать и запустить данную программу:
+
+import java.util.Formatter;
+public class Formating {
+    static Formatter formatter = new Formatter();
+    public static void main(String[] args) {
+        System.out.print(
+            formatter.format("%b|%b|%b|%b", true, new Boolean(null), new Boolean("bool"), 8)
+        );
+    }
+}
+Ответ: На консоль выведется true|false|false|true.
+____________
+Вопрос 269:  Что произойдет в результате выполнения программы?
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(100);
+        list.add(200);
+        list.add(300);
+        list.add(200);
+        Set<Number> set = new HashSet<Integer>(list);
+        System.out.println(set.size());
+        } 
+}
+Ответ: Программа не скомпилируется..
+____________
+Вопрос 270:  Какие выражения из предложенных вариантов могут быть вставлены в (1), чтобы не вызвать ошибку компилятора
+
+import java.util.*;
+
+public class Test<T> {
+    public static void main(String[] args) {
+        List<?> lst = new ArrayList<String>();
+        // (1) Вставить сюда
+    }    
+}
+Ответ: lst.add(null);;
+Ответ: Object v2 = lst.get(0);.
+____________
+Вопрос 271:  Дан код: Какие из следующих утверждений верны:
+
+class A {
+    private static final class B extends A {
+        private static void f1() {
+            System.out.println("f1 in B");
+        };
+
+        public static void f2() {
+            System.out.println("f2 in B");
+        };
+    }
+
+    final static void f1() {
+        System.out.println("f1 in A");
+    };
+
+    public static void f2() {
+        System.out.println("f2 in A");
+    };
+
+    public static void main(String[] args) {
+        B.f1();
+        f2();
+    }
+}
+Ответ: Код не будет компилироваться, если убрать модификатор static из f1().;
+Ответ: В классе B неверным образом определен f1().
+____________
+Вопрос 272:  В чем главное отличие классов java.util.Vector и java.util.ArrayList?
+
+
+Ответ: Vector синхронизирован, ArrayList - не синхронизирован.
+____________
+Вопрос 273:  Сколько объектов создаст следующее выражение :
+
+new int[3][5]
+Ответ: 4.
+____________
+Вопрос 274:  Что выведет на консоль следующий код:
+
+public class Main {
+        public static void main (String []args) {
+                 int z = 1;
+                 z += z += z += z += z;
+                 System.out.println(z);
+        }       
+}
+Ответ: 5.
+____________
+Вопрос 275:  Что произойдет в результате компиляции и выполнения следующего кода?
+
+import java.util.*;
+
+public class X {
+
+    public <X> X(X x) {
+        System.out.println("generic constructor");
+    }
+
+    public X(X x) {
+        System.out.println("simple constructor");
+    }
+
+    public X() { }
+
+    public static void main(String args[]) {
+        X x = new X(new Integer(5));
+        X x1 = new X(x);
+    }
+}
+Ответ: generic constructor simple constructor.
+____________
